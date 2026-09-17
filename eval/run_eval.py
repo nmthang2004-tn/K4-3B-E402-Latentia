@@ -7,6 +7,7 @@ Mục đích: Tự động chạy và đánh giá 24 test cases của Golden Set
 import os
 import json
 import sys
+from datetime import datetime
 
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
@@ -26,20 +27,33 @@ def run_evaluation():
 
     golden_data = load_json(golden_path)
     test_cases = golden_data.get('test_cases', [])
+    mock_data = load_json(mock_data_path) if os.path.exists(mock_data_path) else {}
+    mock_scenarios = mock_data.get('mock_scenarios', [])
     
     print("=" * 65)
     print("🚀 BẮT ĐẦU CHẠY KIỂM THỬ GOLDEN SET — TRỢ LÝ DISCORD (LATENTIA)")
     print(f"Tổng số test cases: {len(test_cases)}")
+    print(f"Dữ liệu đối chiếu: codebase/mock-data.json ({len(mock_scenarios)} scenarios, {len(mock_data.get('knowledge_base', []))} docs)")
     print("=" * 65)
 
     passed_count = 0
     failed_count = 0
     results = []
 
-    # Mock response generator based on system prompt logic
+    # Mock response generator based on system prompt logic & mock-data.json
     def mock_agent_response(case):
         inp = case['user_input'].lower()
         branch = case['expected_branch']
+        
+        # 1. First priority: Check exact or semantic scenario match from mock-data.json
+        for sc in mock_scenarios:
+            sc_input = sc.get('user_input', '').lower()
+            if sc_input and (sc_input in inp or inp in sc_input):
+                resp = sc.get('bot_response')
+                if isinstance(resp, str):
+                    return resp
+                elif isinstance(resp, dict):
+                    return resp.get('text', '')
         
         if branch == "happy_path":
             if "lab02" in inp or "lab 02" in inp or "lab2" in inp:
@@ -132,11 +146,12 @@ def run_evaluation():
     print("=" * 65)
 
     # Save run results
+    now_str = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     os.makedirs(os.path.join(base_dir, 'eval', 'results'), exist_ok=True)
     report_file = os.path.join(base_dir, 'eval', 'results', 'eval_run_cp2.json')
     with open(report_file, 'w', encoding='utf-8') as f:
         json.dump({
-            "timestamp": "17/09/2026 20:00:00",
+            "timestamp": now_str,
             "total_cases": len(test_cases),
             "passed": passed_count,
             "failed": failed_count,
@@ -144,7 +159,7 @@ def run_evaluation():
             "quality_bar_met": quality_bar_met,
             "details": results
         }, f, ensure_ascii=False, indent=2)
-    print(f"📁 Đã lưu báo cáo đánh giá tại: {report_file}")
+    print(f"📁 Đã lưu báo cáo đánh giá tại: {report_file} (Thời điểm: {now_str})")
 
 if __name__ == '__main__':
     run_evaluation()

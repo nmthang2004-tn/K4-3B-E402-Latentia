@@ -1,5 +1,5 @@
 {
-  "timestamp": "17/09/2026 20:00:00",
+  "timestamp": "17/09/2026 20:11:38",
   "total_cases": 24,
   "passed": 24,
   "failed": 0,
@@ -88,7 +88,7 @@
       "input": "Khi nào nộp bài?",
       "layer": "Chỗ khó ②",
       "status": "✅ PASS",
-      "actual_output": "Bạn đang hỏi về bài nộp nào? Hiện có: 1. Lab 02 (hạn 20/09) hoặc 2. Milestone 1 Project (hạn 22/09)?"
+      "actual_output": "Hiện có 2 mốc nộp bài quan trọng sắp tới. Bạn đang hỏi về mốc nào?\n1️⃣ Lab 02 (Hạn 23:59 ngày 20/09)\n2️⃣ Milestone 1 Project (Hạn 21:00 ngày 22/09)"
     },
     {
       "id": "TC_13",

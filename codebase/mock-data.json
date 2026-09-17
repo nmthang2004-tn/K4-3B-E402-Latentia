@@ -1,129 +1,202 @@
 {
-  "scenarios": [
+  "project": "Trợ lý Discord Hỗ trợ Học viên (Batch 04 - Lớp 3B)",
+  "version": "1.0.0",
+  "author": "Nguyễn Thị Vàng (2A202602897) - Prompt/UX & Eval Lead",
+  "knowledge_base": [
     {
-      "id": "happy_path",
-      "name": "1. Happy Path (Tự tin cao)",
-      "user_input": "Hạn nộp bài Lab02 là khi nào vậy bot?",
-      "hax_principles": ["G11 (Giải thích vì sao)"],
-      "automation_level": "Conditional (Có căn cứ -> Phản hồi trực tiếp)",
-      "confidence": "HIGH (98%)",
-      "bot_response": {
-        "text": "Theo thông báo chính thức của Ban tổ chức, hạn nộp bài **Lab02** là **23:59 ngày 20/09/2026**.",
-        "grounding": {
-          "status": "VERIFIED",
-          "source_channel": "#thong-bao-lab02",
-          "message_id": "M07416_REF",
-          "timestamp": "15/09/2026 14:30",
-          "excerpt": "Hạn chót nộp toàn bộ bài tập thực hành Lab02 qua form trước 23:59 Chủ Nhật (20/09)."
+      "id": "DOC_001",
+      "category": "deadline",
+      "title": "Hạn nộp bài tập Lab 02",
+      "content": "Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo.",
+      "source": "#thong-bao-khoa-hoc",
+      "date": "15/09/2026",
+      "url": "https://vlearn.edu.vn/assignment/lab02"
+    },
+    {
+      "id": "DOC_002",
+      "category": "deadline",
+      "title": "Hạn nộp Milestone 1 Project Cuối Kỳ",
+      "content": "Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện.",
+      "source": "#thong-bao-project",
+      "date": "16/09/2026",
+      "url": "https://vlearn.edu.vn/project/milestone-1"
+    },
+    {
+      "id": "DOC_003",
+      "category": "schedule",
+      "title": "Lịch Standup Hàng Ngày Lớp 3B",
+      "content": "Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút.",
+      "source": "#lich-trinh-lop-3b",
+      "date": "14/09/2026",
+      "url": "https://discord.com/channels/k4-3b/standup"
+    },
+    {
+      "id": "DOC_004",
+      "category": "policy",
+      "title": "Quy chế nộp muộn bài tập và checkpoint",
+      "content": "Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC.",
+      "source": "#quy-che-khoa-hoc",
+      "date": "10/09/2026",
+      "url": "https://vlearn.edu.vn/docs/quy-che-hoc-tap"
+    },
+    {
+      "id": "DOC_005",
+      "category": "resource",
+      "title": "Link Slide và Tài liệu Học tập",
+      "content": "Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học.",
+      "source": "#tai-lieu-hoc-tap",
+      "date": "12/09/2026",
+      "url": "https://vlearn.edu.vn/courses/k4-batch/materials"
+    },
+    {
+      "id": "DOC_006",
+      "category": "support",
+      "title": "Quy trình mở Ticket Hỗ trợ Kỹ thuật",
+      "content": "Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00).",
+      "source": "#kenh-ticket-ho-tro",
+      "date": "13/09/2026",
+      "url": "https://discord.com/channels/k4-3b/ho-tro"
+    }
+  ],
+  "mock_scenarios": [
+    {
+      "id": "SCENARIO_HAPPY_01",
+      "branch": "Happy Path",
+      "description": "Học viên hỏi deadline bài tập Lab 02 rõ ràng",
+      "user_input": "Hạn nộp Lab 02 là khi nào vậy bot?",
+      "detected_intent": "query_deadline",
+      "matched_doc_id": "DOC_001",
+      "confidence": 0.98,
+      "bot_response": "Hạn nộp Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 (nộp qua link GitHub trên VLearn).\n📌 Nguồn: #thong-bao-khoa-hoc (15/09)",
+      "action_buttons": [
+        {
+          "id": "btn_edit",
+          "label": "✏️ Sửa câu hỏi"
         },
-        "actions": [
-          {"id": "helpful", "label": "👍 Đã rõ, cảm ơn!", "type": "secondary"},
-          {"id": "ask_clarify", "label": "✏️ Hỏi chi tiết hình thức nộp", "type": "secondary"},
-          {"id": "edit_query", "label": "🔄 Sửa câu hỏi khác (G9)", "type": "secondary"}
-        ]
+        {
+          "id": "btn_tag_ta",
+          "label": "🏷️ Tag TA"
+        },
+        {
+          "id": "btn_view_link",
+          "label": "🔗 Xem VLearn"
+        }
+      ]
+    },
+    {
+      "id": "SCENARIO_HAPPY_02",
+      "branch": "Happy Path",
+      "description": "Học viên hỏi lịch standup của lớp 3B",
+      "user_input": "Lớp 3B mấy giờ standup và ở đâu thế?",
+      "detected_intent": "query_schedule",
+      "matched_doc_id": "DOC_003",
+      "confidence": 0.95,
+      "bot_response": "Standup lớp 3B diễn ra lúc 08:30 sáng (Thứ Hai đến Thứ Sáu) tại phòng E402 hoặc kênh Voice 'Standup-Room-3B'.\n📌 Nguồn: #lich-trinh-lop-3b",
+      "action_buttons": [
+        {
+          "id": "btn_edit",
+          "label": "✏️ Sửa câu hỏi"
+        },
+        {
+          "id": "btn_tag_ta",
+          "label": "🏷️ Tag TA"
+        }
+      ]
+    },
+    {
+      "id": "SCENARIO_LOW_CONF_01",
+      "branch": "Low-Confidence (②)",
+      "description": "Học viên hỏi mơ hồ 'Khi nào nộp bài?'",
+      "user_input": "Khi nào nộp bài?",
+      "detected_intent": "query_deadline_ambiguous",
+      "matched_doc_id": null,
+      "confidence": 0.45,
+      "bot_response": "Hiện có 2 mốc nộp bài quan trọng sắp tới. Bạn đang hỏi về mốc nào?\n1️⃣ Lab 02 (Hạn 23:59 ngày 20/09)\n2️⃣ Milestone 1 Project (Hạn 21:00 ngày 22/09)",
+      "action_buttons": [
+        {
+          "id": "btn_choose_lab2",
+          "label": "1️⃣ Xem hạn Lab 02"
+        },
+        {
+          "id": "btn_choose_ms1",
+          "label": "2️⃣ Xem hạn Project M1"
+        },
+        {
+          "id": "btn_tag_ta",
+          "label": "🏷️ Tag TA"
+        }
+      ],
+      "follow_up": {
+        "user_choice": "1️⃣ Xem hạn Lab 02",
+        "bot_final_response": "Hạn nộp Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên VLearn.\n📌 Nguồn: #thong-bao-khoa-hoc"
       }
     },
     {
-      "id": "low_confidence",
-      "name": "2. Low-Confidence (Mơ hồ / Thiếu thông tin)",
-      "user_input": "Khi nào nộp bài thế?",
-      "hax_principles": ["G10 (Thu hẹp phạm vi khi nghi ngờ)", "G8 (Gạt bỏ dễ dàng)"],
-      "automation_level": "Conditional (Hỏi lại trước khi quyết định)",
-      "confidence": "LOW (42%)",
-      "bot_response": {
-        "text": "Mình cần làm rõ một chút để tìm đúng hạn cho bạn: Bạn đang hỏi về **deadline của hạng mục nào**?",
-        "clarification_needed": true,
-        "options": [
-          {"id": "opt_cp2", "label": "⏱️ Checkpoint 2 (21:00 hôm nay 17/9)", "next_state": "cp2_answer"},
-          {"id": "opt_lab2", "label": "📝 Lab02 Thực hành (20/9)", "next_state": "lab2_answer"},
-          {"id": "opt_project", "label": "🚀 Mini-Hackathon chung cuộc (19/9)", "next_state": "project_answer"}
-        ],
-        "actions": [
-          {"id": "dismiss", "label": "❌ Bỏ qua / Gõ câu hỏi cụ thể hơn (G8)", "type": "secondary"}
-        ]
-      }
+      "id": "SCENARIO_NO_GROUNDING_01",
+      "branch": "No-Grounding (①)",
+      "description": "Học viên hỏi thông tin chưa công bố hoặc ngoài tài liệu",
+      "user_input": "Deadline Project cuối kỳ có được lùi thêm 3 ngày không bot?",
+      "detected_intent": "query_unannounced_policy",
+      "matched_doc_id": null,
+      "confidence": 0.1,
+      "bot_response": "Mình chưa tìm thấy thông báo chính thức nào về việc thay đổi/lùi deadline Project cuối kỳ trong tài liệu của BTC.\nBạn vui lòng liên hệ trực tiếp @TA để được xác nhận nhé!",
+      "action_buttons": [
+        {
+          "id": "btn_tag_ta_confirm",
+          "label": "🏷️ Chuyển câu hỏi cho TA"
+        },
+        {
+          "id": "btn_edit",
+          "label": "✏️ Nhập lại câu hỏi"
+        }
+      ],
+      "escalation_target": "@TA_MinhDuc (Phụ trách Học vụ)"
     },
     {
-      "id": "no_grounding",
-      "name": "3. No-Grounding (Không tìm thấy căn cứ)",
-      "user_input": "Deadline nộp đồ án cuối kỳ có được hoãn thêm 2 ngày không?",
-      "hax_principles": ["G10 (Không bịa đặt / Chuyển hướng an toàn)", "G11 (Nêu rõ lý do)"],
-      "automation_level": "Conditional (Không đủ căn cứ -> Chuyển giao TA)",
-      "confidence": "NONE (0% tìm thấy)",
-      "bot_response": {
-        "text": "⚠️ Mình đã kiểm tra toàn bộ thông báo và tài liệu khóa học nhưng **chưa tìm thấy thông tin chính thức** về việc dời hoãn deadline đồ án cuối kỳ.",
-        "grounding": {
-          "status": "NOT_FOUND",
-          "note": "Cost-of-error cao: Trả lời sai hạn có thể làm học viên bị trễ bài và trừ điểm. Bot từ chối tự suy diễn."
-        },
-        "actions": [
-          {"id": "tag_ta", "label": "🏷️ Chuyển câu hỏi & Tag @TA hỗ trợ ngay", "type": "primary_danger"},
-          {"id": "retry", "label": "🔄 Nhập lại câu hỏi khác (G9)", "type": "secondary"}
-        ]
-      }
+      "id": "SCENARIO_OUT_OF_SCOPE_01",
+      "branch": "Out-of-Scope (③)",
+      "description": "Học viên nhờ bot viết code Python",
+      "user_input": "Viết hộ mình code bot Discord bằng Python với LangChain được không?",
+      "detected_intent": "request_code_generation",
+      "matched_doc_id": null,
+      "confidence": 0.99,
+      "bot_response": "Mình là Trợ lý vận hành khóa học (chuyên tra cứu deadline, lịch trình, tài liệu). Mình không hỗ trợ viết code hoặc giải bài tập hộ.\nBạn hãy thảo luận kỹ thuật tại kênh #thao-luan-lap-trinh nhé!",
+      "action_buttons": [
+        {
+          "id": "btn_view_scope",
+          "label": "ℹ️ Xem phạm vi hỗ trợ của Bot"
+        }
+      ]
     },
     {
-      "id": "correction",
-      "name": "4. Correction (Sửa kết quả / Phản hồi)",
-      "user_input": "Bot hiểu nhầm ý mình rồi, mình hỏi hạn nộp bản nháp chứ không phải bản chính thức.",
-      "hax_principles": ["G9 (Sửa dễ dàng)", "G8 (Không bẫy người dùng vào menu cụt)"],
-      "automation_level": "Conditional (Tiếp nhận chỉnh sửa & cập nhật kết quả)",
-      "confidence": "MEDIUM (75%)",
-      "bot_response": {
-        "text": "Xin lỗi bạn vì sự hiểu nhầm! Mình đã ghi nhận lại câu hỏi của bạn về **Hạn nộp bản nháp (Draft Review)**:\n\nTheo tài liệu Hướng dẫn đồ án, bản nháp cần gửi lên kênh `#review-draft` trước **12:00 trưa ngày 19/09/2026** để TA góp ý trước giờ chấm.",
-        "grounding": {
-          "status": "VERIFIED",
-          "source_channel": "#huong-dan-do-an",
-          "message_id": "M12984_REF",
-          "timestamp": "16/09/2026 09:00",
-          "excerpt": "Học viên nộp bản nháp đồ án trước 12:00 ngày 19/9 để kịp nhận feedback từ hội đồng TA."
+      "id": "SCENARIO_DOMAIN_POLICY_01",
+      "branch": "Domain Specific (④)",
+      "description": "Học viên hỏi chính sách phạt nộp muộn",
+      "user_input": "Nếu nộp bài muộn 12 tiếng thì có bị trừ hết điểm không?",
+      "detected_intent": "query_late_policy",
+      "matched_doc_id": "DOC_004",
+      "confidence": 0.92,
+      "bot_response": "Theo Quy chế Mục 3.2: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp (không bị trừ hết 100%). Nếu nộp muộn trên 48h mới tính 0 điểm.\n📌 Nguồn: #quy-che-khoa-hoc",
+      "action_buttons": [
+        {
+          "id": "btn_view_policy",
+          "label": "📖 Xem đầy đủ Quy chế"
         },
-        "actions": [
-          {"id": "confirm", "label": "✅ Đúng thông tin này rồi!", "type": "secondary"},
-          {"id": "direct_ta", "label": "🏷️ Vẫn cần trao đổi thêm với @TA", "type": "secondary"}
-        ]
-      }
+        {
+          "id": "btn_tag_ta",
+          "label": "🏷️ Hỏi TA nếu có lý do đặc biệt"
+        }
+      ]
     },
     {
-      "id": "out_of_scope",
-      "name": "Edge Case: Lớp ③ Ngoài phạm vi (Out-of-Scope)",
-      "user_input": "Viết hộ tôi một đoạn code Python để crawl tin nhắn Discord với!",
-      "hax_principles": ["G1 (Làm rõ hệ thống làm được gì và không làm được gì)"],
-      "automation_level": "Refusal / Domain Boundary",
-      "confidence": "OUT_OF_SCOPE",
-      "bot_response": {
-        "text": "🤖 **Trợ lý Discord** chỉ chuyên hỗ trợ tra cứu thông tin vận hành khóa học (deadline nộp bài, lịch học, link tài liệu chính thức, quy chế).\n\nĐối với câu hỏi về **lập trình, giải bài tập hoặc viết code**, bạn vui lòng thảo luận tại kênh `#tech-support` hoặc tag giảng viên/TA nhé!",
-        "grounding": {
-          "status": "NON_GOAL",
-          "rule": "Non-goal #1: Không làm thay việc code hoặc bài tập của học viên."
-        },
-        "actions": [
-          {"id": "redirect_code", "label": "👉 Chuyển sang kênh #tech-support", "type": "secondary"},
-          {"id": "ask_scope", "label": "💡 Xem danh sách thông tin bot có thể tra cứu", "type": "secondary"}
-        ]
-      }
-    },
-    {
-      "id": "domain_rule",
-      "name": "Edge Case: Lớp ④ Đặc thù domain (Quy chế khóa học)",
-      "user_input": "Nếu em commit trễ thì quy chế trừ điểm tính thế nào ạ?",
-      "hax_principles": ["G11 (Giải thích vì sao kèm trích dẫn văn bản)"],
-      "automation_level": "Conditional (Trích xuất nguyên tắc quy định)",
-      "confidence": "HIGH (99%)",
-      "bot_response": {
-        "text": "Theo **Quy chế khóa học (Mục 3.2 - Quy định nộp bài & Commit)**:\n• **Trễ < 24 giờ:** Trừ **50%** số điểm của bài nộp.\n• **Trễ từ 24h - 48 giờ:** Trừ **75%** số điểm của bài nộp.\n• **Trễ trên 48 giờ:** Hệ thống đóng cổng và **không ghi nhận bài nộp** (0 điểm).",
-        "grounding": {
-          "status": "VERIFIED",
-          "source_channel": "#quy-che-khoa-hoc",
-          "message_id": "M40677_REF",
-          "timestamp": "Đầu khóa học",
-          "excerpt": "Quy định xử lý commit quá hạn nộp bài mục 3.2 - Đào tạo AI Batch 04."
-        },
-        "actions": [
-          {"id": "view_rule", "label": "📄 Xem toàn văn Quy chế khóa học", "type": "secondary"},
-          {"id": "ask_appeal", "label": "🏷️ Tag TA xin xem xét trường hợp bất khả kháng", "type": "secondary"}
-        ]
-      }
+      "id": "SCENARIO_CORRECTION_01",
+      "branch": "Correction (User sửa)",
+      "description": "Học viên nhận kết quả nhưng bấm sửa câu hỏi chi tiết hơn",
+      "user_input": "Link tài liệu ở đâu?",
+      "bot_initial_response": "Kho tài nguyên slide & bài tập được lưu tại: https://vlearn.edu.vn/courses/k4-batch/materials\n📌 Nguồn: #tai-lieu-hoc-tap",
+      "user_correction_action": "click_btn_edit",
+      "user_corrected_input": "Ý mình là link nộp bài Lab 02 cơ",
+      "bot_final_response": "Link nộp bài Lab 02 tại cổng VLearn: https://vlearn.edu.vn/assignment/lab02 (Hạn: 23:59 ngày 20/09).\n📌 Nguồn: #thong-bao-khoa-hoc"
     }
   ]
 }
