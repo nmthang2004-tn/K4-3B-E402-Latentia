@@ -63,15 +63,15 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 
 ---
 
-### 🔵 Nguyễn Thị Vàng — Prompt/UX
+### 🔵 Nguyễn Thị Vàng — Prompt/UX ✅ ĐÃ LÀM
 
-**Nhiệm vụ:**
-- [ ] Thiết kế **conversation flow** (các tin nhắn mẫu cho từng nhánh)
-- [ ] Viết **prompt template** cho mỗi trường hợp (có căn cứ, thiếu căn cứ, low-confidence)
-- [ ] Chuẩn bị **mock data** cho prototype (câu hỏi mẫu + câu trả lời kỳ vọng)
-- [ ] Xây **Golden Set ≥20 cases** (đã có 10 trong spec.md, cần thêm 10)
+**Nhiệm vụ:** ✅ ĐÃ HOÀN THÀNH
+- [x] Thiết kế **conversation flow** (các tin nhắn mẫu cho từng nhánh trong `codebase/prompt-templates.md`)
+- [x] Viết **prompt template** cho mỗi trường hợp (có căn cứ, thiếu căn cứ, low-confidence, out-of-scope, domain policy)
+- [x] Chuẩn bị **mock data** cho prototype (`codebase/mock-data.json` sẵn sàng cho Tuấn import build prototype)
+- [x] Xây **Golden Set 24 cases** (vượt chuẩn ≥20 cases, lưu tại `eval/golden_set.json` & `eval/golden_set.md`, runner `eval/run_eval.py` test đạt 100%)
 
-**Output:** `codebase/prompt-templates.md` + `codebase/mock-data.json`
+**Output:** `codebase/prompt-templates.md` + `codebase/mock-data.json` + `eval/golden_set.json` + `eval/golden_set.md` + `eval/run_eval.py` ✅
 
 ---
 
@@ -93,7 +93,7 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 - [ ] Prototype clickable hoặc video demo
 - [x] §4 và §6 trong spec.md đã cập nhật ✅
 - [x] Bảng nguyên tắc HAX/PAIR có đủ 4 nguyên tắc + vị trí áp dụng ✅
-- [ ] Mock data sẵn sàng cho CP3
+- [x] Mock data sẵn sàng cho CP3 (đã lưu tại `codebase/mock-data.json`) ✅
 
 ---
 

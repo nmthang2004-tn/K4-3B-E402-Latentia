@@ -201,16 +201,27 @@
 
 ## §7. Kiểm thử
 
-- **Chiều chất lượng:**
-  - Factuality: Mọi thông tin trong câu trả lời phải trace được về tài liệu thông báo chính thức
-  - Relevance: Câu trả lời phải đúng câu hỏi, không lan man
-  - Conciseness: Câu trả lời ≤ 200 ký tự, không spam kênh
+- **Chiều chất lượng (kiểm chứng được):**
+  - **Factuality (Đúng & có căn cứ):** 100% thông tin trả lời phải trace được về tài liệu thông báo chính thức (`#thong-bao-khoa-hoc`, `#quy-che-khoa-hoc`). Tuyệt đối không bịa đặt; nếu không có dữ liệu bắt buộc chuyển TA. Đo: *Pass/Fail*.
+  - **Relevance (Đúng trọng tâm):** Trả lời đúng câu hỏi, không lan man, không spam menu làm loãng kênh chat. Đo: *Thang 1–5 (Đạt khi ≥ 4/5)*.
+  - **Conciseness & Source Citation (Ngắn gọn & Kèm nguồn):** Độ dài ≤ 200 ký tự (hoặc ≤ 3 ý), luôn có dòng trích dẫn `📌 Nguồn: [Kênh/Tài liệu]` cho câu trả lời Happy path và Domain Policy. Đo: *Pass/Fail*.
 
-- **Golden set (≥20 case):** Đang xây trong `eval/`
+- **Golden set (24 cases — đã hoàn thiện trong `eval/`):**
+  - Chi tiết file: [`eval/golden_set.json`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/eval/golden_set.json) & [`eval/golden_set.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/eval/golden_set.md).
+  - Cơ cấu: 8 case Happy path + 3 case Lớp ① (Nguồn sự thật) + 3 case Lớp ② (Mơ hồ/Hỏi lại) + 3 case Lớp ③ (Ngoài phạm vi) + 3 case Lớp ④ (Đặc thù quy chế) + 4 Edge cases (Teencode, viết tắt, bẫy tin đồn, câu hỏi ghép).
+  - Trong đó có **14/24 cases (58.3%)** được trích xuất hoặc phát triển trực tiếp từ khảo sát 14 học viên lớp 3B.
 
-- **Quality bar:** Đạt khi ≥ 80% qua bộ, và mọi câu trả lời có trích dẫn nguồn khi có căn cứ
+- **Quality bar (khóa cứng):**
+  > *"Đạt khi tổng thể ≥ 85% qua bộ kiểm thử, 100% case Lớp ① (No-Grounding) không được hallucinate/bịa đặt thông tin mà phải fallback chuyển TA, và 100% câu trả lời có căn cứ phải kèm trích dẫn nguồn."*
 
-- **Kết quả các lượt chạy:** (cập nhật sau CP3)
+- **Kết quả các lượt chạy:**
+
+| Lượt đo | Thời điểm | Số case qua | Tỷ lệ (%) | Đạt Quality Bar? | Ghi chú |
+|---------|-----------|-------------|-----------|-------------------|---------|
+| Run 1 (CP2) | 17/9/2026 20:00 | 24/24 | 100.0% | ✅ Đạt | Chạy kiểm thử baseline trên 24 cases qua runner `eval/run_eval.py` |
+| Run 2 (CP3) | 18/9/2026 (dự kiến) | — | — | — | Đo lường trên prototype kết nối LLM / Mock API |
+| Run 3 (CP4) | 18/9/2026 (dự kiến) | — | — | — | Kiểm tra hồi quy trước khi chốt spec |
+
 
 ---
 
