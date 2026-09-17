@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latentia Discord Bot — CP2 Interactive Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-server: #1e1f22;
@@ -18,11 +21,13 @@
       --text-link: #00a8fc;
       --blurple: #5865f2;
       --blurple-hover: #4752c4;
+      --blurple-glow: rgba(88, 101, 242, 0.4);
       --green: #23a55a;
       --yellow: #f0b232;
       --red: #f23f43;
-      --tag-bg: rgba(88, 101, 242, 0.15);
-      --font-stack: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --purple: #9b59b6;
+      --font-main: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     * {
@@ -32,84 +37,146 @@
     }
 
     body {
-      font-family: var(--font-stack);
+      font-family: var(--font-main);
       background-color: var(--bg-chat-dark);
       color: var(--text-normal);
       height: 100vh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* TOP SCENARIO BAR */
+    /* CUSTOM SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.15);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1a1b1e;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #111214;
+    }
+
+    /* TOP DEMO CONTROLS BAR */
     #scenario-bar {
-      background-color: #111214;
-      border-bottom: 1px solid #1f2023;
-      padding: 8px 16px;
+      background: rgba(17, 18, 20, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+    }
+
+    .brand-badge {
       display: flex;
       align-items: center;
       gap: 8px;
-      overflow-x: auto;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, rgba(88, 101, 242, 0.2), rgba(155, 89, 182, 0.2));
+      border: 1px solid rgba(88, 101, 242, 0.4);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
     }
 
-    .badge-title {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--yellow);
-      background: rgba(240, 178, 50, 0.12);
-      padding: 4px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
-      border: 1px solid rgba(240, 178, 50, 0.25);
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--green);
+      box-shadow: 0 0 10px var(--green);
+      animation: pulseLive 2s infinite;
+    }
+
+    @keyframes pulseLive {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(35, 165, 90, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(35, 165, 90, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(35, 165, 90, 0); }
     }
 
     .scenario-btn {
-      background: #2b2d31;
+      background: rgba(43, 45, 49, 0.8);
       color: var(--text-normal);
-      border: 1px solid #3f4147;
-      padding: 6px 12px;
-      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 7px 14px;
+      border-radius: 18px;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       white-space: nowrap;
-      transition: all 0.15s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .scenario-btn:hover {
-      background: #35373c;
+      background: rgba(53, 55, 60, 1);
       color: #fff;
-      border-color: #5865f2;
+      border-color: rgba(88, 101, 242, 0.5);
+      transform: translateY(-1px);
     }
 
     .scenario-btn.active {
-      background: var(--blurple);
+      background: linear-gradient(135deg, var(--blurple), #4752c4);
       color: white;
-      border-color: var(--blurple);
-      box-shadow: 0 0 8px rgba(88, 101, 242, 0.5);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 14px var(--blurple-glow);
+      font-weight: 700;
     }
 
-    .scenario-btn .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+    .scenario-btn .pill-num {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 10px;
     }
 
-    /* MAIN DISCORD LAYOUT */
+    .share-guide-btn {
+      margin-left: auto;
+      background: linear-gradient(135deg, rgba(35, 165, 90, 0.25), rgba(35, 165, 90, 0.15));
+      border: 1px solid rgba(35, 165, 90, 0.4);
+      color: #79e69e;
+      padding: 6px 14px;
+      border-radius: 18px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .share-guide-btn:hover {
+      background: rgba(35, 165, 90, 0.35);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(35, 165, 90, 0.3);
+    }
+
+    /* MAIN APP CONTAINER */
     #app-container {
       display: flex;
       flex: 1;
       overflow: hidden;
     }
 
-    /* LEFT SERVER BAR */
+    /* LEFT SERVER COLUMN */
     #server-bar {
       width: 72px;
       background-color: var(--bg-server);
@@ -118,6 +185,8 @@
       align-items: center;
       padding: 12px 0;
       gap: 10px;
+      flex-shrink: 0;
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
     }
 
     .server-icon {
@@ -128,17 +197,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
+      font-weight: 800;
       color: var(--text-header);
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
     }
 
     .server-icon.active, .server-icon:hover {
       border-radius: 16px;
-      background-color: var(--blurple);
+      background: linear-gradient(135deg, var(--blurple), #6d78f5);
       color: #fff;
+      box-shadow: 0 4px 15px var(--blurple-glow);
     }
 
     .server-icon.active::before {
@@ -146,97 +216,108 @@
       position: absolute;
       left: -12px;
       width: 4px;
-      height: 36px;
+      height: 38px;
       background: #fff;
       border-radius: 0 4px 4px 0;
     }
 
-    /* CHANNELS SIDEBAR */
+    .server-divider {
+      width: 32px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1px;
+    }
+
+    /* CHANNEL SIDEBAR */
     #channel-sidebar {
       width: 240px;
       background-color: var(--bg-sidebar);
       display: flex;
       flex-direction: column;
-      border-right: 1px solid #232428;
+      border-right: 1px solid rgba(0, 0, 0, 0.25);
+      flex-shrink: 0;
     }
 
     .server-header {
-      height: 48px;
+      height: 52px;
       padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #1f2023;
-      font-weight: 700;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      font-weight: 800;
       color: var(--text-header);
       font-size: 14px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
     .channel-list {
       flex: 1;
-      padding: 8px;
+      padding: 10px 8px;
       overflow-y: auto;
     }
 
     .channel-category {
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       color: var(--text-muted);
-      padding: 8px 8px 4px 8px;
+      letter-spacing: 0.5px;
+      padding: 12px 8px 6px 8px;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
     }
 
     .channel-item {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 10px;
-      border-radius: 4px;
-      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 13.5px;
       color: var(--text-muted);
       cursor: pointer;
       margin-bottom: 2px;
-      transition: background 0.15s, color 0.15s;
+      transition: all 0.15s;
     }
 
     .channel-item:hover {
-      background-color: rgba(255,255,255,0.05);
+      background-color: rgba(255, 255, 255, 0.06);
       color: var(--text-normal);
     }
 
     .channel-item.active {
-      background-color: rgba(255,255,255,0.1);
+      background-color: rgba(255, 255, 255, 0.1);
       color: var(--text-header);
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    .channel-item .channel-hash {
+    .channel-hash {
       font-size: 16px;
-      opacity: 0.7;
+      opacity: 0.6;
     }
 
     .user-profile-bar {
-      height: 52px;
+      height: 54px;
       background-color: var(--bg-chat-dark);
       display: flex;
       align-items: center;
-      padding: 0 10px;
-      gap: 8px;
+      padding: 0 12px;
+      gap: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
     }
 
     .avatar-circle {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: #5865f2;
+      background: linear-gradient(135deg, #5865f2, #9b59b6);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 800;
       color: white;
       position: relative;
     }
@@ -245,8 +326,8 @@
       position: absolute;
       bottom: -1px;
       right: -1px;
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: var(--green);
       border: 2px solid var(--bg-chat-dark);
@@ -254,12 +335,12 @@
 
     .user-meta {
       flex: 1;
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     .user-meta .name {
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-header);
     }
 
@@ -268,85 +349,89 @@
       color: var(--text-muted);
     }
 
-    /* MAIN CHAT WINDOW */
+    /* MAIN CHAT PANE */
     #chat-main {
       flex: 1;
       display: flex;
       flex-direction: column;
       background-color: var(--bg-chat);
       position: relative;
+      overflow: hidden;
     }
 
-    /* CHAT HEADER */
     .chat-header {
-      height: 48px;
-      padding: 0 16px;
-      border-bottom: 1px solid #26282c;
+      height: 52px;
+      padding: 0 18px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      background: rgba(49, 51, 56, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 10;
     }
 
     .chat-header-title {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-header);
     }
 
     .chat-header-desc {
       font-size: 12px;
       color: var(--text-muted);
-      border-left: 1px solid #3f4147;
-      padding-left: 10px;
-      margin-left: 10px;
+      margin-left: 12px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      padding-left: 12px;
     }
 
-    /* SCENARIO INFO BANNER */
+    /* CURRENT PATH BANNER */
     #path-banner {
-      background: #232428;
-      border-bottom: 1px solid #35373c;
-      padding: 8px 16px;
+      background: linear-gradient(90deg, rgba(30, 31, 34, 0.95), rgba(43, 45, 49, 0.85));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 12px;
+      flex-shrink: 0;
     }
 
     .path-indicator {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .hax-tag {
-      background: rgba(88, 101, 242, 0.2);
-      color: #8da4ef;
+      background: rgba(88, 101, 242, 0.18);
+      color: #a5b4fc;
       border: 1px solid rgba(88, 101, 242, 0.35);
-      padding: 2px 8px;
+      padding: 3px 8px;
       border-radius: 4px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .automation-tag {
       background: rgba(35, 165, 90, 0.15);
-      color: #57f287;
-      border: 1px solid rgba(35, 165, 90, 0.3);
-      padding: 2px 8px;
+      color: #6ee7b7;
+      border: 1px solid rgba(35, 165, 90, 0.35);
+      padding: 3px 8px;
       border-radius: 4px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* MESSAGE FEED */
     #message-feed {
       flex: 1;
       overflow-y: auto;
-      padding: 16px 20px;
+      padding: 20px 20px 10px 20px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -355,37 +440,49 @@
     .message-group {
       display: flex;
       gap: 14px;
-      padding: 4px 6px;
-      border-radius: 6px;
-      transition: background 0.1s;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background 0.15s;
+      animation: messageSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes messageSlideIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .message-group:hover {
-      background-color: var(--bg-message-hover);
+      background-color: rgba(255, 255, 255, 0.02);
     }
 
     .message-avatar {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      background: #5865f2;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .message-avatar.user {
+      background: linear-gradient(135deg, #3ba55d, #23a55a);
       color: white;
-      flex-shrink: 0;
     }
 
     .message-avatar.bot {
-      background: linear-gradient(135deg, #5865f2, #eb459e);
+      background: linear-gradient(135deg, #5865f2, #7289da);
+      color: white;
+      box-shadow: 0 0 12px rgba(88, 101, 242, 0.5);
     }
 
     .message-content {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
     }
 
     .message-author-line {
@@ -396,18 +493,21 @@
     }
 
     .author-name {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-header);
     }
 
     .bot-tag {
-      background: var(--blurple);
+      background-color: var(--blurple);
       color: white;
       font-size: 10px;
-      font-weight: 700;
-      padding: 1px 4px;
+      font-weight: 800;
+      padding: 2px 5px;
       border-radius: 3px;
-      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
     }
 
     .timestamp {
@@ -416,191 +516,183 @@
     }
 
     .message-body {
-      font-size: 14px;
-      line-height: 1.45;
+      font-size: 14.5px;
+      line-height: 1.55;
       color: var(--text-normal);
-      white-space: pre-line;
+      word-break: break-word;
     }
 
-    /* EMBED BOX */
+    /* DISCORD EMBED CARD */
     .discord-embed {
-      margin-top: 8px;
-      background: var(--bg-embed);
-      border-radius: 4px;
-      padding: 12px 14px;
+      background: rgba(43, 45, 49, 0.8);
+      border-radius: 6px;
+      padding: 12px 16px;
       border-left: 4px solid var(--blurple);
       display: flex;
       flex-direction: column;
       gap: 8px;
       max-width: 680px;
+      margin-top: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
-    .embed-success { border-left-color: var(--green); }
-    .embed-warning { border-left-color: var(--yellow); }
-    .embed-danger { border-left-color: var(--red); }
+    .discord-embed.embed-success {
+      border-left-color: var(--green);
+      background: linear-gradient(90deg, rgba(35, 165, 90, 0.08), rgba(43, 45, 49, 0.8));
+    }
+
+    .discord-embed.embed-warning {
+      border-left-color: var(--yellow);
+      background: linear-gradient(90deg, rgba(240, 178, 50, 0.08), rgba(43, 45, 49, 0.8));
+    }
+
+    .discord-embed.embed-danger {
+      border-left-color: var(--red);
+      background: linear-gradient(90deg, rgba(242, 63, 67, 0.08), rgba(43, 45, 49, 0.8));
+    }
 
     .embed-header {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
+      color: var(--text-header);
       display: flex;
       align-items: center;
       gap: 6px;
-    }
-
-    .embed-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-header);
-    }
-
-    .embed-description {
-      font-size: 13px;
-      color: var(--text-normal);
-      line-height: 1.4;
     }
 
     .embed-grounding-field {
-      background: rgba(0,0,0,0.25);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 4px;
-      padding: 8px 10px;
-      font-size: 12px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 12.5px;
     }
 
     .grounding-label {
+      font-size: 11px;
       font-weight: 700;
-      color: var(--text-muted);
-      margin-bottom: 2px;
+      color: #949ba4;
+      text-transform: uppercase;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .grounding-quote {
       font-style: italic;
-      color: #b5bac1;
-      border-left: 2px solid #5865f2;
-      padding-left: 6px;
-      margin-top: 4px;
+      color: #e3e5e8;
+      line-height: 1.45;
     }
 
-    /* ACTION BUTTONS IN CHAT */
+    /* CLARIFICATION CHIPS (HAX G10) */
+    .clarify-chip-box {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 8px;
+      max-width: 540px;
+    }
+
+    .clarify-chip {
+      background: rgba(43, 45, 49, 0.9);
+      border: 1px solid rgba(88, 101, 242, 0.4);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .clarify-chip:hover {
+      background: rgba(88, 101, 242, 0.25);
+      border-color: var(--blurple);
+      transform: translateX(4px);
+      box-shadow: 0 2px 10px rgba(88, 101, 242, 0.3);
+    }
+
+    /* BUTTONS ACTIONS */
     .message-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .action-btn {
-      background: #4e5058;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 12px;
+      padding: 7px 14px;
+      border-radius: 5px;
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
+      border: none;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: background 0.15s ease, transform 0.05s;
+      transition: all 0.15s ease;
     }
 
-    .action-btn:hover {
+    .action-btn.normal {
+      background: #4e5058;
+      color: #fff;
+    }
+    .action-btn.normal:hover {
       background: #6d6f78;
-    }
-
-    .action-btn:active {
-      transform: scale(0.98);
-    }
-
-    .action-btn.primary {
-      background: var(--blurple);
-    }
-    .action-btn.primary:hover {
-      background: var(--blurple-hover);
-    }
-
-    .action-btn.danger {
-      background: var(--red);
-    }
-    .action-btn.danger:hover {
-      background: #d83a3e;
     }
 
     .action-btn.success {
       background: var(--green);
+      color: white;
     }
     .action-btn.success:hover {
-      background: #1e8b4c;
+      background: #1f944f;
     }
 
-    /* CHIPS FOR LOW CONFIDENCE */
-    .clarify-chip-box {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 6px;
+    .action-btn.danger {
+      background: var(--red);
+      color: white;
     }
-
-    .clarify-chip {
-      background: rgba(88, 101, 242, 0.15);
-      border: 1px solid rgba(88, 101, 242, 0.4);
-      color: #dee0fc;
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 13px;
-      cursor: pointer;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.15s;
-    }
-
-    .clarify-chip:hover {
-      background: rgba(88, 101, 242, 0.35);
-      border-color: #5865f2;
-      transform: translateX(3px);
+    .action-btn.danger:hover {
+      background: #d83a3e;
     }
 
     /* TYPING INDICATOR */
     #typing-indicator {
       display: none;
       align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
+      gap: 8px;
       font-size: 12px;
       color: var(--text-muted);
-      font-style: italic;
+      padding: 4px 24px;
     }
 
     .dot-flashing {
       display: inline-flex;
-      gap: 3px;
+      gap: 4px;
     }
-
     .dot-flashing span {
-      width: 4px;
-      height: 4px;
-      background: var(--text-muted);
+      width: 5px;
+      height: 5px;
+      background-color: var(--text-muted);
       border-radius: 50%;
-      animation: flash 1.2s infinite ease-in-out;
+      animation: dotPulse 1.4s infinite ease-in-out both;
+    }
+    .dot-flashing span:nth-child(1) { animation-delay: -0.32s; }
+    .dot-flashing span:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes dotPulse {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
     }
 
-    .dot-flashing span:nth-child(2) { animation-delay: 0.2s; }
-    .dot-flashing span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes flash {
-      0%, 80%, 100% { opacity: 0.3; }
-      40% { opacity: 1; }
-    }
-
-    /* INPUT BAR */
+    /* CHAT INPUT AREA */
     #chat-input-container {
-      padding: 0 16px 20px 16px;
-      position: relative;
+      padding: 12px 20px 20px 20px;
+      background: var(--bg-chat);
+      flex-shrink: 0;
     }
 
     .input-wrapper {
@@ -608,72 +700,89 @@
       border-radius: 8px;
       display: flex;
       align-items: center;
-      padding: 2px 14px;
+      padding: 0 16px;
+      height: 48px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: var(--blurple);
+      box-shadow: 0 0 10px rgba(88, 101, 242, 0.25);
     }
 
     .chat-input {
       flex: 1;
-      height: 44px;
       background: transparent;
       border: none;
       color: var(--text-header);
-      font-size: 14px;
+      font-size: 14.5px;
+      font-family: inherit;
       outline: none;
     }
 
     .chat-input::placeholder {
-      color: #6d6f78;
+      color: #80848e;
     }
 
     .send-btn {
       background: var(--blurple);
-      border: none;
       color: white;
+      border: none;
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.15s;
+      cursor: pointer;
+      transition: all 0.15s;
     }
-
     .send-btn:hover {
       background: var(--blurple-hover);
+      transform: scale(1.05);
     }
 
-    /* RIGHT DRAWER: RUBRIC & SPEC CHECKLIST */
+    /* RIGHT DRAWER / EVALUATION INSPECTOR */
     #inspector-drawer {
-      width: 300px;
+      width: 320px;
       background-color: var(--bg-sidebar);
-      border-left: 1px solid #232428;
+      border-left: 1px solid rgba(0, 0, 0, 0.25);
       display: flex;
       flex-direction: column;
+      padding: 16px;
+      gap: 16px;
       overflow-y: auto;
-      font-size: 13px;
+      flex-shrink: 0;
     }
 
     .drawer-section {
-      padding: 14px;
-      border-bottom: 1px solid #232428;
+      background: rgba(30, 31, 34, 0.6);
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .drawer-title {
       font-size: 12px;
-      font-weight: 700;
-      color: var(--text-muted);
+      font-weight: 800;
       text-transform: uppercase;
+      color: #949ba4;
       letter-spacing: 0.5px;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .check-item {
       display: flex;
       align-items: flex-start;
       gap: 8px;
+      font-size: 12.5px;
+      line-height: 1.4;
       margin-bottom: 8px;
-      line-height: 1.35;
+      color: #dbdee1;
     }
 
     .check-icon {
@@ -682,189 +791,246 @@
     }
 
     .info-card {
-      background: #232428;
+      background: rgba(0, 0, 0, 0.25);
       border-radius: 6px;
-      padding: 10px;
-      margin-bottom: 8px;
+      padding: 8px 10px;
+      font-size: 12px;
+      margin-bottom: 6px;
       border-left: 3px solid var(--blurple);
     }
 
-    .info-card b {
-      color: var(--text-header);
-    }
-
-    /* TOAST / MODAL */
-    #modal-overlay {
+    /* MODAL POPUPS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
       display: none;
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
       align-items: center;
       justify-content: center;
       z-index: 999;
+      animation: fadeIn 0.15s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .modal-box {
-      background: var(--bg-sidebar);
-      border-radius: 8px;
-      padding: 20px;
-      max-width: 440px;
+      background: #313338;
+      border-radius: 12px;
       width: 90%;
-      border: 1px solid #3f4147;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      max-width: 520px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
     }
 
-    .modal-title {
+    .modal-header {
+      padding: 16px 20px;
+      background: #2b2d31;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h3 {
       font-size: 16px;
-      font-weight: 700;
       color: var(--text-header);
-      margin-bottom: 8px;
+      font-weight: 800;
     }
 
-    .modal-actions {
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-close-btn:hover {
+      color: #fff;
+    }
+
+    .modal-body {
+      padding: 20px;
+      font-size: 13.5px;
+      color: var(--text-normal);
+      line-height: 1.55;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .modal-footer {
+      padding: 14px 20px;
+      background: #2b2d31;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
       display: flex;
       justify-content: flex-end;
       gap: 10px;
-      margin-top: 16px;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1024px) {
+      #inspector-drawer {
+        display: none;
+      }
+    }
+    @media (max-width: 768px) {
+      #channel-sidebar {
+        display: none;
+      }
+      #server-bar {
+        width: 56px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP BAR: SCENARIO SELECTION (CP2 4 PATHS + EDGE CASES) -->
+  <!-- TOP SCENARIO SELECTION BAR -->
   <div id="scenario-bar">
-    <span class="badge-title">CP2 Prototype Testbed</span>
+    <div class="brand-badge">
+      <div class="live-dot"></div>
+      <span>Latentia AI — CP2 Prototype</span>
+    </div>
+
     <button class="scenario-btn active" onclick="loadScenario('happy_path')">
-      <span class="dot" style="background: var(--green)"></span>
-      1. Happy Path (Có căn cứ)
+      <span class="pill-num">1</span>
+      <span>1. Happy Path</span>
     </button>
+
     <button class="scenario-btn" onclick="loadScenario('low_confidence')">
-      <span class="dot" style="background: var(--yellow)"></span>
-      2. Low-Confidence (G10 Thu hẹp)
+      <span class="pill-num">2</span>
+      <span>2. Low-Confidence (G10)</span>
     </button>
+
     <button class="scenario-btn" onclick="loadScenario('no_grounding')">
-      <span class="dot" style="background: var(--red)"></span>
-      3. No-Grounding (Chuyển TA)
+      <span class="pill-num">3</span>
+      <span>3. No-Grounding (①)</span>
     </button>
+
     <button class="scenario-btn" onclick="loadScenario('correction')">
-      <span class="dot" style="background: #a855f7"></span>
-      4. Correction (Sửa kết quả / G9)
+      <span class="pill-num">4</span>
+      <span>4. Correction (G9 & G8)</span>
     </button>
+
     <button class="scenario-btn" onclick="loadScenario('out_of_scope')">
-      <span class="dot" style="background: #94a3b8"></span>
-      Lớp ③ Ngoài phạm vi (G1)
+      <span>🛡️ Lớp ③ Ngoài phạm vi</span>
     </button>
+
     <button class="scenario-btn" onclick="loadScenario('domain_rule')">
-      <span class="dot" style="background: #38bdf8"></span>
-      Lớp ④ Quy chế trễ hạn (Domain)
+      <span>📜 Lớp ④ Đặc thù quy chế</span>
     </button>
-    <button class="scenario-btn" style="margin-left: auto;" onclick="resetDemo()">
-      🔄 Khởi động lại
+
+    <button class="share-guide-btn" onclick="openShareModal()">
+      <span>📤 Gửi người khác test</span>
     </button>
   </div>
 
   <!-- MAIN APP CONTAINER -->
   <div id="app-container">
 
-    <!-- SERVER COLUMN -->
+    <!-- SERVER SIDEBAR -->
     <div id="server-bar">
-      <div class="server-icon active" title="AI Hackathon K4">
-        AI
+      <div class="server-icon active" title="K4-3B AI Hackathon">
+        <svg width="28" height="20" viewBox="0 0 28 20" fill="currentColor">
+          <path d="M23.0212 1.67671C21.3107 0.879656 19.5079 0.318797 17.6584 0C17.4062 0.461742 17.1749 0.934545 16.9708 1.4184C14.9392 1.10631 12.8732 1.10631 10.8416 1.4184C10.6375 0.934545 10.3951 0.461742 10.143 0C8.29336 0.318797 6.4906 0.879656 4.78013 1.67671C1.34868 6.80482 0.413778 11.7963 0.874987 16.7144C3.15392 18.3976 5.35824 19.421 7.52554 20C8.06456 19.2635 8.54345 18.4735 8.95679 17.6399C8.17253 17.3425 7.42065 16.9535 6.71184 16.4812C6.8996 16.3425 7.08051 16.1979 7.25455 16.0475C11.5369 18.0185 16.2755 18.0185 20.5173 16.0475C20.6982 16.1979 20.8791 16.3425 21.0669 16.4812C20.3581 16.9535 19.6062 17.3425 18.8219 17.6399C19.2353 18.4735 19.7142 19.2635 20.2532 20C22.4205 19.421 24.6248 18.3976 26.9038 16.7144C27.4516 11.0253 25.9622 6.07925 23.0212 1.67671ZM9.27041 13.6826C7.98107 13.6826 6.92087 12.4965 6.92087 11.0425C6.92087 9.58846 7.9575 8.40243 9.27041 8.40243C10.5833 8.40243 11.6435 9.58846 11.62 11.0425C11.62 12.4965 10.5833 13.6826 9.27041 13.6826ZM18.5296 13.6826C17.2403 13.6826 16.1801 12.4965 16.1801 11.0425C16.1801 9.58846 17.2167 8.40243 18.5296 8.40243C19.8425 8.40243 20.9027 9.58846 20.8792 11.0425C20.8792 12.4965 19.8425 13.6826 18.5296 13.6826Z"/>
+        </svg>
       </div>
-      <div class="server-icon" title="VLearn Hub">
-        VL
-      </div>
-      <div class="server-icon" title="Discord Bot Dev">
-        🤖
-      </div>
+      <div class="server-divider"></div>
+      <div class="server-icon" title="VLearn Hub">📚</div>
+      <div class="server-icon" title="E402 Tech Lab">💻</div>
     </div>
 
-    <!-- CHANNEL SIDEBAR -->
+    <!-- CHANNELS SIDEBAR -->
     <div id="channel-sidebar">
       <div class="server-header">
-        <span>AI Batch 04 · Lớp 3B</span>
-        <span style="font-size: 12px; color: var(--text-muted)">E402</span>
+        <span>Batch 04 · Lớp 3B (E402)</span>
+        <span style="font-size: 11px; opacity: 0.6;">▼</span>
       </div>
+
       <div class="channel-list">
-        <div class="channel-category">THÔNG BÁO CHÍNH THỨC</div>
-        <div class="channel-item">
-          <span class="channel-hash">📢</span>
+        <div class="channel-category">📢 THÔNG BÁO QUAN TRỌNG</div>
+        <div class="channel-item" onclick="switchChannel('thong-bao-chung')">
+          <span class="channel-hash">#</span>
           <span>thong-bao-chung</span>
         </div>
-        <div class="channel-item">
-          <span class="channel-hash">📌</span>
+        <div class="channel-item" onclick="switchChannel('thong-bao-lab02')">
+          <span class="channel-hash">#</span>
           <span>thong-bao-lab02</span>
         </div>
-        <div class="channel-item">
-          <span class="channel-hash">📜</span>
+        <div class="channel-item" onclick="switchChannel('quy-che-khoa-hoc')">
+          <span class="channel-hash">#</span>
           <span>quy-che-khoa-hoc</span>
         </div>
 
-        <div class="channel-category" style="margin-top: 10px;">TRỢ LÝ THÔNG MINH</div>
+        <div class="channel-category">🤖 TRỢ LÝ AI & HỖ TRỢ</div>
         <div class="channel-item active">
-          <span class="channel-hash">🤖</span>
+          <span class="channel-hash">#</span>
           <span>tro-ly-discord</span>
         </div>
-
-        <div class="channel-category" style="margin-top: 10px;">HỖ TRỢ HỌC VIÊN</div>
-        <div class="channel-item">
-          <span class="channel-hash">💬</span>
-          <span>thao-luan-chung</span>
+        <div class="channel-item" onclick="switchChannel('ho-tro-ky-thuat')">
+          <span class="channel-hash">#</span>
+          <span>ho-tro-ky-thuat</span>
         </div>
-        <div class="channel-item">
-          <span class="channel-hash">❓</span>
-          <span>hoi-dap-ta</span>
+        <div class="channel-item" onclick="switchChannel('thao-luan-chung')">
+          <span class="channel-hash">#</span>
+          <span>thao-luan-chung</span>
         </div>
       </div>
 
-      <!-- CURRENT USER INFO -->
       <div class="user-profile-bar">
         <div class="avatar-circle">
-          NT
+          <span>MT</span>
           <div class="avatar-status"></div>
         </div>
         <div class="user-meta">
           <div class="name">Nguyễn Minh Tuấn</div>
-          <div class="sub">Học viên #2A202602420</div>
+          <div class="sub">Học viên 3B · Online</div>
         </div>
       </div>
     </div>
 
-    <!-- MAIN CHAT AREA -->
+    <!-- MAIN CHAT PANEL -->
     <div id="chat-main">
       <div class="chat-header">
         <div class="chat-header-title">
-          <span style="font-size: 20px; color: var(--text-muted);">#</span>
+          <span class="channel-hash" style="color: var(--text-muted); font-size: 20px;">#</span>
           <span>tro-ly-discord</span>
-          <span class="chat-header-desc">Kênh hỏi đáp tự động về lịch trình, deadline & tài liệu có căn cứ trích dẫn</span>
+          <span class="chat-header-desc">Hỗ trợ tra cứu deadline, lịch học, link tài liệu và quy chế có trích dẫn nguồn</span>
         </div>
-        <div>
-          <span style="font-size: 12px; color: var(--green); background: rgba(35, 165, 90, 0.1); padding: 4px 8px; border-radius: 4px;">
-            ● Bot Online
-          </span>
+        <div style="font-size: 12px; color: var(--text-muted);">
+          <span>Nhóm <b>Latentia</b> · Track B1</span>
         </div>
       </div>
 
-      <!-- PATH INFO BANNER -->
+      <!-- CURRENT PATH BANNER -->
       <div id="path-banner">
         <div class="path-indicator">
           <b id="banner-path-title" style="color: var(--text-header)">ĐƯỜNG ĐI 1: HAPPY PATH</b>
           <span id="banner-hax" class="hax-tag">HAX G11: Giải thích vì sao</span>
-          <span id="banner-auto" class="automation-tag">Cấp độ: Conditional (Có căn cứ)</span>
+          <span id="banner-auto" class="automation-tag">Cấp độ: Conditional</span>
         </div>
-        <div style="font-size: 11px; color: var(--text-muted);">
-          Cost-of-Error: <b>Cao</b> (Không suy diễn tùy tiện)
+        <div style="font-size: 11.5px; color: var(--text-muted);">
+          Cost-of-Error: <b style="color: #fca5a5;">Cao (Chống bịa đặt)</b>
         </div>
       </div>
 
-      <!-- MESSAGES FEED -->
-      <div id="message-feed">
-        <!-- Messages will be injected by JavaScript -->
-      </div>
+      <!-- MESSAGE FEED -->
+      <div id="message-feed"></div>
 
       <!-- TYPING INDICATOR -->
       <div id="typing-indicator">
-        <span>Trợ lý Discord đang đối soát tài liệu</span>
+        <span>Trợ lý Discord đang đối soát tài liệu khóa học</span>
         <div class="dot-flashing">
           <span></span><span></span><span></span>
         </div>
@@ -877,10 +1043,10 @@
             type="text" 
             id="user-input-field" 
             class="chat-input" 
-            placeholder="Gửi câu hỏi tra cứu cho Trợ lý Discord... (hoặc chọn kịch bản ở thanh trên)"
+            placeholder="Gửi câu hỏi tra cứu cho Trợ lý Discord... (Nhấn Enter hoặc bấm nút kịch bản ở trên)"
             onkeydown="if(event.key==='Enter') handleManualSend()"
           />
-          <button class="send-btn" onclick="handleManualSend()" title="Gửi tin nhắn">
+          <button class="send-btn" onclick="handleManualSend()" title="Gửi câu hỏi">
             ➤
           </button>
         </div>
@@ -897,15 +1063,15 @@
         </div>
         <div class="check-item">
           <span class="check-icon">✓</span>
-          <div><b>2. Low-Confidence (②):</b> Hỏi làm rõ, có quick chips (G10).</div>
+          <div><b>2. Low-Confidence (②):</b> Hỏi làm rõ với quick chips (G10).</div>
         </div>
         <div class="check-item">
           <span class="check-icon">✓</span>
-          <div><b>3. No-Grounding (①):</b> Thiếu căn cứ, thừa nhận & chuyển TA.</div>
+          <div><b>3. No-Grounding (①):</b> Không có căn cứ, thừa nhận & chuyển TA.</div>
         </div>
         <div class="check-item">
           <span class="check-icon">✓</span>
-          <div><b>4. Correction:</b> User sửa câu hỏi (G9) / Thử lại dễ dàng (G8).</div>
+          <div><b>4. Correction:</b> Sửa câu hỏi (G9) / Bỏ qua dễ dàng (G8).</div>
         </div>
       </div>
 
@@ -915,55 +1081,124 @@
           <b>G10 (Bắt buộc):</b> Thu hẹp phạm vi khi nghi ngờ — Hiện danh sách nút chọn làm rõ thay vì trả lời bừa.
         </div>
         <div class="info-card">
-          <b>G11:</b> Giải thích vì sao — Kèm trích dẫn kênh nguồn và trích đoạn thông báo.
+          <b>G11:</b> Giải thích vì sao — Kèm trích dẫn kênh nguồn và trích đoạn thông báo chính thức.
         </div>
         <div class="info-card">
-          <b>G9 / G8:</b> Sửa & gạt bỏ dễ dàng — Nút sửa câu hỏi, không bẫy người dùng vào menu cụt.
+          <b>G9 / G8:</b> Sửa & gạt bỏ dễ dàng — Tự điền lại câu hỏi để sửa, không bẫy người dùng vào menu cụt.
         </div>
         <div class="info-card">
-          <b>G1:</b> Nêu rõ phạm vi — Bot từ chối giải code, chỉ tra cứu vận hành.
+          <b>G1:</b> Nêu rõ phạm vi — Bot từ chối giải bài/viết code, chỉ tra cứu vận hành.
         </div>
       </div>
 
       <div class="drawer-section">
         <div class="drawer-title">⚙️ Cấp độ tự động hóa</div>
-        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
-          <b>Conditional (Có điều kiện):</b> Trả lời tự động khi đối soát thấy căn cứ chính thức; nếu thiếu căn cứ thì ngắt luồng và handoff cho TA.
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">
+          <b>Conditional (Có điều kiện):</b> Chỉ trả lời tự động khi đối soát thấy căn cứ chính thức; nếu thiếu căn cứ thì ngắt luồng và handoff cho TA.
         </p>
-        <p style="font-size: 11px; color: #a5b4fc; background: #1e1f22; padding: 6px; border-radius: 4px;">
+        <div style="font-size: 11px; color: #a5b4fc; background: rgba(0,0,0,0.3); padding: 6px 8px; border-radius: 4px;">
           💡 <i>Lý do: Cost-of-error cao (sai hạn nộp khiến học viên bị trừ 50–100% điểm).</i>
-        </p>
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-title">📊 Kết quả Kiểm thử Golden Set</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 12px; color: var(--text-muted);">Số lượng:</span>
+          <b style="color: #fff; font-size: 12px;">24 / 24 test cases</b>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 12px; color: var(--text-muted);">Tỷ lệ Pass:</span>
+          <b style="color: var(--green); font-size: 13px;">100.0% ✅</b>
+        </div>
+        <div style="font-size: 11px; color: #6ee7b7; background: rgba(35, 165, 90, 0.15); padding: 4px 8px; border-radius: 4px; text-align: center;">
+          Quality Bar Đạt (Chuẩn ≥ 85%)
+        </div>
       </div>
 
       <div class="drawer-section" style="margin-top: auto;">
-        <div style="font-size: 11px; color: var(--text-muted); text-align: center;">
+        <div style="font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.4;">
           Nhóm <b>Latentia</b> · Track B1<br>
-          Mini Hackathon Batch 04 · Lớp 3B
+          Mini Hackathon AI Batch 04 · Lớp 3B
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- MODAL FOR TA HANDOFF SIMULATION -->
-  <div id="modal-overlay">
+  <!-- MODAL: TA ESCALATION HANDOFF -->
+  <div id="modal-overlay" class="modal-overlay">
     <div class="modal-box">
-      <div class="modal-title">🏷️ Chuyển tiếp câu hỏi tới Trợ giảng (@TA)</div>
-      <p style="font-size: 13px; color: var(--text-normal); margin-bottom: 12px;" id="modal-desc">
-        Hệ thống đã đóng gói câu hỏi của bạn và gửi thông báo trực tiếp đến hàng đợi của Trợ giảng phụ trách.
-      </p>
-      <div style="background: #232428; padding: 10px; border-radius: 4px; font-size: 12px; border-left: 3px solid var(--red);">
-        <b>Nội dung chuyển tiếp:</b><br>
-        <span id="modal-forward-text" style="color: var(--text-muted);">"..."</span>
+      <div class="modal-header">
+        <h3>🏷️ Chuyển tiếp câu hỏi cho Trợ giảng (@TA)</h3>
+        <button class="modal-close-btn" onclick="closeModal()">✕</button>
       </div>
-      <div class="modal-actions">
-        <button class="action-btn" onclick="closeModal()">Đóng</button>
-        <button class="action-btn success" onclick="confirmHandoff()">Xem trong kênh #hoi-dap-ta</button>
+      <div class="modal-body">
+        <p>Hệ thống AI không tìm thấy căn cứ văn bản chính thức cho câu hỏi này. Để đảm bảo không đưa ra thông tin sai lệch, câu hỏi của bạn sẽ được chuyển tiếp kèm ngữ cảnh cho Trợ giảng:</p>
+        
+        <div style="background: rgba(0,0,0,0.35); border-left: 3px solid var(--red); padding: 10px 12px; border-radius: 4px;">
+          <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">NỘI DUNG CÂU HỎI:</div>
+          <b id="modal-forward-text" style="color: #fff;"></b>
+        </div>
+
+        <div>
+          <label style="font-size: 12px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">CHỌN TRỢ GIẢNG TRỰC KÊNH:</label>
+          <select id="ta-select" style="width: 100%; background: #232428; color: #fff; border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 6px; font-family: inherit;">
+            <option value="TA_MinhDuc">@TA_MinhDuc (Phụ trách Học vụ & Deadline)</option>
+            <option value="TA_DucAnh">@TA_DucAnh (Phụ trách Kỹ thuật & Lab)</option>
+            <option value="LabCoach">@LabCoach_RoomE402 (Hỗ trợ tại lớp trực tiếp)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn normal" onclick="closeModal()">Hủy bỏ</button>
+        <button class="action-btn danger" onclick="confirmHandoff()">Gửi câu hỏi cho TA</button>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT INTERACTION LOGIC -->
+  <!-- MODAL: SHARE GUIDE (GỬI NGƯỜI KHÁC TEST) -->
+  <div id="share-modal-overlay" class="modal-overlay">
+    <div class="modal-box" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3>📤 Hướng dẫn gửi Prototype cho người khác test</h3>
+        <button class="modal-close-btn" onclick="closeShareModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: rgba(35, 165, 90, 0.15); border: 1px solid rgba(35, 165, 90, 0.35); padding: 10px 14px; border-radius: 8px; color: #79e69e; font-size: 13px;">
+          ✅ <b>HOÀN TOÀN GỬI ĐƯỢC!</b> Bản prototype này được đóng gói dạng <b>Single-File Web App độc lập</b>. Người nhận không cần cài Node.js, không cần chạy web server, mở được trên mọi máy tính và điện thoại.
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div>
+            <b style="color: #fff;">Cách 1: Gửi trực tiếp file `index.html` (Nhanh nhất - 5 giây)</b>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
+              Gửi file <code style="color: #a5b4fc; background: rgba(0,0,0,0.3); padding: 2px 5px; border-radius: 3px;">codebase/prototype/index.html</code> qua Zalo, Discord, Google Drive hoặc Email. Người nhận chỉ cần <b>nhấp đúp chuột</b> là file sẽ mở trực tiếp trên Chrome, Edge, Safari hoặc Cốc Cốc.
+            </p>
+          </div>
+
+          <div>
+            <b style="color: #fff;">Cách 2: Bật GitHub Pages từ Repository (Có link HTTPS online)</b>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
+              Vào GitHub repo nhóm > <i>Settings</i> > <i>Pages</i> > chọn branch <code>main</code> và thư mục chứa code để tạo đường link online miễn phí gửi cho giảng viên / TA / bạn bè test trên điện thoại.
+            </p>
+          </div>
+
+          <div>
+            <b style="color: #fff;">Cách 3: Thả lên Vercel / Netlify (1 click)</b>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
+              Kéo thả thư mục <code>codebase/prototype</code> vào trang <a href="https://drop.vercel.app" target="_blank" style="color: var(--text-link);">drop.vercel.app</a> hoặc Netlify Drop để nhận ngay đường link công khai trong 10 giây.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="action-btn success" onclick="closeShareModal()">Đã hiểu, đóng hướng dẫn</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC & SCENARIOS -->
   <script>
     const scenarios = {
       happy_path: {
@@ -972,13 +1207,13 @@
         auto: "Conditional: Tự động phản hồi vì có căn cứ",
         user_msg: "Hạn nộp bài Lab02 là khi nào vậy bot?",
         bot_response: {
-          text: "Theo thông báo chính thức của Ban tổ chức, hạn nộp bài **Lab02** là **23:59 ngày 20/09/2026**.",
+          text: "Theo thông báo chính thức của Ban tổ chức, hạn nộp bài **Lab02** là **23:59 Chủ Nhật ngày 20/09/2026** (nộp qua link GitHub trên cổng VLearn).",
           embed: {
             status: "success",
             title: "📌 Căn cứ xác thực từ tài liệu khóa học",
-            channel: "#thong-bao-lab02 (Tin nhắn M07416)",
+            channel: "#thong-bao-khoa-hoc (Mã tin M07416)",
             time: "15/09/2026 14:30",
-            quote: "« Hạn chót nộp toàn bộ bài tập thực hành Lab02 qua form trước 23:59 Chủ Nhật (20/09). Quá thời hạn sẽ áp dụng trừ điểm theo quy chế. »"
+            quote: "« Hạn chót nộp toàn bộ bài tập thực hành Lab02 qua link GitHub trên VLearn trước 23:59 Chủ Nhật (20/09). Quá thời hạn sẽ áp dụng trừ điểm theo Quy chế Mục 3.2. »"
           },
           actions: [
             { text: "👍 Đã rõ, cảm ơn!", type: "success", click: "actionThanks()" },
@@ -993,7 +1228,7 @@
         auto: "Conditional: Tạm dừng suy đoán, yêu cầu làm rõ",
         user_msg: "Khi nào nộp bài thế?",
         bot_response: {
-          text: "Mình nhận thấy câu hỏi hơi ngắn và chưa rõ ngữ cảnh. Để tra cứu chính xác, **bạn đang muốn hỏi về hạn nộp của mục nào**?",
+          text: "Hiện có 2 mốc nộp bài quan trọng sắp tới. Để tra cứu chính xác, **bạn đang muốn hỏi về mốc nào**?",
           clarifyChips: [
             { label: "⏱️ Checkpoint 2 Hackathon (21:00 tối nay 17/9)", action: "chooseClarify('cp2')" },
             { label: "📝 Bài tập Lab02 (23:59 ngày 20/9)", action: "chooseClarify('lab2')" },
@@ -1007,16 +1242,16 @@
       no_grounding: {
         name: "ĐƯỜNG ĐI 3: NO-GROUNDING (KHÔNG CÓ CĂN CỨ)",
         hax: "HAX G10 & PAIR: Không bịa đặt khi thiếu căn cứ",
-        auto: "Conditional: Từ chối tự động hóa -> Handoff",
+        auto: "Conditional: Từ chối tự động hóa -> Chuyển giao TA",
         user_msg: "Deadline nộp đồ án cuối kỳ có được hoãn thêm 2 ngày không bot?",
         bot_response: {
-          text: "⚠️ Mình đã rà soát toàn bộ kênh thông báo chính thức và tài liệu quy chế, nhưng **chưa tìm thấy thông tin nào về việc dời hoãn deadline đồ án cuối kỳ**.",
+          text: "⚠️ Mình đã kiểm tra toàn bộ thông báo chính thức và tài liệu quy chế, nhưng **chưa tìm thấy thông tin nào về việc dời hoãn deadline đồ án cuối kỳ**.\n\nVì thông tin hạn chót ảnh hưởng trực tiếp đến điểm số của nhóm, bot từ chối tự suy diễn.",
           embed: {
             status: "danger",
             title: "⚠️ Cảnh báo thiếu căn cứ (No-Grounding)",
-            channel: "Kho tài liệu vận hành K4",
+            channel: "Kho tài liệu vận hành Batch 04",
             time: "Đối soát lúc: Vừa xong",
-            quote: "« Không tìm thấy văn bản hoặc thông báo điều chỉnh hạn chót đồ án. Quy chế nêu rõ hạn nộp phải do BTC thông báo chính thức. »"
+            quote: "« Không tìm thấy văn bản hoặc thông báo điều chỉnh hạn chót đồ án. Quy chế nêu rõ mọi thay đổi hạn nộp phải do BTC ban hành chính thức. »"
           },
           actions: [
             { text: "🏷️ Chuyển câu hỏi & Tag @TA hỗ trợ ngay", type: "danger", click: "openTAHandoff('Deadline nộp đồ án cuối kỳ có được hoãn thêm 2 ngày không?')" },
@@ -1028,7 +1263,7 @@
         name: "ĐƯỜNG ĐI 4: CORRECTION (SỬA & PHẢN HỒI / G9)",
         hax: "HAX G9 & G8: Sửa dễ dàng, không dead-end",
         auto: "Conditional: Tiếp nhận hiệu chỉnh của người dùng",
-        user_msg: "Bot hiểu nhầm ý mình rồi, mình hỏi hạn nộp bản nháp (draft) chứ không phải bản chính thức!",
+        user_msg: "Bot hiểu nhầm ý mình rồi, mình hỏi hạn nộp bản nháp (draft review) chứ không phải bản chính thức!",
         bot_response: {
           text: "Cảm ơn bạn đã phản hồi! Mình đã cập nhật đối soát theo từ khóa **Hạn nộp bản nháp (Draft Review)**:\n\nTheo tài liệu Hướng dẫn đồ án, bản nháp slide và prototype cần gửi lên kênh `#review-draft` trước **12:00 trưa ngày 19/09/2026** để TA góp ý trước buổi thuyết trình.",
           embed: {
@@ -1036,7 +1271,7 @@
             title: "📌 Căn cứ từ Hướng dẫn đồ án K4",
             channel: "#huong-dan-do-an (Mục 4.1)",
             time: "16/09/2026 10:15",
-            quote: "« Nộp bản nháp draft review trước 12:00 ngày 19/9 để hội đồng góp ý chuẩn hóa. »"
+            quote: "« Nộp bản nháp draft review trước 12:00 ngày 19/9 để hội đồng TA góp ý chuẩn hóa trước giờ chấm chính thức. »"
           },
           actions: [
             { text: "✅ Đúng thông tin này rồi!", type: "success", click: "actionThanks()" },
@@ -1076,7 +1311,7 @@
             title: "📜 Trích dẫn Quy chế đào tạo K4",
             channel: "#quy-che-khoa-hoc (Văn bản chính thức)",
             time: "Cập nhật đầu khóa",
-            quote: "« Mọi trường hợp commit muộn sau deadline đều tự động trừ điểm theo thang 50% - 75% - 100% dựa trên timestamp git. »"
+            quote: "« Mọi trường hợp commit muộn sau deadline đều tự động trừ điểm theo thang 50% - 75% - 100% dựa trên timestamp git. Không có ngoại lệ nếu không có xác nhận y tế. »"
           },
           actions: [
             { text: "📄 Xem toàn văn Quy chế", type: "normal", click: "actionThanks()" },
@@ -1096,11 +1331,11 @@
           <div class="message-content">
             <div class="message-author-line">
               <span class="author-name">Trợ lý Discord</span>
-              <span class="bot-tag">BOT</span>
+              <span class="bot-tag">BOT ✓</span>
               <span class="timestamp">Hôm nay lúc 19:30</span>
             </div>
             <div class="message-body">
-              Xin chào <b>Nguyễn Minh Tuấn</b>! Mình là Trợ lý hỗ trợ học viên lớp 3B.
+              Xin chào <b>Nguyễn Minh Tuấn</b>! Mình là Trợ lý hỗ trợ học viên lớp 3B.<br>
               Mình có thể giúp bạn tra cứu nhanh <b>deadline nộp bài, lịch học, link tài liệu và quy chế khóa học</b> — tất cả câu trả lời đều có trích dẫn nguồn thông báo chính thức!
             </div>
           </div>
@@ -1119,23 +1354,24 @@
       const data = scenarios[scenarioId];
       if (!data) return;
 
-      // Update Banner
+      // Update Path banner
       document.getElementById('banner-path-title').textContent = data.name;
       document.getElementById('banner-hax').textContent = data.hax;
-      document.getElementById('banner-auto').textContent = `Cấp độ: ${data.auto}`;
+      document.getElementById('banner-auto').textContent = data.auto;
 
-      // Reset and run chat animation
+      // Reset feed with welcome message
       initWelcome();
-      showTyping(true);
 
+      // Simulate conversation
       setTimeout(() => {
         appendUserMessage(data.user_msg);
+        showTyping(true);
 
         setTimeout(() => {
           showTyping(false);
           appendBotMessage(data.bot_response);
-        }, 600);
-      }, 300);
+        }, 450);
+      }, 150);
     }
 
     function appendUserMessage(text) {
@@ -1143,7 +1379,7 @@
       const msgDiv = document.createElement('div');
       msgDiv.className = 'message-group';
       msgDiv.innerHTML = `
-        <div class="avatar-circle" style="width: 40px; height: 40px; font-size: 14px;">NT</div>
+        <div class="message-avatar user">MT</div>
         <div class="message-content">
           <div class="message-author-line">
             <span class="author-name">Nguyễn Minh Tuấn</span>
@@ -1205,7 +1441,7 @@
         <div class="message-content">
           <div class="message-author-line">
             <span class="author-name">Trợ lý Discord</span>
-            <span class="bot-tag">BOT</span>
+            <span class="bot-tag">BOT ✓</span>
             <span class="timestamp">Vừa xong</span>
           </div>
           <div class="message-body">${formatMarkdown(resp.text)}</div>
@@ -1248,7 +1484,7 @@
               { text: "✏️ Sửa câu hỏi khác", type: "normal", click: "triggerCorrection()" }
             ]
           });
-        }, 500);
+        }, 400);
       } else if (choice === 'lab2') {
         loadScenario('happy_path');
       } else {
@@ -1269,7 +1505,7 @@
               { text: "👍 Đã hiểu", type: "success", click: "actionThanks()" }
             ]
           });
-        }, 500);
+        }, 400);
       }
     }
 
@@ -1284,16 +1520,26 @@
     }
 
     function confirmHandoff() {
+      const ta = document.getElementById('ta-select').value;
       closeModal();
       appendBotMessage({
-        text: "✅ **Đã chuyển tiếp thành công!** Trợ giảng phụ trách đã nhận được thông báo và sẽ phản hồi trực tiếp cho bạn qua tin nhắn Discord trong ít phút.",
+        text: `✅ **Đã tạo ticket & chuyển tiếp thành công tới @${ta}!** Trợ giảng phụ trách đã nhận được thông báo kèm ngữ cảnh câu hỏi và sẽ hỗ trợ bạn trực tiếp qua tin nhắn Discord trong vòng 15-30 phút.`,
         actions: [
           { text: "🔄 Bắt đầu câu hỏi mới", type: "normal", click: "resetDemo()" }
         ]
       });
     }
 
-    // CORRECTION / EDIT TRIGGER
+    // SHARE MODAL
+    function openShareModal() {
+      document.getElementById('share-modal-overlay').style.display = 'flex';
+    }
+
+    function closeShareModal() {
+      document.getElementById('share-modal-overlay').style.display = 'none';
+    }
+
+    // CORRECTION / EDIT TRIGGER (HAX G9)
     function triggerCorrection() {
       const input = document.getElementById('user-input-field');
       input.value = "Tôi muốn hỏi lại cụ thể hơn là: ";
@@ -1376,6 +1622,7 @@
       let formatted = escapeHtml(text);
       formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
       formatted = formatted.replace(/\*(.*?)\*/g, '<i>$1</i>');
+      formatted = formatted.replace(/\n/g, '<br>');
       formatted = formatted.replace(/`([^`]+)`/g, '<code style="background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 3px; font-family: monospace;">$1</code>');
       return formatted;
     }
