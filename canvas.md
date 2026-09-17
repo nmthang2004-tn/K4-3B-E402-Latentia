@@ -20,3 +20,24 @@
 
 Bằng chứng ở dòng 4 có thể đến từ **data pack** (đếm được, có mã trích dẫn) hoặc **khảo sát / phỏng vấn** (ghi số người hỏi, số người gặp vấn đề, quote ngắn) — tốt nhất là cả hai.
 
+---
+
+## Phụ lục: Giải thích thuật ngữ (Glossary)
+
+Bảng giải thích các thuật ngữ chuyên môn và từ viết tắt được sử dụng trong Canvas:
+
+| Thuật ngữ / Viết tắt | Ý nghĩa trong ngữ cảnh Canvas |
+|---|---|
+| **CP (Checkpoint)** | Các mốc đánh giá tiến độ định kỳ của dự án (ví dụ: `CP1` chốt Canvas ý tưởng, `CP5` kiểm thử prototype với người dùng). |
+| **Track B / B1** | Hướng đề tài xây dựng **Trợ lý Discord** hỗ trợ giải đáp thắc mắc cho học viên trong không gian học tập. |
+| **Job executor** | Người trực tiếp thực hiện công việc (ở đây là *Học viên mới tuần đầu* cần tìm kiếm thông tin gấp trên Discord). |
+| **Pain (Nỗi đau)** | Vấn đề, khó khăn người dùng gặp phải gây tốn thời gian hoặc dẫn đến hệ quả xấu (tin nhắn bị trôi, bot trả lời lan man/sai lệch, chờ đợi hỗ trợ lâu). |
+| **Logistics** | Các câu hỏi liên quan đến vận hành khóa học: hạn nộp bài (deadline), lịch standup/họp, link tài nguyên, biểu mẫu (form), điểm thưởng (XP), ticket hỗ trợ. |
+| **Data Pack / Data mining** | Bộ dữ liệu log tin nhắn Discord do khóa học cung cấp (`discord-pack`), được nhóm khai phá định lượng để lấy bằng chứng thực tế (mã tin nhắn dạng `M...`). |
+| **Lát cắt (Thin Slice)** | Phạm vi giải pháp tối thiểu nhưng khép kín theo cấu trúc: *1 user · 1 việc · 1 quyết định AI · 1 kết quả*, giải quyết dứt điểm một trường hợp cốt lõi. |
+| **Grounding / Căn cứ trích dẫn** | Cơ chế AI đối soát nội dung câu trả lời với tài liệu/thông báo chính thống từ Ban tổ chức, đảm bảo tính xác thực, không ảo giác (hallucination) và luôn kèm nguồn dẫn. |
+| **Fallback & Low-confidence** | Kịch bản xử lý khi AI không tìm thấy tài liệu hoặc không đủ độ tự tin: bot thừa nhận *"chưa đủ căn cứ"* và chuyển tiếp (handoff) tag TA/Mod hỗ trợ, tuyệt đối không bịa đặt. |
+| **Willing users** | Người dùng thật ngoài nhóm phát triển đã cam kết tham gia trải nghiệm và cung cấp phản hồi kiểm chứng cho prototype ở vòng test. |
+| **Golden Set** | Bộ dữ liệu đối chuẩn gồm các trường hợp kiểm thử tiêu chuẩn (≥20 cases) dùng để đo lường độ chính xác của bot qua các lần cải tiến prompt/retrieval. |
+| **TA / Lab Coach / Mod** | Lực lượng hỗ trợ vận hành và học thuật: Teaching Assistant (Trợ giảng), Lab Coach (Hướng dẫn thực hành) và Moderator (Điều phối viên Discord). |
+
