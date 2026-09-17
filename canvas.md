@@ -15,13 +15,13 @@ Canvas nộp ở CP1 theo scaffold `02-guide.md` §1.5 — mỗi dòng một ý,
 
 | # | Dòng | Nội dung |
 |---|---|---|
-| 1 | Track + đề | |
-| 2 | Job executor (ai · đang ở đâu · làm gì) | |
-| 3 | Pain một câu (ai – đang làm gì – vướng đâu – hậu quả) | |
-| 4 | 1–2 bằng chứng đầu (số + cách đếm + mã hội thoại/tin nhắn, hoặc khảo sát/phỏng vấn có số người) | |
-| 5 | Lát cắt MỘT CÂU (1 user · 1 việc · 1 quyết định AI · 1 kết quả) | |
-| 6 | AI tự làm đến đâu + 1 dòng lý do · ≥3 willing users ngoài nhóm | |
-| 7 | Phân công có tên | |
+| 1 | Track + đề | **B · B1 — Trợ lý Discord:** Trả lời tự động câu hỏi về lịch trình, deadline và tài liệu khoá học có căn cứ trích dẫn nguồn. |
+| 2 | Job executor (ai · đang ở đâu · làm gì) | Học viên mới (tuần đầu), đang ở kênh chat Discord của khoá học, cần tra cứu gấp thông tin về deadline nộp bài, standup hoặc link tài liệu hướng dẫn. |
+| 3 | Pain một câu (ai – đang làm gì – vướng đâu – hậu quả) | Học viên khi cần tra cứu deadline hoặc tài liệu bị trôi tin nhắn giữa hàng trăm thảo luận; hỏi bot hiện tại thì bot không hiểu ngữ cảnh hoặc trả lời lan man không nguồn, khiến học viên tốn nhiều thời gian và vẫn phải tag hỏi lại TA. |
+| 4 | 1–2 bằng chứng đầu (số + cách đếm + mã hội thoại/tin nhắn, hoặc khảo sát/phỏng vấn có số người) | • **Khảo sát n=14 học viên lớp 3B (tuần đầu):** 11/14 (78.6%) gặp khó khăn khi tìm deadline/lịch nộp bài; 8/14 (57.1%) từng gửi câu hỏi bị trùng lặp với người khác; 7/14 (50%) mất >3–5 phút hoặc không tìm được.<br>• **Vấn đề với bot hiện tại:** 11/14 đã dùng bot nhưng 6/11 (54.5%) phản ánh bot không hiểu ngữ cảnh / trả lời xong vẫn phải hỏi lại TA; 10/14 (71.4%) yêu cầu bot trả lời chính xác kèm trích dẫn nguồn (quote: *"toàn tag mod, mod ko trả lời"*). |
+| 5 | Lát cắt MỘT CÂU (1 user · 1 việc · 1 quyết định AI · 1 kết quả) | Học viên gõ câu hỏi tra cứu deadline/quy định vào Discord · AI đối soát câu hỏi với tài liệu thông báo chính thức để **quyết định câu hỏi có căn cứ xác thực hay không** · nếu có thì trả lời ngắn gọn kèm trích dẫn nguồn/link; nếu không đủ căn cứ thì nói rõ "chưa đủ căn cứ" và chuyển tiếp tag TA/Mod hỗ trợ. |
+| 6 | AI tự làm đến đâu + 1 dòng lý do · ≥3 willing users ngoài nhóm | • **Tự làm:** Nhận câu hỏi, truy xuất thông báo/lịch trình chính thức, trích xuất câu trả lời kèm link/kênh nguồn.<br>• **Không tự làm:** Không bịa đặt khi thiếu căn cứ; không tự ý đưa ra quyết định thay đổi hạn nộp thay BTC.<br>• **Lý do:** 71.4% học viên cần câu trả lời có nguồn xác thực; sai sót về deadline/quy chế gây trễ bài nộp và mất điểm trực tiếp.<br>• **≥3 Willing users (ngoài nhóm, đã đồng ý test CP5):** Đào Hải Long, Vũ Hoàng Nam, Trần Quốc Bảo. |
+| 7 | Phân công có tên | • **Nguyễn Minh Thắng (2A202602706):** Product Lead, Spec.md (§1–§6), evidence mining & khảo sát, video demo/pitch.<br>• **Nguyễn Thị Vàng (2A202602897):** Prompt engineering, grounding/retrieval, Golden Set (≥20 cases) & eval framework.<br>• **Nguyễn Minh Tuấn (2A202602420):** Prototype Discord Bot (API/LangChain), UI demo, kịch bản fallback & low-confidence. |
 
 Bằng chứng ở dòng 4 có thể đến từ **data pack** (đếm được, có mã trích dẫn) hoặc **khảo sát / phỏng vấn** (ghi số người hỏi, số người gặp vấn đề, quote ngắn) — tốt nhất là cả hai.
 
