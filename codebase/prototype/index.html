@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latentia Discord Bot — CP2 Interactive Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg-server: #1e1f22;
@@ -52,13 +55,16 @@
       width: 8px;
       height: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.15);
     }
+
     ::-webkit-scrollbar-thumb {
       background: #1a1b1e;
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #111214;
     }
@@ -102,9 +108,20 @@
     }
 
     @keyframes pulseLive {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(35, 165, 90, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(35, 165, 90, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(35, 165, 90, 0); }
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(35, 165, 90, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(35, 165, 90, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(35, 165, 90, 0);
+      }
     }
 
     .scenario-btn {
@@ -204,7 +221,8 @@
       position: relative;
     }
 
-    .server-icon.active, .server-icon:hover {
+    .server-icon.active,
+    .server-icon:hover {
       border-radius: 16px;
       background: linear-gradient(135deg, var(--blurple), #6d78f5);
       color: #fff;
@@ -447,8 +465,15 @@
     }
 
     @keyframes messageSlideIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .message-group:hover {
@@ -640,6 +665,7 @@
       background: #4e5058;
       color: #fff;
     }
+
     .action-btn.normal:hover {
       background: #6d6f78;
     }
@@ -648,6 +674,7 @@
       background: var(--green);
       color: white;
     }
+
     .action-btn.success:hover {
       background: #1f944f;
     }
@@ -656,6 +683,7 @@
       background: var(--red);
       color: white;
     }
+
     .action-btn.danger:hover {
       background: #d83a3e;
     }
@@ -674,6 +702,7 @@
       display: inline-flex;
       gap: 4px;
     }
+
     .dot-flashing span {
       width: 5px;
       height: 5px;
@@ -681,11 +710,26 @@
       border-radius: 50%;
       animation: dotPulse 1.4s infinite ease-in-out both;
     }
-    .dot-flashing span:nth-child(1) { animation-delay: -0.32s; }
-    .dot-flashing span:nth-child(2) { animation-delay: -0.16s; }
+
+    .dot-flashing span:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+
+    .dot-flashing span:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+
     @keyframes dotPulse {
-      0%, 80%, 100% { transform: scale(0); }
-      40% { transform: scale(1); }
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0);
+      }
+
+      40% {
+        transform: scale(1);
+      }
     }
 
     /* CHAT INPUT AREA */
@@ -738,6 +782,7 @@
       cursor: pointer;
       transition: all 0.15s;
     }
+
     .send-btn:hover {
       background: var(--blurple-hover);
       transform: scale(1.05);
@@ -816,8 +861,13 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .modal-box {
@@ -884,16 +934,19 @@
         display: none;
       }
     }
+
     @media (max-width: 768px) {
       #channel-sidebar {
         display: none;
       }
+
       #server-bar {
         width: 56px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- TOP SCENARIO SELECTION BAR -->
@@ -943,7 +996,8 @@
     <div id="server-bar">
       <div class="server-icon active" title="K4-3B AI Hackathon">
         <svg width="28" height="20" viewBox="0 0 28 20" fill="currentColor">
-          <path d="M23.0212 1.67671C21.3107 0.879656 19.5079 0.318797 17.6584 0C17.4062 0.461742 17.1749 0.934545 16.9708 1.4184C14.9392 1.10631 12.8732 1.10631 10.8416 1.4184C10.6375 0.934545 10.3951 0.461742 10.143 0C8.29336 0.318797 6.4906 0.879656 4.78013 1.67671C1.34868 6.80482 0.413778 11.7963 0.874987 16.7144C3.15392 18.3976 5.35824 19.421 7.52554 20C8.06456 19.2635 8.54345 18.4735 8.95679 17.6399C8.17253 17.3425 7.42065 16.9535 6.71184 16.4812C6.8996 16.3425 7.08051 16.1979 7.25455 16.0475C11.5369 18.0185 16.2755 18.0185 20.5173 16.0475C20.6982 16.1979 20.8791 16.3425 21.0669 16.4812C20.3581 16.9535 19.6062 17.3425 18.8219 17.6399C19.2353 18.4735 19.7142 19.2635 20.2532 20C22.4205 19.421 24.6248 18.3976 26.9038 16.7144C27.4516 11.0253 25.9622 6.07925 23.0212 1.67671ZM9.27041 13.6826C7.98107 13.6826 6.92087 12.4965 6.92087 11.0425C6.92087 9.58846 7.9575 8.40243 9.27041 8.40243C10.5833 8.40243 11.6435 9.58846 11.62 11.0425C11.62 12.4965 10.5833 13.6826 9.27041 13.6826ZM18.5296 13.6826C17.2403 13.6826 16.1801 12.4965 16.1801 11.0425C16.1801 9.58846 17.2167 8.40243 18.5296 8.40243C19.8425 8.40243 20.9027 9.58846 20.8792 11.0425C20.8792 12.4965 19.8425 13.6826 18.5296 13.6826Z"/>
+          <path
+            d="M23.0212 1.67671C21.3107 0.879656 19.5079 0.318797 17.6584 0C17.4062 0.461742 17.1749 0.934545 16.9708 1.4184C14.9392 1.10631 12.8732 1.10631 10.8416 1.4184C10.6375 0.934545 10.3951 0.461742 10.143 0C8.29336 0.318797 6.4906 0.879656 4.78013 1.67671C1.34868 6.80482 0.413778 11.7963 0.874987 16.7144C3.15392 18.3976 5.35824 19.421 7.52554 20C8.06456 19.2635 8.54345 18.4735 8.95679 17.6399C8.17253 17.3425 7.42065 16.9535 6.71184 16.4812C6.8996 16.3425 7.08051 16.1979 7.25455 16.0475C11.5369 18.0185 16.2755 18.0185 20.5173 16.0475C20.6982 16.1979 20.8791 16.3425 21.0669 16.4812C20.3581 16.9535 19.6062 17.3425 18.8219 17.6399C19.2353 18.4735 19.7142 19.2635 20.2532 20C22.4205 19.421 24.6248 18.3976 26.9038 16.7144C27.4516 11.0253 25.9622 6.07925 23.0212 1.67671ZM9.27041 13.6826C7.98107 13.6826 6.92087 12.4965 6.92087 11.0425C6.92087 9.58846 7.9575 8.40243 9.27041 8.40243C10.5833 8.40243 11.6435 9.58846 11.62 11.0425C11.62 12.4965 10.5833 13.6826 9.27041 13.6826ZM18.5296 13.6826C17.2403 13.6826 16.1801 12.4965 16.1801 11.0425C16.1801 9.58846 17.2167 8.40243 18.5296 8.40243C19.8425 8.40243 20.9027 9.58846 20.8792 11.0425C20.8792 12.4965 19.8425 13.6826 18.5296 13.6826Z" />
         </svg>
       </div>
       <div class="server-divider"></div>
@@ -1006,7 +1060,8 @@
         <div class="chat-header-title">
           <span class="channel-hash" style="color: var(--text-muted); font-size: 20px;">#</span>
           <span>tro-ly-discord</span>
-          <span class="chat-header-desc">Hỗ trợ tra cứu deadline, lịch học, link tài liệu và quy chế có trích dẫn nguồn</span>
+          <span class="chat-header-desc">Hỗ trợ tra cứu deadline, lịch học, link tài liệu và quy chế có trích dẫn
+            nguồn</span>
         </div>
         <div style="font-size: 12px; color: var(--text-muted);">
           <span>Nhóm <b>Latentia</b> · Track B1</span>
@@ -1039,13 +1094,9 @@
       <!-- INPUT BAR -->
       <div id="chat-input-container">
         <div class="input-wrapper">
-          <input 
-            type="text" 
-            id="user-input-field" 
-            class="chat-input" 
+          <input type="text" id="user-input-field" class="chat-input"
             placeholder="Gửi câu hỏi tra cứu cho Trợ lý Discord... (Nhấn Enter hoặc bấm nút kịch bản ở trên)"
-            onkeydown="if(event.key==='Enter') handleManualSend()"
-          />
+            onkeydown="if(event.key==='Enter') handleManualSend()" />
           <button class="send-btn" onclick="handleManualSend()" title="Gửi câu hỏi">
             ➤
           </button>
@@ -1094,9 +1145,11 @@
       <div class="drawer-section">
         <div class="drawer-title">⚙️ Cấp độ tự động hóa</div>
         <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">
-          <b>Conditional (Có điều kiện):</b> Chỉ trả lời tự động khi đối soát thấy căn cứ chính thức; nếu thiếu căn cứ thì ngắt luồng và handoff cho TA.
+          <b>Conditional (Có điều kiện):</b> Chỉ trả lời tự động khi đối soát thấy căn cứ chính thức; nếu thiếu căn cứ
+          thì ngắt luồng và handoff cho TA.
         </p>
-        <div style="font-size: 11px; color: #a5b4fc; background: rgba(0,0,0,0.3); padding: 6px 8px; border-radius: 4px;">
+        <div
+          style="font-size: 11px; color: #a5b4fc; background: rgba(0,0,0,0.3); padding: 6px 8px; border-radius: 4px;">
           💡 <i>Lý do: Cost-of-error cao (sai hạn nộp khiến học viên bị trừ 50–100% điểm).</i>
         </div>
       </div>
@@ -1111,7 +1164,8 @@
           <span style="font-size: 12px; color: var(--text-muted);">Tỷ lệ Pass:</span>
           <b style="color: var(--green); font-size: 13px;">100.0% ✅</b>
         </div>
-        <div style="font-size: 11px; color: #6ee7b7; background: rgba(35, 165, 90, 0.15); padding: 4px 8px; border-radius: 4px; text-align: center;">
+        <div
+          style="font-size: 11px; color: #6ee7b7; background: rgba(35, 165, 90, 0.15); padding: 4px 8px; border-radius: 4px; text-align: center;">
           Quality Bar Đạt (Chuẩn ≥ 85%)
         </div>
       </div>
@@ -1134,16 +1188,21 @@
         <button class="modal-close-btn" onclick="closeModal()">✕</button>
       </div>
       <div class="modal-body">
-        <p>Hệ thống AI không tìm thấy căn cứ văn bản chính thức cho câu hỏi này. Để đảm bảo không đưa ra thông tin sai lệch, câu hỏi của bạn sẽ được chuyển tiếp kèm ngữ cảnh cho Trợ giảng:</p>
-        
-        <div style="background: rgba(0,0,0,0.35); border-left: 3px solid var(--red); padding: 10px 12px; border-radius: 4px;">
+        <p>Hệ thống AI không tìm thấy căn cứ văn bản chính thức cho câu hỏi này. Để đảm bảo không đưa ra thông tin sai
+          lệch, câu hỏi của bạn sẽ được chuyển tiếp kèm ngữ cảnh cho Trợ giảng:</p>
+
+        <div
+          style="background: rgba(0,0,0,0.35); border-left: 3px solid var(--red); padding: 10px 12px; border-radius: 4px;">
           <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 4px;">NỘI DUNG CÂU HỎI:</div>
           <b id="modal-forward-text" style="color: #fff;"></b>
         </div>
 
         <div>
-          <label style="font-size: 12px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">CHỌN TRỢ GIẢNG TRỰC KÊNH:</label>
-          <select id="ta-select" style="width: 100%; background: #232428; color: #fff; border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 6px; font-family: inherit;">
+          <label
+            style="font-size: 12px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">CHỌN
+            TRỢ GIẢNG TRỰC KÊNH:</label>
+          <select id="ta-select"
+            style="width: 100%; background: #232428; color: #fff; border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 6px; font-family: inherit;">
             <option value="TA_MinhDuc">@TA_MinhDuc (Phụ trách Học vụ & Deadline)</option>
             <option value="TA_DucAnh">@TA_DucAnh (Phụ trách Kỹ thuật & Lab)</option>
             <option value="LabCoach">@LabCoach_RoomE402 (Hỗ trợ tại lớp trực tiếp)</option>
@@ -1165,29 +1224,37 @@
         <button class="modal-close-btn" onclick="closeShareModal()">✕</button>
       </div>
       <div class="modal-body">
-        <div style="background: rgba(35, 165, 90, 0.15); border: 1px solid rgba(35, 165, 90, 0.35); padding: 10px 14px; border-radius: 8px; color: #79e69e; font-size: 13px;">
-          ✅ <b>HOÀN TOÀN GỬI ĐƯỢC!</b> Bản prototype này được đóng gói dạng <b>Single-File Web App độc lập</b>. Người nhận không cần cài Node.js, không cần chạy web server, mở được trên mọi máy tính và điện thoại.
+        <div
+          style="background: rgba(35, 165, 90, 0.15); border: 1px solid rgba(35, 165, 90, 0.35); padding: 10px 14px; border-radius: 8px; color: #79e69e; font-size: 13px;">
+          ✅ <b>HOÀN TOÀN GỬI ĐƯỢC!</b> Bản prototype này được đóng gói dạng <b>Single-File Web App độc lập</b>. Người
+          nhận không cần cài Node.js, không cần chạy web server, mở được trên mọi máy tính và điện thoại.
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <div>
             <b style="color: #fff;">Cách 1: Gửi trực tiếp file `index.html` (Nhanh nhất - 5 giây)</b>
             <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
-              Gửi file <code style="color: #a5b4fc; background: rgba(0,0,0,0.3); padding: 2px 5px; border-radius: 3px;">codebase/prototype/index.html</code> qua Zalo, Discord, Google Drive hoặc Email. Người nhận chỉ cần <b>nhấp đúp chuột</b> là file sẽ mở trực tiếp trên Chrome, Edge, Safari hoặc Cốc Cốc.
+              Gửi file <code
+                style="color: #a5b4fc; background: rgba(0,0,0,0.3); padding: 2px 5px; border-radius: 3px;">codebase/prototype/index.html</code>
+              qua Zalo, Discord, Google Drive hoặc Email. Người nhận chỉ cần <b>nhấp đúp chuột</b> là file sẽ mở trực
+              tiếp trên Chrome, Edge, Safari hoặc Cốc Cốc.
             </p>
           </div>
 
           <div>
             <b style="color: #fff;">Cách 2: Bật GitHub Pages từ Repository (Có link HTTPS online)</b>
             <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
-              Vào GitHub repo nhóm > <i>Settings</i> > <i>Pages</i> > chọn branch <code>main</code> và thư mục chứa code để tạo đường link online miễn phí gửi cho giảng viên / TA / bạn bè test trên điện thoại.
+              Vào GitHub repo nhóm > <i>Settings</i> > <i>Pages</i> > chọn branch <code>main</code> và thư mục chứa code
+              để tạo đường link online miễn phí gửi cho giảng viên / TA / bạn bè test trên điện thoại.
             </p>
           </div>
 
           <div>
             <b style="color: #fff;">Cách 3: Thả lên Vercel / Netlify (1 click)</b>
             <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
-              Kéo thả thư mục <code>codebase/prototype</code> vào trang <a href="https://drop.vercel.app" target="_blank" style="color: var(--text-link);">drop.vercel.app</a> hoặc Netlify Drop để nhận ngay đường link công khai trong 10 giây.
+              Kéo thả thư mục <code>codebase/prototype</code> vào trang <a href="https://drop.vercel.app"
+                target="_blank" style="color: var(--text-link);">drop.vercel.app</a> hoặc Netlify Drop để nhận ngay
+              đường link công khai trong 10 giây.
             </p>
           </div>
         </div>
@@ -1216,9 +1283,9 @@
             quote: "« Hạn chót nộp toàn bộ bài tập thực hành Lab02 qua link GitHub trên VLearn trước 23:59 Chủ Nhật (20/09). Quá thời hạn sẽ áp dụng trừ điểm theo Quy chế Mục 3.2. »"
           },
           actions: [
-            { text: "👍 Đã rõ, cảm ơn!", type: "success", click: "actionThanks()" },
-            { text: "✏️ Sửa câu hỏi / Thử lại (G9)", type: "normal", click: "triggerCorrection()" },
-            { text: "❓ Cần hỏi thêm", type: "normal", click: "actionMoreInfo()" }
+            {text: "👍 Đã rõ, cảm ơn!", type: "success", click: "actionThanks()"},
+            {text: "✏️ Sửa câu hỏi / Thử lại (G9)", type: "normal", click: "triggerCorrection()"},
+            {text: "❓ Cần hỏi thêm", type: "normal", click: "actionMoreInfo()"}
           ]
         }
       },
@@ -1230,12 +1297,12 @@
         bot_response: {
           text: "Hiện có 2 mốc nộp bài quan trọng sắp tới. Để tra cứu chính xác, **bạn đang muốn hỏi về mốc nào**?",
           clarifyChips: [
-            { label: "⏱️ Checkpoint 2 Hackathon (21:00 tối nay 17/9)", action: "chooseClarify('cp2')" },
-            { label: "📝 Bài tập Lab02 (23:59 ngày 20/9)", action: "chooseClarify('lab2')" },
-            { label: "🚀 Đồ án cuối khóa Mini-Hackathon (19/9)", action: "chooseClarify('project')" }
+            {label: "⏱️ Checkpoint 2 Hackathon (21:00 tối nay 17/9)", action: "chooseClarify('cp2')"},
+            {label: "📝 Bài tập Lab02 (23:59 ngày 20/9)", action: "chooseClarify('lab2')"},
+            {label: "🚀 Đồ án cuối khóa Mini-Hackathon (19/9)", action: "chooseClarify('project')"}
           ],
           actions: [
-            { text: "❌ Bỏ qua / Tôi sẽ gõ câu hỏi cụ thể hơn (G8)", type: "normal", click: "actionDismiss()" }
+            {text: "❌ Bỏ qua / Tôi sẽ gõ câu hỏi cụ thể hơn (G8)", type: "normal", click: "actionDismiss()"}
           ]
         }
       },
@@ -1254,8 +1321,8 @@
             quote: "« Không tìm thấy văn bản hoặc thông báo điều chỉnh hạn chót đồ án. Quy chế nêu rõ mọi thay đổi hạn nộp phải do BTC ban hành chính thức. »"
           },
           actions: [
-            { text: "🏷️ Chuyển câu hỏi & Tag @TA hỗ trợ ngay", type: "danger", click: "openTAHandoff('Deadline nộp đồ án cuối kỳ có được hoãn thêm 2 ngày không?')" },
-            { text: "🔄 Thử lại câu hỏi khác (G9)", type: "normal", click: "triggerCorrection()" }
+            {text: "🏷️ Chuyển câu hỏi & Tag @TA hỗ trợ ngay", type: "danger", click: "openTAHandoff('Deadline nộp đồ án cuối kỳ có được hoãn thêm 2 ngày không?')"},
+            {text: "🔄 Thử lại câu hỏi khác (G9)", type: "normal", click: "triggerCorrection()"}
           ]
         }
       },
@@ -1274,8 +1341,8 @@
             quote: "« Nộp bản nháp draft review trước 12:00 ngày 19/9 để hội đồng TA góp ý chuẩn hóa trước giờ chấm chính thức. »"
           },
           actions: [
-            { text: "✅ Đúng thông tin này rồi!", type: "success", click: "actionThanks()" },
-            { text: "🏷️ Cần hỏi thêm chi tiết với @TA", type: "normal", click: "openTAHandoff('Hỏi chi tiết về yêu cầu bản nháp draft review')" }
+            {text: "✅ Đúng thông tin này rồi!", type: "success", click: "actionThanks()"},
+            {text: "🏷️ Cần hỏi thêm chi tiết với @TA", type: "normal", click: "openTAHandoff('Hỏi chi tiết về yêu cầu bản nháp draft review')"}
           ]
         }
       },
@@ -1294,8 +1361,8 @@
             quote: "« Non-goal #1: Không làm thay việc code hoặc bài tập của học viên. »"
           },
           actions: [
-            { text: "💡 Xem danh mục thông tin bot hỗ trợ", type: "normal", click: "showCapabilities()" },
-            { text: "💬 Đến kênh #thao-luan-chung", type: "normal", click: "switchChannel('thao-luan-chung')" }
+            {text: "💡 Xem danh mục thông tin bot hỗ trợ", type: "normal", click: "showCapabilities()"},
+            {text: "💬 Đến kênh #thao-luan-chung", type: "normal", click: "switchChannel('thao-luan-chung')"}
           ]
         }
       },
@@ -1314,8 +1381,8 @@
             quote: "« Mọi trường hợp commit muộn sau deadline đều tự động trừ điểm theo thang 50% - 75% - 100% dựa trên timestamp git. Không có ngoại lệ nếu không có xác nhận y tế. »"
           },
           actions: [
-            { text: "📄 Xem toàn văn Quy chế", type: "normal", click: "actionThanks()" },
-            { text: "🏷️ Tag TA nếu có lý do đặc biệt", type: "danger", click: "openTAHandoff('Xin cứu xét sự cố commit trễ')" }
+            {text: "📄 Xem toàn văn Quy chế", type: "normal", click: "actionThanks()"},
+            {text: "🏷️ Tag TA nếu có lý do đặc biệt", type: "danger", click: "openTAHandoff('Xin cứu xét sự cố commit trễ')"}
           ]
         }
       }
@@ -1399,8 +1466,8 @@
 
       let embedHtml = '';
       if (resp.embed) {
-        const borderClass = resp.embed.status === 'success' ? 'embed-success' : 
-                           resp.embed.status === 'danger' ? 'embed-danger' : 'embed-warning';
+        const borderClass = resp.embed.status === 'success' ? 'embed-success' :
+          resp.embed.status === 'danger' ? 'embed-danger' : 'embed-warning';
         embedHtml = `
           <div class="discord-embed ${borderClass}">
             <div class="embed-header">
@@ -1480,8 +1547,8 @@
               quote: "« CP2: Hạn 21:00 17/9 - Đội trưởng nộp link repo có commit và bản mock flow. »"
             },
             actions: [
-              { text: "👍 Đã rõ, cảm ơn!", type: "success", click: "actionThanks()" },
-              { text: "✏️ Sửa câu hỏi khác", type: "normal", click: "triggerCorrection()" }
+              {text: "👍 Đã rõ, cảm ơn!", type: "success", click: "actionThanks()"},
+              {text: "✏️ Sửa câu hỏi khác", type: "normal", click: "triggerCorrection()"}
             ]
           });
         }, 400);
@@ -1502,7 +1569,7 @@
               quote: "« Buổi LAB 19/9 (09:00 - 13:00): Vòng thi thuyết trình trực tiếp tại phòng học. »"
             },
             actions: [
-              { text: "👍 Đã hiểu", type: "success", click: "actionThanks()" }
+              {text: "👍 Đã hiểu", type: "success", click: "actionThanks()"}
             ]
           });
         }, 400);
@@ -1525,7 +1592,7 @@
       appendBotMessage({
         text: `✅ **Đã tạo ticket & chuyển tiếp thành công tới @${ta}!** Trợ giảng phụ trách đã nhận được thông báo kèm ngữ cảnh câu hỏi và sẽ hỗ trợ bạn trực tiếp qua tin nhắn Discord trong vòng 15-30 phút.`,
         actions: [
-          { text: "🔄 Bắt đầu câu hỏi mới", type: "normal", click: "resetDemo()" }
+          {text: "🔄 Bắt đầu câu hỏi mới", type: "normal", click: "resetDemo()"}
         ]
       });
     }
@@ -1633,4 +1700,5 @@
     };
   </script>
 </body>
+
 </html>
