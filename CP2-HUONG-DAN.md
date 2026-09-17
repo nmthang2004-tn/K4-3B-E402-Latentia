@@ -51,25 +51,25 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 
 ## Phân công CP2
 
-### 🟡 Nguyễn Minh Thắng — Product Lead
+### 🟡 Nguyễn Minh Thắng — Product Lead ✅ ĐÃ LÀM
 
-**Nhiệm vụ:**
-- Thiết kế **4 đường đi** (happy path, low-confidence, no-grounding, correction)
-- Vẽ **sơ đồ luồng** tổng quan (dùng Draw.io/Lucidchart)
-- Cập nhật **§4 và §6** trong spec.md (mức prototype, bảng nguyên tắc HAX/PAIR)
-- Đảm bảo logic flow không có lỗ hổng
+**Nhiệm vụ:** ✅ ĐÃ HOÀN THÀNH
+- [x] Thiết kế 4 đường đi (happy path, low-confidence, no-grounding, correction)
+- [x] Vẽ sơ đồ luồng (Mermaid diagram trong `codebase/flow-diagram.md`)
+- [x] Cập nhật §4, §5, §6 trong spec.md (prototype level, nguyên tắc HAX/PAIR, 4 lớp lỗi)
+- [x] Đảm bảo logic flow không có lỗ hổng
 
-**Output:** `codebase/flow-diagram.png` + cập nhật spec.md
+**Output:** `spec.md` (đã cập nhật) + `codebase/flow-diagram.md` ✅
 
 ---
 
 ### 🔵 Nguyễn Thị Vàng — Prompt/UX
 
 **Nhiệm vụ:**
-- Thiết kế **conversation flow** (các tin nhắn mẫu cho từng nhánh)
-- Viết **prompt template** cho mỗi trường hợp (có căn cứ, thiếu căn cứ, low-confidence)
-- Chuẩn bị **mock data** cho prototype (câu hỏi mẫu + câu trả lời kỳ vọng)
-- Đề xuất **4 nguyên tắc HAX/PAIR** kèm vị trí áp dụng trong prototype
+- [ ] Thiết kế **conversation flow** (các tin nhắn mẫu cho từng nhánh)
+- [ ] Viết **prompt template** cho mỗi trường hợp (có căn cứ, thiếu căn cứ, low-confidence)
+- [ ] Chuẩn bị **mock data** cho prototype (câu hỏi mẫu + câu trả lời kỳ vọng)
+- [ ] Xây **Golden Set ≥20 cases** (đã có 10 trong spec.md, cần thêm 10)
 
 **Output:** `codebase/prompt-templates.md` + `codebase/mock-data.json`
 
@@ -78,10 +78,10 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 ### 🟢 Nguyễn Minh Tuấn — Build Prototype
 
 **Nhiệm vụ:**
-- Dựng **clickable prototype** (Figma/HTML) thể hiện 4 đường đi
-- Sử dụng mock data từ Vàng để demo
-- Nếu dùng HTML: lưu vào `codebase/prototype/`
-- Đảm bảo prototype có thể click qua lại giữa các nhánh
+- [ ] Dựng **clickable prototype** (Figma/HTML) thể hiện 4 đường đi
+- [ ] Sử dụng mock data từ Vàng để demo
+- [ ] Nếu dùng HTML: lưu vào `codebase/prototype/`
+- [ ] Đảm bảo prototype có thể click qua lại giữa các nhánh
 
 **Output:** `codebase/prototype/index.html` (hoặc link Figma)
 
@@ -89,33 +89,25 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 
 ## Checklist trước khi nộp
 
-- [ ] Sơ đồ luồng thể hiện đủ 4 đường đi
+- [x] Sơ đồ luồng thể hiện đủ 4 đường đi ✅
 - [ ] Prototype clickable hoặc video demo
-- [ ] §4 và §6 trong spec.md đã cập nhật
-- [ ] Bảng nguyên tắc HAX/PAIR có đủ 4 nguyên tắc + vị trí áp dụng
+- [x] §4 và §6 trong spec.md đã cập nhật ✅
+- [x] Bảng nguyên tắc HAX/PAIR có đủ 4 nguyên tắc + vị trí áp dụng ✅
 - [ ] Mock data sẵn sàng cho CP3
 
 ---
 
 ## Hướng dẫn chi tiết từng bước
 
-### Bước 1: Vẽ sơ đồ luồng (Thắng)
+### Bước 1: Sơ đồ luồng (Thắng) ✅ ĐÃ LÀM
 
 ```
-1. Mở Draw.io hoặc Lucidchart
-2. Vẽ các node:
-   - Node bắt đầu: User gõ câu hỏi
-   - Node AI xử lý: Tìm căn cứ trong tài liệu
-   - Node quyết định: Có tìm thấy căn cứ?
-     - Có → Node trả lời (Happy path)
-     - Không → Node low-confidence (hỏi làm rõ)
-   - Node quyết định 2: Có đủ căn cứ sau khi làm rõ?
-     - Có → Node trả lời
-     - Không → Node chuyển TA
-3. Thêm node correction: User click "Sửa" / "Thử lại"
+Đã hoàn thành:
+- Sơ đồ Mermaid trong codebase/flow-diagram.md
+- Cập nhật spec.md §4, §5, §6
 ```
 
-### Bước 2: Viết prompt templates (Vàng)
+### Bước 2: Prompt templates + Mock data (Vàng)
 
 ```
 Template 1: Happy path
@@ -134,36 +126,30 @@ Template 3: Low-confidence
 - Output: "Bạn đang hỏi về deadline nộp bài nào? Lab hay Project?"
 ```
 
-### Bước 3: Mock data (Vàng)
+### Bước 3: Build prototype (Tuấn)
 
-```json
-[
-  {
-    "câu_hỏi": "Hạn nộp Lab02 là khi nào?",
-    "kỳ_vọng": "Happy path - trả lời có trích dẫn"
-  },
-  {
-    "câu_hỏi": "Deadline project cuối kỳ năm nay có thay đổi không?",
-    "kỳ_vọng": "No-grounding - chuyển TA"
-  },
-  {
-    "câu_hỏi": "Khi nào nộp?",
-    "kỳ_vọng": "Low-confidence - hỏi làm rõ"
-  }
-]
+```
+1. Chọn tool: Figma (nhanh) hoặc HTML/JS (linh hoạt hơn)
+
+2. Thiết kế màn hình:
+   - Discord chat mockup với message thread
+   - Bot response với action buttons
+   - Các nhánh xử lý (clickable)
+
+3. Demo 4 đường đi:
+   - Happy path: đầy đủ thông tin → trả lời
+   - Low-confidence: thông tin mơ hồ → hỏi làm rõ
+   - No-grounding: không tìm thấy → chuyển TA
+   - Correction: nút Sửa / Tag TA
 ```
 
-### Bước 4: Build prototype (Tuấn)
+### Bước 4: Test flow (Tuấn)
 
-**Option A: Figma**
-1. Tạo frame cho mỗi màn hình (input, xử lý, output)
-2. Thêm hotzone clickable để chuyển giữa các frame
-3. Share link prototype
-
-**Option B: HTML đơn giản**
-1. Tạo `codebase/prototype/index.html`
-2. Dùng mock data từ Vàng
-3. JavaScript đơn giản để simulate các nhánh
+```
+1. Đi hết 4 đường đi trên prototype
+2. Kiểm tra không có dead-end
+3. Quay video demo 30 giây
+```
 
 ---
 
