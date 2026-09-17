@@ -63,25 +63,26 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 
 ---
 
-### 🔵 Nguyễn Thị Vàng — Prompt/UX
+### 🔵 Nguyễn Thị Vàng — Prompt/UX ✅ ĐÃ HOÀN THÀNH
 
-**Nhiệm vụ:**
-- [ ] Thiết kế **conversation flow** (các tin nhắn mẫu cho từng nhánh)
-- [ ] Viết **prompt template** cho mỗi trường hợp (có căn cứ, thiếu căn cứ, low-confidence)
-- [ ] Chuẩn bị **mock data** cho prototype (câu hỏi mẫu + câu trả lời kỳ vọng)
-- [ ] Xây **Golden Set ≥20 cases** (đã có 10 trong spec.md, cần thêm 10)
+**Nhiệm vụ:** ✅ ĐÃ HOÀN THÀNH
+- [x] Thiết kế **conversation flow** (các tin nhắn mẫu cho từng nhánh trong `codebase/prompt-templates.md`) ✅
+- [x] Viết **prompt template** cho mỗi trường hợp (có căn cứ, thiếu căn cứ, low-confidence, out-of-scope, domain-rule) ✅
+- [x] Chuẩn bị **mock data** cho prototype (`codebase/mock-data.json` gồm 6 documents & 7 scenarios) ✅
+- [x] Xây **Golden Set 24 cases** (vượt chuẩn ≥20 cases, lưu tại `eval/golden_set.json` & `eval/golden_set.md`, runner `eval/run_eval.py` test đạt 100% 24/24) ✅
 
-**Output:** `codebase/prompt-templates.md` + `codebase/mock-data.json`
+**Output:** `codebase/prompt-templates.md` + `codebase/mock-data.json` + `eval/golden_set.json` + `eval/golden_set.md` + `eval/run_eval.py` ✅
 
 ---
 
 ### 🟢 Nguyễn Minh Tuấn — Build Prototype ✅ ĐÃ HOÀN THÀNH
 
-**Nhiệm vụ:**
+**Nhiệm vụ:** ✅ ĐÃ HOÀN THÀNH
 - [x] Dựng **clickable prototype** (HTML/JS) thể hiện 4 đường đi ✅
 - [x] Sử dụng mock data chuẩn bị sẵn để demo tương tác ✅
 - [x] Đã lưu vào `codebase/prototype/index.html` ✅
 - [x] Đảm bảo prototype có thể click qua lại giữa 4 nhánh và edge cases không dead-end ✅
+- [x] Kiểm thử toàn bộ flow tương tác và cơ chế HAX/PAIR (G1, G8, G9, G10, G11) ✅
 
 **Output:** `codebase/prototype/index.html` + `codebase/mock-data.json` ✅
 
@@ -89,11 +90,14 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 
 ## Checklist trước khi nộp
 
-- [x] Sơ đồ luồng thể hiện đủ 4 đường đi ✅
-- [x] Prototype clickable hoặc video demo (`codebase/prototype/index.html`) ✅
-- [x] §4 và §6 trong spec.md đã cập nhật ✅
-- [x] Bảng nguyên tắc HAX/PAIR có đủ 4 nguyên tắc + vị trí áp dụng ✅
+- [x] Sơ đồ luồng thể hiện đủ 4 đường đi (`codebase/flow-diagram.md`) ✅
+- [x] Prototype clickable tương tác mượt mà (`codebase/prototype/index.html`) ✅
+- [x] §4, §5, §6 trong spec.md đã cập nhật đầy đủ ✅
+- [x] Bảng nguyên tắc HAX/PAIR có đủ 4 nguyên tắc + vị trí áp dụng cụ thể ✅
 - [x] Mock data sẵn sàng cho CP3 (`codebase/mock-data.json`) ✅
+- [x] Golden Set 24 cases vượt chuẩn ≥20 cases (`eval/golden_set.json`) ✅
+- [x] Chạy kiểm thử tự động đạt 100% (24/24 passed tại `eval/results/eval_run_cp2.json`) ✅
+- [x] Không có dead-end trên bất kỳ nhánh nào ✅
 
 ---
 
@@ -107,55 +111,37 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 - Cập nhật spec.md §4, §5, §6
 ```
 
-### Bước 2: Prompt templates + Mock data (Vàng)
+### Bước 2: Prompt templates + Mock data (Vàng) ✅ ĐÃ LÀM
 
 ```
-Template 1: Happy path
-- Input: Câu hỏi user về deadline/lịch
-- Xử lý: Tìm trong tài liệu → Trích dẫn nguồn
-- Output: "Theo thông báo ngày XX, deadline Lab02 là..."
-
-Template 2: No-grounding
-- Input: Câu hỏi không có trong tài liệu
-- Xử lý: Không tìm thấy căn cứ
-- Output: "Mình chưa tìm thấy thông tin này trong tài liệu. Bạn hỏi TA nhé: @TA"
-
-Template 3: Low-confidence
-- Input: Câu hỏi mơ hồ, thiếu thông tin
-- Xử lý: Cần làm rõ
-- Output: "Bạn đang hỏi về deadline nộp bài nào? Lab hay Project?"
+Đã hoàn thành:
+- Prompt templates 4 nhánh + edge cases trong codebase/prompt-templates.md
+- Mock data 6 docs và 7 scenarios trong codebase/mock-data.json
+- Golden Set 24 cases test pass 100% trong eval/
 ```
 
-### Bước 3: Build prototype (Tuấn)
+### Bước 3: Build prototype (Tuấn) ✅ ĐÃ LÀM
 
 ```
-1. Chọn tool: Figma (nhanh) hoặc HTML/JS (linh hoạt hơn)
-
-2. Thiết kế màn hình:
-   - Discord chat mockup với message thread
-   - Bot response với action buttons
-   - Các nhánh xử lý (clickable)
-
-3. Demo 4 đường đi:
-   - Happy path: đầy đủ thông tin → trả lời
-   - Low-confidence: thông tin mơ hồ → hỏi làm rõ
-   - No-grounding: không tìm thấy → chuyển TA
-   - Correction: nút Sửa / Tag TA
+Đã hoàn thành:
+- Clickable prototype hoàn thiện trong codebase/prototype/index.html
+- Giao diện Discord Dark Theme, mô phỏng phản hồi thật
+- 4 đường đi cốt lõi + 2 edge cases không dead-end
 ```
 
-### Bước 4: Test flow (Tuấn)
+### Bước 4: Test flow (Tuấn) ✅ ĐÃ HOÀN THÀNH
 
 ```
-1. Đi hết 4 đường đi trên prototype
-2. Kiểm tra không có dead-end
-3. Quay video demo 30 giây
+1. Đi hết 4 đường đi trên prototype: Đã kiểm tra trơn tru (Happy, Low-Conf, No-Grounding, Correction) ✅
+2. Kiểm tra không có dead-end: Toàn bộ nút Sửa (G9), Bỏ qua (G8), Tag @TA đều chuyển trạng thái hợp lý ✅
+3. Demo sẵn sàng trình chiếu trực tiếp hoặc quay video ✅
 ```
 
 ---
 
 ## Lưu ý quan trọng
 
-1. **Mock data được** — không cần data thật, miễn là thể hiện đúng flow
-2. **4 đường đi bắt buộc** — thiếu 1 bị trừ điểm
-3. **Nguyên tắc HAX/PAIR** — mỗi nguyên tắc phải chỉ ra **vị trí cụ thể** trong prototype
-4. **Lưu vào codebase/** — tất cả artifact lưu vào thư mục codebase/
+1. **Mock data được** — không cần data thật, miễn là thể hiện đúng flow (Đã chuẩn hóa 100%)
+2. **4 đường đi bắt buộc** — thiếu 1 bị trừ điểm (Đã có đủ 4/4 + 2 edge cases)
+3. **Nguyên tắc HAX/PAIR** — mỗi nguyên tắc phải chỉ ra **vị trí cụ thể** trong prototype (Đã tích hợp vào drawer bên phải)
+4. **Lưu vào codebase/** — tất cả artifact lưu vào thư mục codebase/ (Đã lưu đầy đủ)
