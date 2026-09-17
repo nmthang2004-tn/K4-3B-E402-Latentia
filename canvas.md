@@ -18,46 +18,13 @@ Canvas nộp ở CP1 theo scaffold `02-guide.md` §1.5 — mỗi dòng một ý,
 | 1 | Track + đề | |
 | 2 | Job executor (ai · đang ở đâu · làm gì) | |
 | 3 | Pain một câu (ai – đang làm gì – vướng đâu – hậu quả) | |
-| 4 | 1–2 bằng chứng đầu (số + cách đếm + mã hội thoại/tin nhắn, hoặc khảo sát/phỏng vấn có số người) | |
+| 4 | 1–2 bằng chứng đầu (số + cách đếm + mã hội thoại/tin nhắn, hoặc khảo sát/phỏng vấn có số người) | • **Bằng chứng 1 (Logistics):** 142/306 câu hỏi gửi bot là về logistics (chiếm 46.4%). Bot không có dữ liệu thông báo chính thức nên trả lời *"không có thông tin"* và bảo học viên tự đi tìm ở 3 nguồn khác.<br>- *Cách đếm:* Lọc tin tag bot chứa từ khóa `deadline`, `hạn`, `nộp`, `link`, `ticket`, `form`, `xp`.<br>- *Mã tin minh họa:* `M07416` (hỏi hạn Lab02) → bot `M28485` không biết; `M56777` (hỏi hạn lập team) → bot `M02666` không biết; `M40677` (hỏi quy chế commit trễ) → bot `M00595`.<br><br>• **Bằng chứng 2 (Menu hỏi lại & phản hồi dài):** 63/306 phản hồi của bot (20.6%) là menu hỏi lại dạng *"Bạn muốn hỏi trong ngữ cảnh nào?"*, khiến user phải gõ số cụt (1, 3, tất cả), sau đó bot tuôn phản hồi dài trung bình 486 ký tự (lên tới 1.238–1.864 ký tự) gây loãng kênh.<br>- *Cách đếm:* Lọc phản hồi bot có cụm *"ngữ cảnh nào / mô tả rõ hơn"*.<br>- *Mã tin minh họa:* `M49945` → bot `M36672` → user `M31100` → bot `M51292` (dài 1.238 ký tự). |
 | 5 | Lát cắt MỘT CÂU (1 user · 1 việc · 1 quyết định AI · 1 kết quả) | |
 | 6 | AI tự làm đến đâu + 1 dòng lý do · ≥3 willing users ngoài nhóm | |
 | 7 | Phân công có tên | |
 
 Bằng chứng ở dòng 4 có thể đến từ **data pack** (đếm được, có mã trích dẫn) hoặc **khảo sát / phỏng vấn** (ghi số người hỏi, số người gặp vấn đề, quote ngắn) — tốt nhất là cả hai.
 
----
-
-## Mẫu 1 · Track A — tối ưu tutor có sẵn
-
-1. **Track + đề:** A · VLearn Tutor — trả lời có căn cứ từ tài liệu.
-2. **Job executor:** Học viên đang đọc slide trong buổi học, vừa bôi đen một đoạn chưa hiểu.
-3. **Pain:** Khi hỏi để làm rõ đoạn vừa bôi đen, học viên nhận câu trả lời không có trích dẫn hoặc trích dẫn sai; không biết tutor dựa vào đâu nên phải tự dò lại slide, mất thời gian và có thể học sai.
-4. **Bằng chứng đầu:**
-   - `XXX/X.XXX` phản hồi tutor có `citations` rỗng (`XX%`). *Cách đếm:* lọc `role = tutor` trong `tutor_turns.csv`, đếm `citations = []`. *Mã hội thoại minh hoạ:* `T0XXXX`, `T0XXXX`, `T0XXXX`.
-   - Khảo sát nhanh `XX` học viên trong lớp: `XX/XX` nói "lần gần nhất hỏi tutor, không biết câu trả lời lấy từ trang nào".
-5. **Lát cắt:** Học viên đang đọc slide · cần làm rõ đoạn vừa bôi đen · AI **chỉ trả lời khi truy xuất được đoạn nguồn phù hợp**, nếu không thì nói "chưa đủ căn cứ" và hỏi lại · kết quả là câu trả lời kèm mã trang/đoạn.
-6. **AI tự làm đến đâu:** *Tự:* nhận đoạn bôi đen, truy xuất bài học, chọn đoạn nguồn, sinh câu trả lời kèm trang. *Không tự:* suy đoán khi không tìm được nguồn — phải nêu rõ chưa đủ căn cứ. *Lý do:* `XX%` phản hồi hiện không có citation; nội dung học tập không kiểm chứng được có thể làm học viên học sai. **Willing users (ngoài nhóm, đã hỏi và đồng ý):** `[Tên 1]`, `[Tên 2]`, `[Tên 3]`.
-7. **Phân công:** `[Tên A]` — mining evidence, bảng đếm + mã hội thoại · `[Tên B]` — retrieval/prompt + tiêu chí "đủ căn cứ" · `[Tên C]` — prototype + AI call thật · `[Tên D]` — spec, golden set, demo · `[Tên E]` — user test, feedback log, changelog.
-
-> **Vì sao đạt:** dòng 4 có *số, cách đếm, mã hội thoại* — TA kiểm được trong 2 phút; khảo sát bổ sung cho thấy pain là thật với người thật. Dòng 5 có đúng một quyết định AI (trả lời / không trả lời). Dòng 6 nói rõ AI *không* làm gì và vì sao. Dòng 7 mỗi việc một tên.
-
----
-
-## Mẫu 2 · Track A/D — tính năng mới
-
-1. **Track + đề:** A · VLearn — tính năng mới: *Learning Trace*, bản đồ ôn tập cá nhân sau mỗi buổi. *(Ý tưởng này cũng hợp track D — chọn một track khi nộp.)*
-2. **Job executor:** Học viên vừa kết thúc một buổi học trên VLearn, đã có ≥1 lượt trao đổi với tutor trong buổi đó.
-3. **Pain:** Sau buổi học, các câu hỏi và kiến thức đã tìm hiểu nằm rời rạc trong lịch sử chat; học viên không biết mình đã hỏi gì, phần nào chưa vững, nên ôn gì trước.
-4. **Bằng chứng đầu:**
-   - Data pack có `X.XXX` lượt hỏi–đáp của `XXX` học viên — đủ signal để khảo sát. Trường `misconceptions` rỗng `XX%`; chỉ `XX` lượt tutor đặt câu kiểm tra hiểu bài. *Nguồn:* `data/vlearn-pack/chatlog/DATA_DICTIONARY.md`, ghép theo `turn_id`.
-   - Phỏng vấn `XX` học viên: `XX/XX` nói lần gần nhất muốn ôn lại thì "không biết bắt đầu từ đâu"; `XX/XX` mở lại toàn bộ slide thay vì phần mình đã hỏi.
-5. **Lát cắt:** Học viên vừa xong buổi học · muốn biết nên ôn lại gì · AI phân tích lịch sử hỏi–đáp của buổi đó để quyết định chủ đề đã tìm hiểu và điểm có khả năng chưa vững · sinh note ngắn có căn cứ để học viên xem, xác nhận hoặc sửa.
-6. **AI tự làm đến đâu:** *Có điều kiện:* tự sinh note khi đủ log và nguồn chính thức; khi signal yếu thì ghi "chưa đủ dữ liệu", **không kết luận học viên hổng kiến thức**. *Lý do:* suy luận sai làm học viên ôn sai trọng tâm và mất niềm tin — nên phải được xem căn cứ, xác nhận, sửa hoặc gạt bỏ. **Willing users:** `[Tên 1]`, `[Tên 2]`, `[Tên 3]`.
-7. **Phân công:** `[Tên A]` — product lead, canvas/spec, system prompt, output contract · `[Tên B]` — data & evidence, mining, khảo sát · `[Tên C]` — golden set, quality bar, eval · `[Tên D]` — backend, gọi model, validator · `[Tên E]` — UI, 4 đường trải nghiệm, user test.
-
-> **Vì sao đạt:** bằng chứng lấy từ *cái không có* trong data (trường rỗng, rất ít lượt kiểm tra hiểu bài) — cách mining khôn, rồi đối chiếu bằng phỏng vấn. Dòng 6 nói rõ hệ thống không được kết luận gì khi thiếu dữ liệu. Bản gốc dài gấp đôi — canvas không cần dài.
-
----
 
 ## Mẫu 3 · Track B — trợ lý Discord
 
