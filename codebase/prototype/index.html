@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latentia Discord Bot — CP2 Interactive Prototype</title>
+  <style>
+    :root {
+      --bg-server: #1e1f22;
+      --bg-sidebar: #2b2d31;
+      --bg-chat: #313338;
+      --bg-chat-dark: #232428;
+      --bg-message-hover: #2e3035;
+      --bg-embed: #2b2d31;
+      --text-normal: #dbdee1;
+      --text-muted: #949ba4;
+      --text-header: #f2f3f5;
+      --text-link: #00a8fc;
+      --blurple: #5865f2;
+      --blurple-hover: #4752c4;
+      --green: #23a55a;
+      --yellow: #f0b232;
+      --red: #f23f43;
+      --tag-bg: rgba(88, 101, 242, 0.15);
+      --font-stack: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-stack);
+      background-color: var(--bg-chat-dark);
+      color: var(--text-normal);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* TOP SCENARIO BAR */
+    #scenario-bar {
+      background-color: #111214;
+      border-bottom: 1px solid #1f2023;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .badge-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--yellow);
+      background: rgba(240, 178, 50, 0.12);
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      border: 1px solid rgba(240, 178, 50, 0.25);
+    }
+
+    .scenario-btn {
+      background: #2b2d31;
+      color: var(--text-normal);
+      border: 1px solid #3f4147;
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .scenario-btn:hover {
+      background: #35373c;
+      color: #fff;
+      border-color: #5865f2;
+    }
+
+    .scenario-btn.active {
+      background: var(--blurple);
+      color: white;
+      border-color: var(--blurple);
+      box-shadow: 0 0 8px rgba(88, 101, 242, 0.5);
+    }
+
+    .scenario-btn .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* MAIN DISCORD LAYOUT */
+    #app-container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* LEFT SERVER BAR */
+    #server-bar {
+      width: 72px;
+      background-color: var(--bg-server);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+      gap: 10px;
+    }
+
+    .server-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--bg-sidebar);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--text-header);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .server-icon.active, .server-icon:hover {
+      border-radius: 16px;
+      background-color: var(--blurple);
+      color: #fff;
+    }
+
+    .server-icon.active::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      width: 4px;
+      height: 36px;
+      background: #fff;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* CHANNELS SIDEBAR */
+    #channel-sidebar {
+      width: 240px;
+      background-color: var(--bg-sidebar);
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #232428;
+    }
+
+    .server-header {
+      height: 48px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1f2023;
+      font-weight: 700;
+      color: var(--text-header);
+      font-size: 14px;
+    }
+
+    .channel-list {
+      flex: 1;
+      padding: 8px;
+      overflow-y: auto;
+    }
+
+    .channel-category {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 8px 8px 4px 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      margin-bottom: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .channel-item:hover {
+      background-color: rgba(255,255,255,0.05);
+      color: var(--text-normal);
+    }
+
+    .channel-item.active {
+      background-color: rgba(255,255,255,0.1);
+      color: var(--text-header);
+      font-weight: 600;
+    }
+
+    .channel-item .channel-hash {
+      font-size: 16px;
+      opacity: 0.7;
+    }
+
+    .user-profile-bar {
+      height: 52px;
+      background-color: var(--bg-chat-dark);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 8px;
+    }
+
+    .avatar-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #5865f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: bold;
+      color: white;
+      position: relative;
+    }
+
+    .avatar-status {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid var(--bg-chat-dark);
+    }
+
+    .user-meta {
+      flex: 1;
+      line-height: 1.2;
+    }
+
+    .user-meta .name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-header);
+    }
+
+    .user-meta .sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* MAIN CHAT WINDOW */
+    #chat-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-chat);
+      position: relative;
+    }
+
+    /* CHAT HEADER */
+    .chat-header {
+      height: 48px;
+      padding: 0 16px;
+      border-bottom: 1px solid #26282c;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .chat-header-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-header);
+    }
+
+    .chat-header-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      border-left: 1px solid #3f4147;
+      padding-left: 10px;
+      margin-left: 10px;
+    }
+
+    /* SCENARIO INFO BANNER */
+    #path-banner {
+      background: #232428;
+      border-bottom: 1px solid #35373c;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    .path-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hax-tag {
+      background: rgba(88, 101, 242, 0.2);
+      color: #8da4ef;
+      border: 1px solid rgba(88, 101, 242, 0.35);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .automation-tag {
+      background: rgba(35, 165, 90, 0.15);
+      color: #57f287;
+      border: 1px solid rgba(35, 165, 90, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* MESSAGE FEED */
+    #message-feed {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .message-group {
+      display: flex;
+      gap: 14px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      transition: background 0.1s;
+    }
+
+    .message-group:hover {
+      background-color: var(--bg-message-hover);
+    }
+
+    .message-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #5865f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .message-avatar.bot {
+      background: linear-gradient(135deg, #5865f2, #eb459e);
+    }
+
+    .message-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .message-author-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: var(--text-header);
+    }
+
+    .bot-tag {
+      background: var(--blurple);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 4px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .timestamp {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .message-body {
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--text-normal);
+      white-space: pre-line;
+    }
+
+    /* EMBED BOX */
+    .discord-embed {
+      margin-top: 8px;
+      background: var(--bg-embed);
+      border-radius: 4px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--blurple);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 680px;
+    }
+
+    .embed-success { border-left-color: var(--green); }
+    .embed-warning { border-left-color: var(--yellow); }
+    .embed-danger { border-left-color: var(--red); }
+
+    .embed-header {
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .embed-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-header);
+    }
+
+    .embed-description {
+      font-size: 13px;
+      color: var(--text-normal);
+      line-height: 1.4;
+    }
+
+    .embed-grounding-field {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .grounding-label {
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .grounding-quote {
+      font-style: italic;
+      color: #b5bac1;
+      border-left: 2px solid #5865f2;
+      padding-left: 6px;
+      margin-top: 4px;
+    }
+
+    /* ACTION BUTTONS IN CHAT */
+    .message-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .action-btn {
+      background: #4e5058;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, transform 0.05s;
+    }
+
+    .action-btn:hover {
+      background: #6d6f78;
+    }
+
+    .action-btn:active {
+      transform: scale(0.98);
+    }
+
+    .action-btn.primary {
+      background: var(--blurple);
+    }
+    .action-btn.primary:hover {
+      background: var(--blurple-hover);
+    }
+
+    .action-btn.danger {
+      background: var(--red);
+    }
+    .action-btn.danger:hover {
+      background: #d83a3e;
+    }
+
+    .action-btn.success {
+      background: var(--green);
+    }
+    .action-btn.success:hover {
+      background: #1e8b4c;
+    }
+
+    /* CHIPS FOR LOW CONFIDENCE */
+    .clarify-chip-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .clarify-chip {
+      background: rgba(88, 101, 242, 0.15);
+      border: 1px solid rgba(88, 101, 242, 0.4);
+      color: #dee0fc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.15s;
+    }
+
+    .clarify-chip:hover {
+      background: rgba(88, 101, 242, 0.35);
+      border-color: #5865f2;
+      transform: translateX(3px);
+    }
+
+    /* TYPING INDICATOR */
+    #typing-indicator {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .dot-flashing {
+      display: inline-flex;
+      gap: 3px;
+    }
+
+    .dot-flashing span {
+      width: 4px;
+      height: 4px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: flash 1.2s infinite ease-in-out;
+    }
+
+    .dot-flashing span:nth-child(2) { animation-delay: 0.2s; }
+    .dot-flashing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes flash {
+      0%, 80%, 100% { opacity: 0.3; }
+      40% { opacity: 1; }
+    }
+
+    /* INPUT BAR */
+    #chat-input-container {
+      padding: 0 16px 20px 16px;
+      position: relative;
+    }
+
+    .input-wrapper {
+      background-color: #383a40;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 2px 14px;
+    }
+
+    .chat-input {
+      flex: 1;
+      height: 44px;
+      background: transparent;
+      border: none;
+      color: var(--text-header);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .chat-input::placeholder {
+      color: #6d6f78;
+    }
+
+    .send-btn {
+      background: var(--blurple);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .send-btn:hover {
+      background: var(--blurple-hover);
+    }
+
+    /* RIGHT DRAWER: RUBRIC & SPEC CHECKLIST */
+    #inspector-drawer {
+      width: 300px;
+      background-color: var(--bg-sidebar);
+      border-left: 1px solid #232428;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+
+    .drawer-section {
+      padding: 14px;
+      border-bottom: 1px solid #232428;
+    }
+
+    .drawer-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .check-icon {
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    .info-card {
+      background: #232428;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-left: 3px solid var(--blurple);
+    }
+
+    .info-card b {
+      color: var(--text-header);
+    }
+
+    /* TOAST / MODAL */
+    #modal-overlay {
+      display: none;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal-box {
+      background: var(--bg-sidebar);
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 440px;
+      width: 90%;
+      border: 1px solid #3f4147;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-header);
+      margin-bottom: 8px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR: SCENARIO SELECTION (CP2 4 PATHS + EDGE CASES) -->
+  <div id="scenario-bar">
+    <span class="badge-title">CP2 Prototype Testbed</span>
+    <button class="scenario-btn active" onclick="loadScenario('happy_path')">
+      <span class="dot" style="background: var(--green)"></span>
+      1. Happy Path (Có căn cứ)
+    </button>
+    <button class="scenario-btn" onclick="loadScenario('low_confidence')">
+      <span class="dot" style="background: var(--yellow)"></span>
+      2. Low-Confidence (G10 Thu hẹp)
+    </button>
+    <button class="scenario-btn" onclick="loadScenario('no_grounding')">
+      <span class="dot" style="background: var(--red)"></span>
+      3. No-Grounding (Chuyển TA)
+    </button>
+    <button class="scenario-btn" onclick="loadScenario('correction')">
+      <span class="dot" style="background: #a855f7"></span>
+      4. Correction (Sửa kết quả / G9)
+    </button>
+    <button class="scenario-btn" onclick="loadScenario('out_of_scope')">
+      <span class="dot" style="background: #94a3b8"></span>
+      Lớp ③ Ngoài phạm vi (G1)
+    </button>
+    <button class="scenario-btn" onclick="loadScenario('domain_rule')">
+      <span class="dot" style="background: #38bdf8"></span>
+      Lớp ④ Quy chế trễ hạn (Domain)
+    </button>
+    <button class="scenario-btn" style="margin-left: auto;" onclick="resetDemo()">
+      🔄 Khởi động lại
+    </button>
+  </div>
+
+  <!-- MAIN APP CONTAINER -->
+  <div id="app-container">
+
+    <!-- SERVER COLUMN -->
+    <div id="server-bar">
+      <div class="server-icon active" title="AI Hackathon K4">
+        AI
+      </div>
+      <div class="server-icon" title="VLearn Hub">
+        VL
+      </div>
+      <div class="server-icon" title="Discord Bot Dev">
+        🤖
+      </div>
+    </div>
+
+    <!-- CHANNEL SIDEBAR -->
+    <div id="channel-sidebar">
+      <div class="server-header">
+        <span>AI Batch 04 · Lớp 3B</span>
+        <span style="font-size: 12px; color: var(--text-muted)">E402</span>
+      </div>
+      <div class="channel-list">
+        <div class="channel-category">THÔNG BÁO CHÍNH THỨC</div>
+        <div class="channel-item">
+          <span class="channel-hash">📢</span>
+          <span>thong-bao-chung</span>
+        </div>
+        <div class="channel-item">
+          <span class="channel-hash">📌</span>
+          <span>thong-bao-lab02</span>
+        </div>
+        <div class="channel-item">
+          <span class="channel-hash">📜</span>
+          <span>quy-che-khoa-hoc</span>
+        </div>
+
+        <div class="channel-category" style="margin-top: 10px;">TRỢ LÝ THÔNG MINH</div>
+        <div class="channel-item active">
+          <span class="channel-hash">🤖</span>
+          <span>tro-ly-discord</span>
+        </div>
+
+        <div class="channel-category" style="margin-top: 10px;">HỖ TRỢ HỌC VIÊN</div>
+        <div class="channel-item">
+          <span class="channel-hash">💬</span>
+          <span>thao-luan-chung</span>
+        </div>
+        <div class="channel-item">
+          <span class="channel-hash">❓</span>
+          <span>hoi-dap-ta</span>
+        </div>
+      </div>
+
+      <!-- CURRENT USER INFO -->
+      <div class="user-profile-bar">
+        <div class="avatar-circle">
+          NT
+          <div class="avatar-status"></div>
+        </div>
+        <div class="user-meta">
+          <div class="name">Nguyễn Minh Tuấn</div>
+          <div class="sub">Học viên #2A202602420</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CHAT AREA -->
+    <div id="chat-main">
+      <div class="chat-header">
+        <div class="chat-header-title">
+          <span style="font-size: 20px; color: var(--text-muted);">#</span>
+          <span>tro-ly-discord</span>
+          <span class="chat-header-desc">Kênh hỏi đáp tự động về lịch trình, deadline & tài liệu có căn cứ trích dẫn</span>
+        </div>
+        <div>
+          <span style="font-size: 12px; color: var(--green); background: rgba(35, 165, 90, 0.1); padding: 4px 8px; border-radius: 4px;">
+            ● Bot Online
+          </span>
+        </div>
+      </div>
+
+      <!-- PATH INFO BANNER -->
+      <div id="path-banner">
+        <div class="path-indicator">
+          <b id="banner-path-title" style="color: var(--text-header)">ĐƯỜNG ĐI 1: HAPPY PATH</b>
+          <span id="banner-hax" class="hax-tag">HAX G11: Giải thích vì sao</span>
+          <span id="banner-auto" class="automation-tag">Cấp độ: Conditional (Có căn cứ)</span>
+        </div>
+        <div style="font-size: 11px; color: var(--text-muted);">
+          Cost-of-Error: <b>Cao</b> (Không suy diễn tùy tiện)
+        </div>
+      </div>
+
+      <!-- MESSAGES FEED -->
+      <div id="message-feed">
+        <!-- Messages will be injected by JavaScript -->
+      </div>
+
+      <!-- TYPING INDICATOR -->
+      <div id="typing-indicator">
+        <span>Trợ lý Discord đang đối soát tài liệu</span>
+        <div class="dot-flashing">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- INPUT BAR -->
+      <div id="chat-input-container">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="user-input-field" 
+            class="chat-input" 
+            placeholder="Gửi câu hỏi tra cứu cho Trợ lý Discord... (hoặc chọn kịch bản ở thanh trên)"
+            onkeydown="if(event.key==='Enter') handleManualSend()"
+          />
+          <button class="send-btn" onclick="handleManualSend()" title="Gửi tin nhắn">
+            ➤
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT INSPECTOR DRAWER -->
+    <div id="inspector-drawer">
+      <div class="drawer-section">
+        <div class="drawer-title">📌 Bốn đường đi CP2 (Bắt buộc)</div>
+        <div class="check-item">
+          <span class="check-icon">✓</span>
+          <div><b>1. Happy Path:</b> Tự tin cao, trích dẫn nguồn cụ thể.</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✓</span>
+          <div><b>2. Low-Confidence (②):</b> Hỏi làm rõ, có quick chips (G10).</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✓</span>
+          <div><b>3. No-Grounding (①):</b> Thiếu căn cứ, thừa nhận & chuyển TA.</div>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">✓</span>
+          <div><b>4. Correction:</b> User sửa câu hỏi (G9) / Thử lại dễ dàng (G8).</div>
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-title">🛡️ 4 Nguyên tắc HAX/PAIR</div>
+        <div class="info-card">
+          <b>G10 (Bắt buộc):</b> Thu hẹp phạm vi khi nghi ngờ — Hiện danh sách nút chọn làm rõ thay vì trả lời bừa.
+        </div>
+        <div class="info-card">
+          <b>G11:</b> Giải thích vì sao — Kèm trích dẫn kênh nguồn và trích đoạn thông báo.
+        </div>
+        <div class="info-card">
+          <b>G9 / G8:</b> Sửa & gạt bỏ dễ dàng — Nút sửa câu hỏi, không bẫy người dùng vào menu cụt.
+        </div>
+        <div class="info-card">
+          <b>G1:</b> Nêu rõ phạm vi — Bot từ chối giải code, chỉ tra cứu vận hành.
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <div class="drawer-title">⚙️ Cấp độ tự động hóa</div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+          <b>Conditional (Có điều kiện):</b> Trả lời tự động khi đối soát thấy căn cứ chính thức; nếu thiếu căn cứ thì ngắt luồng và handoff cho TA.
+        </p>
+        <p style="font-size: 11px; color: #a5b4fc; background: #1e1f22; padding: 6px; border-radius: 4px;">
+          💡 <i>Lý do: Cost-of-error cao (sai hạn nộp khiến học viên bị trừ 50–100% điểm).</i>
+        </p>
+      </div>
+
+      <div class="drawer-section" style="margin-top: auto;">
+        <div style="font-size: 11px; color: var(--text-muted); text-align: center;">
+          Nhóm <b>Latentia</b> · Track B1<br>
+          Mini Hackathon Batch 04 · Lớp 3B
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL FOR TA HANDOFF SIMULATION -->
+  <div id="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-title">🏷️ Chuyển tiếp câu hỏi tới Trợ giảng (@TA)</div>
+      <p style="font-size: 13px; color: var(--text-normal); margin-bottom: 12px;" id="modal-desc">
+        Hệ thống đã đóng gói câu hỏi của bạn và gửi thông báo trực tiếp đến hàng đợi của Trợ giảng phụ trách.
+      </p>
+      <div style="background: #232428; padding: 10px; border-radius: 4px; font-size: 12px; border-left: 3px solid var(--red);">
+        <b>Nội dung chuyển tiếp:</b><br>
+        <span id="modal-forward-text" style="color: var(--text-muted);">"..."</span>
+      </div>
+      <div class="modal-actions">
+        <button class="action-btn" onclick="closeModal()">Đóng</button>
+        <button class="action-btn success" onclick="confirmHandoff()">Xem trong kênh #hoi-dap-ta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT INTERACTION LOGIC -->
+  <script>
+    const scenarios = {
+      happy_path: {
+        name: "ĐƯỜNG ĐI 1: HAPPY PATH (CÓ CĂN CỨ)",
+        hax: "HAX G11: Giải thích nguồn gốc câu trả lời",
+        auto: "Conditional: Tự động phản hồi vì có căn cứ",
+        user_msg: "Hạn nộp bài Lab02 là khi nào vậy bot?",
+        bot_response: {
+          text: "Theo thông báo chính thức của Ban tổ chức, hạn nộp bài **Lab02** là **23:59 ngày 20/09/2026**.",
+          embed: {
+            status: "success",
+            title: "📌 Căn cứ xác thực từ tài liệu khóa học",
+            channel: "#thong-bao-lab02 (Tin nhắn M07416)",
+            time: "15/09/2026 14:30",
+            quote: "« Hạn chót nộp toàn bộ bài tập thực hành Lab02 qua form trước 23:59 Chủ Nhật (20/09). Quá thời hạn sẽ áp dụng trừ điểm theo quy chế. »"
+          },
+          actions: [
+            { text: "👍 Đã rõ, cảm ơn!", type: "success", click: "actionThanks()" },
+            { text: "✏️ Sửa câu hỏi / Thử lại (G9)", type: "normal", click: "triggerCorrection()" },
+            { text: "❓ Cần hỏi thêm", type: "normal", click: "actionMoreInfo()" }
+          ]
+        }
+      },
+      low_confidence: {
+        name: "ĐƯỜNG ĐI 2: LOW-CONFIDENCE (MƠ HỒ / G10)",
+        hax: "HAX G10: Thu hẹp phạm vi khi nghi ngờ (Hỏi làm rõ)",
+        auto: "Conditional: Tạm dừng suy đoán, yêu cầu làm rõ",
+        user_msg: "Khi nào nộp bài thế?",
+        bot_response: {
+          text: "Mình nhận thấy câu hỏi hơi ngắn và chưa rõ ngữ cảnh. Để tra cứu chính xác, **bạn đang muốn hỏi về hạn nộp của mục nào**?",
+          clarifyChips: [
+            { label: "⏱️ Checkpoint 2 Hackathon (21:00 tối nay 17/9)", action: "chooseClarify('cp2')" },
+            { label: "📝 Bài tập Lab02 (23:59 ngày 20/9)", action: "chooseClarify('lab2')" },
+            { label: "🚀 Đồ án cuối khóa Mini-Hackathon (19/9)", action: "chooseClarify('project')" }
+          ],
+          actions: [
+            { text: "❌ Bỏ qua / Tôi sẽ gõ câu hỏi cụ thể hơn (G8)", type: "normal", click: "actionDismiss()" }
+          ]
+        }
+      },
+      no_grounding: {
+        name: "ĐƯỜNG ĐI 3: NO-GROUNDING (KHÔNG CÓ CĂN CỨ)",
+        hax: "HAX G10 & PAIR: Không bịa đặt khi thiếu căn cứ",
+        auto: "Conditional: Từ chối tự động hóa -> Handoff",
+        user_msg: "Deadline nộp đồ án cuối kỳ có được hoãn thêm 2 ngày không bot?",
+        bot_response: {
+          text: "⚠️ Mình đã rà soát toàn bộ kênh thông báo chính thức và tài liệu quy chế, nhưng **chưa tìm thấy thông tin nào về việc dời hoãn deadline đồ án cuối kỳ**.",
+          embed: {
+            status: "danger",
+            title: "⚠️ Cảnh báo thiếu căn cứ (No-Grounding)",
+            channel: "Kho tài liệu vận hành K4",
+            time: "Đối soát lúc: Vừa xong",
+            quote: "« Không tìm thấy văn bản hoặc thông báo điều chỉnh hạn chót đồ án. Quy chế nêu rõ hạn nộp phải do BTC thông báo chính thức. »"
+          },
+          actions: [
+            { text: "🏷️ Chuyển câu hỏi & Tag @TA hỗ trợ ngay", type: "danger", click: "openTAHandoff('Deadline nộp đồ án cuối kỳ có được hoãn thêm 2 ngày không?')" },
+            { text: "🔄 Thử lại câu hỏi khác (G9)", type: "normal", click: "triggerCorrection()" }
+          ]
+        }
+      },
+      correction: {
+        name: "ĐƯỜNG ĐI 4: CORRECTION (SỬA & PHẢN HỒI / G9)",
+        hax: "HAX G9 & G8: Sửa dễ dàng, không dead-end",
+        auto: "Conditional: Tiếp nhận hiệu chỉnh của người dùng",
+        user_msg: "Bot hiểu nhầm ý mình rồi, mình hỏi hạn nộp bản nháp (draft) chứ không phải bản chính thức!",
+        bot_response: {
+          text: "Cảm ơn bạn đã phản hồi! Mình đã cập nhật đối soát theo từ khóa **Hạn nộp bản nháp (Draft Review)**:\n\nTheo tài liệu Hướng dẫn đồ án, bản nháp slide và prototype cần gửi lên kênh `#review-draft` trước **12:00 trưa ngày 19/09/2026** để TA góp ý trước buổi thuyết trình.",
+          embed: {
+            status: "success",
+            title: "📌 Căn cứ từ Hướng dẫn đồ án K4",
+            channel: "#huong-dan-do-an (Mục 4.1)",
+            time: "16/09/2026 10:15",
+            quote: "« Nộp bản nháp draft review trước 12:00 ngày 19/9 để hội đồng góp ý chuẩn hóa. »"
+          },
+          actions: [
+            { text: "✅ Đúng thông tin này rồi!", type: "success", click: "actionThanks()" },
+            { text: "🏷️ Cần hỏi thêm chi tiết với @TA", type: "normal", click: "openTAHandoff('Hỏi chi tiết về yêu cầu bản nháp draft review')" }
+          ]
+        }
+      },
+      out_of_scope: {
+        name: "LỚP ③ NGOÀI PHẠM VI (NON-GOAL / G1)",
+        hax: "HAX G1: Làm rõ hệ thống làm được gì và không làm được gì",
+        auto: "Từ chối an toàn (Phạm vi nghiệp vụ)",
+        user_msg: "Viết giùm tôi một đoạn code Python để crawl tin nhắn Discord với!",
+        bot_response: {
+          text: "🤖 **Trợ lý Discord** chỉ chuyên hỗ trợ tra cứu thông tin vận hành khóa học (deadline nộp bài, lịch học, link tài liệu chính thức, quy chế thi).\n\nĐối với câu hỏi về **lập trình, giải bài tập hoặc viết code**, bạn vui lòng thảo luận tại kênh `#thao-luan-chung` hoặc tag giảng viên/TA để được hỗ trợ chuyên môn nhé!",
+          embed: {
+            status: "warning",
+            title: "ℹ️ Quy định phạm vi hoạt động của Trợ lý",
+            channel: "Spec.md §4 Non-goals",
+            time: "Chính sách sản phẩm",
+            quote: "« Non-goal #1: Không làm thay việc code hoặc bài tập của học viên. »"
+          },
+          actions: [
+            { text: "💡 Xem danh mục thông tin bot hỗ trợ", type: "normal", click: "showCapabilities()" },
+            { text: "💬 Đến kênh #thao-luan-chung", type: "normal", click: "switchChannel('thao-luan-chung')" }
+          ]
+        }
+      },
+      domain_rule: {
+        name: "LỚP ④ QUY CHẾ ĐẶC THÙ DOMAIN (COMMIT TRỄ)",
+        hax: "HAX G11: Giải thích quy định trích dẫn văn bản",
+        auto: "Conditional: Truy xuất trực tiếp Quy chế",
+        user_msg: "Nếu em commit bài tập bị trễ thì quy chế trừ điểm tính thế nào ạ?",
+        bot_response: {
+          text: "Theo **Quy chế khóa học (Mục 3.2 - Quy định nộp bài & Commit)**, mức trừ điểm được tính theo mốc thời gian như sau:\n\n• **Trễ < 24 giờ:** Trừ **50%** số điểm của bài nộp.\n• **Trễ từ 24h – 48 giờ:** Trừ **75%** số điểm của bài nộp.\n• **Trễ trên 48 giờ:** Cổng nộp đóng hoàn toàn, **ghi nhận 0 điểm**.",
+          embed: {
+            status: "warning",
+            title: "📜 Trích dẫn Quy chế đào tạo K4",
+            channel: "#quy-che-khoa-hoc (Văn bản chính thức)",
+            time: "Cập nhật đầu khóa",
+            quote: "« Mọi trường hợp commit muộn sau deadline đều tự động trừ điểm theo thang 50% - 75% - 100% dựa trên timestamp git. »"
+          },
+          actions: [
+            { text: "📄 Xem toàn văn Quy chế", type: "normal", click: "actionThanks()" },
+            { text: "🏷️ Tag TA nếu có lý do đặc biệt", type: "danger", click: "openTAHandoff('Xin cứu xét sự cố commit trễ')" }
+          ]
+        }
+      }
+    };
+
+    let currentScenarioId = 'happy_path';
+
+    function initWelcome() {
+      const feed = document.getElementById('message-feed');
+      feed.innerHTML = `
+        <div class="message-group">
+          <div class="message-avatar bot">🤖</div>
+          <div class="message-content">
+            <div class="message-author-line">
+              <span class="author-name">Trợ lý Discord</span>
+              <span class="bot-tag">BOT</span>
+              <span class="timestamp">Hôm nay lúc 19:30</span>
+            </div>
+            <div class="message-body">
+              Xin chào <b>Nguyễn Minh Tuấn</b>! Mình là Trợ lý hỗ trợ học viên lớp 3B.
+              Mình có thể giúp bạn tra cứu nhanh <b>deadline nộp bài, lịch học, link tài liệu và quy chế khóa học</b> — tất cả câu trả lời đều có trích dẫn nguồn thông báo chính thức!
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function loadScenario(scenarioId) {
+      currentScenarioId = scenarioId;
+
+      // Update Top scenario buttons
+      document.querySelectorAll('.scenario-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.scenario-btn')).find(b => b.getAttribute('onclick')?.includes(scenarioId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const data = scenarios[scenarioId];
+      if (!data) return;
+
+      // Update Banner
+      document.getElementById('banner-path-title').textContent = data.name;
+      document.getElementById('banner-hax').textContent = data.hax;
+      document.getElementById('banner-auto').textContent = `Cấp độ: ${data.auto}`;
+
+      // Reset and run chat animation
+      initWelcome();
+      showTyping(true);
+
+      setTimeout(() => {
+        appendUserMessage(data.user_msg);
+
+        setTimeout(() => {
+          showTyping(false);
+          appendBotMessage(data.bot_response);
+        }, 600);
+      }, 300);
+    }
+
+    function appendUserMessage(text) {
+      const feed = document.getElementById('message-feed');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'message-group';
+      msgDiv.innerHTML = `
+        <div class="avatar-circle" style="width: 40px; height: 40px; font-size: 14px;">NT</div>
+        <div class="message-content">
+          <div class="message-author-line">
+            <span class="author-name">Nguyễn Minh Tuấn</span>
+            <span class="timestamp">Vừa xong</span>
+          </div>
+          <div class="message-body">${escapeHtml(text)}</div>
+        </div>
+      `;
+      feed.appendChild(msgDiv);
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    function appendBotMessage(resp) {
+      const feed = document.getElementById('message-feed');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'message-group';
+
+      let embedHtml = '';
+      if (resp.embed) {
+        const borderClass = resp.embed.status === 'success' ? 'embed-success' : 
+                           resp.embed.status === 'danger' ? 'embed-danger' : 'embed-warning';
+        embedHtml = `
+          <div class="discord-embed ${borderClass}">
+            <div class="embed-header">
+              <span>${resp.embed.status === 'success' ? '✅' : resp.embed.status === 'danger' ? '⛔' : 'ℹ️'}</span>
+              <span>${escapeHtml(resp.embed.title)}</span>
+            </div>
+            <div class="embed-grounding-field">
+              <div class="grounding-label">
+                <span>📍 Nguồn: <b>${escapeHtml(resp.embed.channel)}</b></span>
+                <span style="margin-left: auto;">🕒 ${escapeHtml(resp.embed.time)}</span>
+              </div>
+              <div class="grounding-quote">${escapeHtml(resp.embed.quote)}</div>
+            </div>
+          </div>
+        `;
+      }
+
+      let chipsHtml = '';
+      if (resp.clarifyChips && resp.clarifyChips.length > 0) {
+        chipsHtml = `<div class="clarify-chip-box">` + resp.clarifyChips.map(c => `
+          <div class="clarify-chip" onclick="${c.action}">
+            <span>${c.label}</span>
+            <span style="color: var(--text-muted); font-size: 11px;">Chọn ➜</span>
+          </div>
+        `).join('') + `</div>`;
+      }
+
+      let actionsHtml = '';
+      if (resp.actions && resp.actions.length > 0) {
+        actionsHtml = `<div class="message-actions">` + resp.actions.map(a => {
+          const btnClass = a.type === 'success' ? 'success' : a.type === 'danger' ? 'danger' : 'normal';
+          return `<button class="action-btn ${btnClass}" onclick="${a.click}">${a.text}</button>`;
+        }).join('') + `</div>`;
+      }
+
+      msgDiv.innerHTML = `
+        <div class="message-avatar bot">🤖</div>
+        <div class="message-content">
+          <div class="message-author-line">
+            <span class="author-name">Trợ lý Discord</span>
+            <span class="bot-tag">BOT</span>
+            <span class="timestamp">Vừa xong</span>
+          </div>
+          <div class="message-body">${formatMarkdown(resp.text)}</div>
+          ${embedHtml}
+          ${chipsHtml}
+          ${actionsHtml}
+        </div>
+      `;
+      feed.appendChild(msgDiv);
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    function showTyping(show) {
+      const indicator = document.getElementById('typing-indicator');
+      indicator.style.display = show ? 'flex' : 'none';
+      if (show) {
+        const feed = document.getElementById('message-feed');
+        feed.scrollTop = feed.scrollHeight;
+      }
+    }
+
+    // CLARIFY CHIP HANDLER
+    function chooseClarify(choice) {
+      if (choice === 'cp2') {
+        appendUserMessage("Mình muốn hỏi về Checkpoint 2 Hackathon");
+        showTyping(true);
+        setTimeout(() => {
+          showTyping(false);
+          appendBotMessage({
+            text: "Hạn nộp **Checkpoint 2 (CP2)** là **21:00 tối nay (17/9)**!\n\nYêu cầu nộp: Cho thấy luồng hoạt động (bản mock bấm được, sơ đồ luồng hoặc video quay màn hình) kèm commit repo.",
+            embed: {
+              status: "success",
+              title: "📌 Căn cứ từ Lịch trình Hackathon",
+              channel: "#thong-bao-chung (Bảng mốc 39h)",
+              time: "17/09/2026 18:00",
+              quote: "« CP2: Hạn 21:00 17/9 - Đội trưởng nộp link repo có commit và bản mock flow. »"
+            },
+            actions: [
+              { text: "👍 Đã rõ, cảm ơn!", type: "success", click: "actionThanks()" },
+              { text: "✏️ Sửa câu hỏi khác", type: "normal", click: "triggerCorrection()" }
+            ]
+          });
+        }, 500);
+      } else if (choice === 'lab2') {
+        loadScenario('happy_path');
+      } else {
+        appendUserMessage("Mình muốn hỏi về Đồ án cuối khóa Mini-Hackathon");
+        showTyping(true);
+        setTimeout(() => {
+          showTyping(false);
+          appendBotMessage({
+            text: "Vòng thuyết trình và nghiệm thu Mini-Hackathon chung cuộc diễn ra lúc **09:00 sáng ngày 19/09/2026** tại phòng E402.",
+            embed: {
+              status: "success",
+              title: "📌 Căn cứ từ Thông báo chung",
+              channel: "#thong-bao-chung",
+              time: "17/09/2026 18:00",
+              quote: "« Buổi LAB 19/9 (09:00 - 13:00): Vòng thi thuyết trình trực tiếp tại phòng học. »"
+            },
+            actions: [
+              { text: "👍 Đã hiểu", type: "success", click: "actionThanks()" }
+            ]
+          });
+        }, 500);
+      }
+    }
+
+    // HANDOFF MODAL
+    function openTAHandoff(queryText) {
+      document.getElementById('modal-forward-text').textContent = queryText;
+      document.getElementById('modal-overlay').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').style.display = 'none';
+    }
+
+    function confirmHandoff() {
+      closeModal();
+      appendBotMessage({
+        text: "✅ **Đã chuyển tiếp thành công!** Trợ giảng phụ trách đã nhận được thông báo và sẽ phản hồi trực tiếp cho bạn qua tin nhắn Discord trong ít phút.",
+        actions: [
+          { text: "🔄 Bắt đầu câu hỏi mới", type: "normal", click: "resetDemo()" }
+        ]
+      });
+    }
+
+    // CORRECTION / EDIT TRIGGER
+    function triggerCorrection() {
+      const input = document.getElementById('user-input-field');
+      input.value = "Tôi muốn hỏi lại cụ thể hơn là: ";
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+    }
+
+    function actionThanks() {
+      appendBotMessage({
+        text: "Rất vui được hỗ trợ bạn! Nếu có câu hỏi nào khác về deadline hay tài liệu, bạn cứ nhắn tiếp nhé.",
+        actions: []
+      });
+    }
+
+    function actionDismiss() {
+      appendBotMessage({
+        text: "Đã hủy yêu cầu. Bạn có thể gõ bất kỳ câu hỏi nào khác vào ô chat bên dưới!",
+        actions: []
+      });
+    }
+
+    function actionMoreInfo() {
+      appendBotMessage({
+        text: "Hình thức nộp bài: Nộp đường dẫn GitHub repository công khai qua Google Form của Ban tổ chức trước giờ chót.",
+        actions: []
+      });
+    }
+
+    function showCapabilities() {
+      appendBotMessage({
+        text: "📋 **Các thông tin Trợ lý Discord có thể giải đáp có căn cứ:**\n• Hạn nộp Checkpoint 1 đến Checkpoint 6\n• Lịch học lý thuyết & thực hành LAB phòng E402\n• Đường dẫn tài liệu hướng dẫn và dữ liệu mẫu (data pack)\n• Quy chế chấm điểm, trừ điểm commit trễ\n• Handoff chuyển tiếp câu hỏi khó đến Trợ giảng",
+        actions: []
+      });
+    }
+
+    function switchChannel(name) {
+      alert(`Mô phỏng chuyển sang kênh #${name}`);
+    }
+
+    // MANUAL INPUT HANDLING
+    function handleManualSend() {
+      const input = document.getElementById('user-input-field');
+      const val = input.value.trim();
+      if (!val) return;
+
+      appendUserMessage(val);
+      input.value = '';
+      showTyping(true);
+
+      setTimeout(() => {
+        showTyping(false);
+        const lower = val.toLowerCase();
+        if (lower.includes('lab') || lower.includes('lab02') || lower.includes('lab 2')) {
+          loadScenario('happy_path');
+        } else if (lower.includes('hoãn') || lower.includes('dời') || lower.includes('không có')) {
+          loadScenario('no_grounding');
+        } else if (lower.includes('code') || lower.includes('python') || lower.includes('bài tập')) {
+          loadScenario('out_of_scope');
+        } else if (lower.includes('trễ') || lower.includes('quy chế') || lower.includes('trừ điểm')) {
+          loadScenario('domain_rule');
+        } else if (lower.includes('khi nào') || lower.length < 15) {
+          loadScenario('low_confidence');
+        } else {
+          loadScenario('correction');
+        }
+      }, 500);
+    }
+
+    function resetDemo() {
+      loadScenario('happy_path');
+    }
+
+    // UTILITIES
+    function escapeHtml(str) {
+      return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function formatMarkdown(text) {
+      if (!text) return '';
+      let formatted = escapeHtml(text);
+      formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+      formatted = formatted.replace(/\*(.*?)\*/g, '<i>$1</i>');
+      formatted = formatted.replace(/`([^`]+)`/g, '<code style="background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 3px; font-family: monospace;">$1</code>');
+      return formatted;
+    }
+
+    // STARTUP
+    window.onload = () => {
+      loadScenario('happy_path');
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+{
+  "scenarios": [
+    {
+      "id": "happy_path",
+      "name": "1. Happy Path (Tự tin cao)",
+      "user_input": "Hạn nộp bài Lab02 là khi nào vậy bot?",
+      "hax_principles": ["G11 (Giải thích vì sao)"],
+      "automation_level": "Conditional (Có căn cứ -> Phản hồi trực tiếp)",
+      "confidence": "HIGH (98%)",
+      "bot_response": {
+        "text": "Theo thông báo chính thức của Ban tổ chức, hạn nộp bài **Lab02** là **23:59 ngày 20/09/2026**.",
+        "grounding": {
+          "status": "VERIFIED",
+          "source_channel": "#thong-bao-lab02",
+          "message_id": "M07416_REF",
+          "timestamp": "15/09/2026 14:30",
+          "excerpt": "Hạn chót nộp toàn bộ bài tập thực hành Lab02 qua form trước 23:59 Chủ Nhật (20/09)."
+        },
+        "actions": [
+          {"id": "helpful", "label": "👍 Đã rõ, cảm ơn!", "type": "secondary"},
+          {"id": "ask_clarify", "label": "✏️ Hỏi chi tiết hình thức nộp", "type": "secondary"},
+          {"id": "edit_query", "label": "🔄 Sửa câu hỏi khác (G9)", "type": "secondary"}
+        ]
+      }
+    },
+    {
+      "id": "low_confidence",
+      "name": "2. Low-Confidence (Mơ hồ / Thiếu thông tin)",
+      "user_input": "Khi nào nộp bài thế?",
+      "hax_principles": ["G10 (Thu hẹp phạm vi khi nghi ngờ)", "G8 (Gạt bỏ dễ dàng)"],
+      "automation_level": "Conditional (Hỏi lại trước khi quyết định)",
+      "confidence": "LOW (42%)",
+      "bot_response": {
+        "text": "Mình cần làm rõ một chút để tìm đúng hạn cho bạn: Bạn đang hỏi về **deadline của hạng mục nào**?",
+        "clarification_needed": true,
+        "options": [
+          {"id": "opt_cp2", "label": "⏱️ Checkpoint 2 (21:00 hôm nay 17/9)", "next_state": "cp2_answer"},
+          {"id": "opt_lab2", "label": "📝 Lab02 Thực hành (20/9)", "next_state": "lab2_answer"},
+          {"id": "opt_project", "label": "🚀 Mini-Hackathon chung cuộc (19/9)", "next_state": "project_answer"}
+        ],
+        "actions": [
+          {"id": "dismiss", "label": "❌ Bỏ qua / Gõ câu hỏi cụ thể hơn (G8)", "type": "secondary"}
+        ]
+      }
+    },
+    {
+      "id": "no_grounding",
+      "name": "3. No-Grounding (Không tìm thấy căn cứ)",
+      "user_input": "Deadline nộp đồ án cuối kỳ có được hoãn thêm 2 ngày không?",
+      "hax_principles": ["G10 (Không bịa đặt / Chuyển hướng an toàn)", "G11 (Nêu rõ lý do)"],
+      "automation_level": "Conditional (Không đủ căn cứ -> Chuyển giao TA)",
+      "confidence": "NONE (0% tìm thấy)",
+      "bot_response": {
+        "text": "⚠️ Mình đã kiểm tra toàn bộ thông báo và tài liệu khóa học nhưng **chưa tìm thấy thông tin chính thức** về việc dời hoãn deadline đồ án cuối kỳ.",
+        "grounding": {
+          "status": "NOT_FOUND",
+          "note": "Cost-of-error cao: Trả lời sai hạn có thể làm học viên bị trễ bài và trừ điểm. Bot từ chối tự suy diễn."
+        },
+        "actions": [
+          {"id": "tag_ta", "label": "🏷️ Chuyển câu hỏi & Tag @TA hỗ trợ ngay", "type": "primary_danger"},
+          {"id": "retry", "label": "🔄 Nhập lại câu hỏi khác (G9)", "type": "secondary"}
+        ]
+      }
+    },
+    {
+      "id": "correction",
+      "name": "4. Correction (Sửa kết quả / Phản hồi)",
+      "user_input": "Bot hiểu nhầm ý mình rồi, mình hỏi hạn nộp bản nháp chứ không phải bản chính thức.",
+      "hax_principles": ["G9 (Sửa dễ dàng)", "G8 (Không bẫy người dùng vào menu cụt)"],
+      "automation_level": "Conditional (Tiếp nhận chỉnh sửa & cập nhật kết quả)",
+      "confidence": "MEDIUM (75%)",
+      "bot_response": {
+        "text": "Xin lỗi bạn vì sự hiểu nhầm! Mình đã ghi nhận lại câu hỏi của bạn về **Hạn nộp bản nháp (Draft Review)**:\n\nTheo tài liệu Hướng dẫn đồ án, bản nháp cần gửi lên kênh `#review-draft` trước **12:00 trưa ngày 19/09/2026** để TA góp ý trước giờ chấm.",
+        "grounding": {
+          "status": "VERIFIED",
+          "source_channel": "#huong-dan-do-an",
+          "message_id": "M12984_REF",
+          "timestamp": "16/09/2026 09:00",
+          "excerpt": "Học viên nộp bản nháp đồ án trước 12:00 ngày 19/9 để kịp nhận feedback từ hội đồng TA."
+        },
+        "actions": [
+          {"id": "confirm", "label": "✅ Đúng thông tin này rồi!", "type": "secondary"},
+          {"id": "direct_ta", "label": "🏷️ Vẫn cần trao đổi thêm với @TA", "type": "secondary"}
+        ]
+      }
+    },
+    {
+      "id": "out_of_scope",
+      "name": "Edge Case: Lớp ③ Ngoài phạm vi (Out-of-Scope)",
+      "user_input": "Viết hộ tôi một đoạn code Python để crawl tin nhắn Discord với!",
+      "hax_principles": ["G1 (Làm rõ hệ thống làm được gì và không làm được gì)"],
+      "automation_level": "Refusal / Domain Boundary",
+      "confidence": "OUT_OF_SCOPE",
+      "bot_response": {
+        "text": "🤖 **Trợ lý Discord** chỉ chuyên hỗ trợ tra cứu thông tin vận hành khóa học (deadline nộp bài, lịch học, link tài liệu chính thức, quy chế).\n\nĐối với câu hỏi về **lập trình, giải bài tập hoặc viết code**, bạn vui lòng thảo luận tại kênh `#tech-support` hoặc tag giảng viên/TA nhé!",
+        "grounding": {
+          "status": "NON_GOAL",
+          "rule": "Non-goal #1: Không làm thay việc code hoặc bài tập của học viên."
+        },
+        "actions": [
+          {"id": "redirect_code", "label": "👉 Chuyển sang kênh #tech-support", "type": "secondary"},
+          {"id": "ask_scope", "label": "💡 Xem danh sách thông tin bot có thể tra cứu", "type": "secondary"}
+        ]
+      }
+    },
+    {
+      "id": "domain_rule",
+      "name": "Edge Case: Lớp ④ Đặc thù domain (Quy chế khóa học)",
+      "user_input": "Nếu em commit trễ thì quy chế trừ điểm tính thế nào ạ?",
+      "hax_principles": ["G11 (Giải thích vì sao kèm trích dẫn văn bản)"],
+      "automation_level": "Conditional (Trích xuất nguyên tắc quy định)",
+      "confidence": "HIGH (99%)",
+      "bot_response": {
+        "text": "Theo **Quy chế khóa học (Mục 3.2 - Quy định nộp bài & Commit)**:\n• **Trễ < 24 giờ:** Trừ **50%** số điểm của bài nộp.\n• **Trễ từ 24h - 48 giờ:** Trừ **75%** số điểm của bài nộp.\n• **Trễ trên 48 giờ:** Hệ thống đóng cổng và **không ghi nhận bài nộp** (0 điểm).",
+        "grounding": {
+          "status": "VERIFIED",
+          "source_channel": "#quy-che-khoa-hoc",
+          "message_id": "M40677_REF",
+          "timestamp": "Đầu khóa học",
+          "excerpt": "Quy định xử lý commit quá hạn nộp bài mục 3.2 - Đào tạo AI Batch 04."
+        },
+        "actions": [
+          {"id": "view_rule", "label": "📄 Xem toàn văn Quy chế khóa học", "type": "secondary"},
+          {"id": "ask_appeal", "label": "🏷️ Tag TA xin xem xét trường hợp bất khả kháng", "type": "secondary"}
+        ]
+      }
+    }
+  ]
+}

@@ -75,25 +75,25 @@ Phát hiện lỗ hổng trải nghiệm và bất cập logic **trước** khi 
 
 ---
 
-### 🟢 Nguyễn Minh Tuấn — Build Prototype
+### 🟢 Nguyễn Minh Tuấn — Build Prototype ✅ ĐÃ HOÀN THÀNH
 
 **Nhiệm vụ:**
-- [ ] Dựng **clickable prototype** (Figma/HTML) thể hiện 4 đường đi
-- [ ] Sử dụng mock data từ Vàng để demo
-- [ ] Nếu dùng HTML: lưu vào `codebase/prototype/`
-- [ ] Đảm bảo prototype có thể click qua lại giữa các nhánh
+- [x] Dựng **clickable prototype** (HTML/JS) thể hiện 4 đường đi ✅
+- [x] Sử dụng mock data chuẩn bị sẵn để demo tương tác ✅
+- [x] Đã lưu vào `codebase/prototype/index.html` ✅
+- [x] Đảm bảo prototype có thể click qua lại giữa 4 nhánh và edge cases không dead-end ✅
 
-**Output:** `codebase/prototype/index.html` (hoặc link Figma)
+**Output:** `codebase/prototype/index.html` + `codebase/mock-data.json` ✅
 
 ---
 
 ## Checklist trước khi nộp
 
 - [x] Sơ đồ luồng thể hiện đủ 4 đường đi ✅
-- [ ] Prototype clickable hoặc video demo
+- [x] Prototype clickable hoặc video demo (`codebase/prototype/index.html`) ✅
 - [x] §4 và §6 trong spec.md đã cập nhật ✅
 - [x] Bảng nguyên tắc HAX/PAIR có đủ 4 nguyên tắc + vị trí áp dụng ✅
-- [ ] Mock data sẵn sàng cho CP3
+- [x] Mock data sẵn sàng cho CP3 (`codebase/mock-data.json`) ✅
 
 ---
 
