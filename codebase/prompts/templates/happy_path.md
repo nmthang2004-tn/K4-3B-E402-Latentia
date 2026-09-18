@@ -1,4 +1,4 @@
-za# Prompt Template: Happy Path (Truy xuất có căn cứ xác thực)
+# Prompt Template: Happy Path (Truy xuất có căn cứ xác thực)
 
 > **Tác giả:** Nguyễn Thị Vàng (2A202602897)  
 > **Nguyên tắc HAX/PAIR:** G11 (Giải thích vì sao / Trích dẫn nguồn), G9 (Sửa dễ dàng), G8 (Gạt bỏ dễ dàng)  

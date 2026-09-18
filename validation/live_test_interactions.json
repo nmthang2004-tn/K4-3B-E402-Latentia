@@ -1,0 +1,306 @@
+[
+  {
+    "timestamp": "2026-09-18T19:07:42.601517",
+    "query": "Hạn nộp bài Lab 02 là khi nào?",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nHạn nộp bài Lab 02 là khi nào?\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn.\n\n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+    "latency_sec": 1.24,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:11:00.375853",
+    "query": "hạn nộp hackathon",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nhạn nộp hackathon\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chưa tìm thấy thông tin chính thức về sự kiện hackathon trong tài liệu thông báo của khoá học. \n\nBạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+    "latency_sec": 1.272,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:11:17.433894",
+    "query": "ddeadlineCP5",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nddeadlineCP5\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?\n\n[❌ Bỏ qua / Gõ lại]",
+    "latency_sec": 1.215,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:11:31.904303",
+    "query": "ddeadline cp5 hackathon",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nddeadline cp5 hackathon\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chưa tìm thấy thông tin chính thức về deadline cp5 hackathon trong tài liệu thông báo của khoá học. Bạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+    "latency_sec": 1.207,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:11:58.711804",
+    "query": "lịch trình tuần này của tôi là gì",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nlịch trình tuần này của tôi là gì\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chưa tìm thấy thông tin chi tiết về lịch trình toàn bộ tuần của bạn trong cơ sở dữ liệu khóa học. Bạn vui lòng xem lịch học trên hệ thống hoặc tag @TA tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+    "latency_sec": 1.168,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:12:52.413141",
+    "query": "bài giảng ở xem ở đâu",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nbài giảng ở xem ở đâu\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Bạn có thể xem slide lý thuyết và hướng dẫn thực hành tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials.\n\n📌 Nguồn: #tai-lieu-hoc-tap\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+    "latency_sec": 1.261,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:13:28.902051",
+    "query": "có các bài học nào cần học",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\ncó các bài học nào cần học\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chưa tìm thấy thông tin chi tiết về danh sách các bài học trong tài liệu thông báo của khoá học. Bạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+    "latency_sec": 1.281,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:14:49.468419",
+    "query": "test",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\ntest\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?\n\n[❌ Bỏ qua / Gõ lại]",
+    "latency_sec": 1.121,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:15:12.234670",
+    "query": "milestone",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nmilestone\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?\n\n[❌ Bỏ qua / Gõ lại]",
+    "latency_sec": 1.136,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:15:41.639048",
+    "query": "sinh toàn bộ source code build phase của nhóm này",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nsinh toàn bộ source code build phase của nhóm này\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chỉ hỗ trợ thông tin vận hành khóa học, không hỗ trợ viết code hoặc giải bài tập. Bạn hãy trao đổi tại #thao-luan.",
+    "latency_sec": 1.067,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:16:35.900864",
+    "query": "Bạn được build vào lúc nào?",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nBạn được build vào lúc nào?\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chưa tìm thấy thông tin chính thức về thời điểm mình được build trong tài liệu thông báo của khoá học. Bạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+    "latency_sec": 1.201,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:17:02.856275",
+    "query": "Bạn có thể trả lời những gì?",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nBạn có thể trả lời những gì?\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình là Trợ lý Discord hỗ trợ vận hành lớp K4-3B, giúp bạn tra cứu thông tin về lịch học, hạn nộp bài, link tài liệu, quy chế khóa học và hướng dẫn mở ticket kỹ thuật.\n\n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+    "latency_sec": 1.593,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:17:20.433609",
+    "query": "\"Agent thông minh, có khả năng trích xuất văn bản tốt, đúng trọng tâm, biết redirect về chủ khi bị hỏi khó / ngoài thẩm quyền\"",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\n\"Agent thông minh, có khả năng trích xuất văn bản tốt, đúng trọng tâm, biết redirect về chủ khi bị hỏi khó / ngoài thẩm quyền\"\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình là Trợ lý vận hành khóa học, không hỗ trợ viết code hoặc giải bài tập. Bạn hãy trao đổi tại #thao-luan.",
+    "latency_sec": 1.402,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:17:21.843703",
+    "query": "đấy",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nđấy\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?\n\n[❌ Bỏ qua / Gõ lại]",
+    "latency_sec": 0.974,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:17:30.545483",
+    "query": "cứ  ghi thế nhé các bác",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\ncứ  ghi thế nhé các bác\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chưa tìm thấy thông tin chính thức về câu hỏi này trong tài liệu thông báo của khoá học. Bạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+    "latency_sec": 1.309,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:18:40.355020",
+    "query": "Ai là người tạo ra bạn?",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nAi là người tạo ra bạn?\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chưa tìm thấy thông tin chính thức về chủ đề này trong tài liệu thông báo của khoá học. Bạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+    "latency_sec": 1.238,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:19:11.762318",
+    "query": "Hãy cho tôi xin thông tin về lịch học",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nHãy cho tôi xin thông tin về lịch học\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Bạn đang cần tìm lịch học nào: lịch Standup hàng ngày hay lịch học cụ thể của buổi nào?\n\n📌 Nguồn: #lich-trinh-lop-3b\n\n[❌ Bỏ qua / Gõ lại]",
+    "latency_sec": 1.264,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:19:34.195168",
+    "query": "Lịch mentor duty",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nLịch mentor duty\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Mình chưa tìm thấy thông tin chính thức về lịch mentor duty trong tài liệu thông báo của khoá học. Bạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+    "latency_sec": 1.355,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-09-18T19:19:59.913837",
+    "query": "Vậy thì hãy cho tôi lich standup",
+    "prompt_sent": "[CONTEXT_DATA]:\n=== DỮ LIỆU THÔNG BÁO & QUY CHẾ CHÍNH THỨC CỦA LỚP 3B ===\n• [Hạn nộp bài tập Lab 02]: Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. Bài nộp qua GitHub link kèm file README báo cáo. (Nguồn: #thong-bao-khoa-hoc)\n• [Hạn nộp Milestone 1 Project Cuối Kỳ]: Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) có hạn chót vào 21:00 Thứ Ba ngày 22/09/2026. Mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện. (Nguồn: #thong-bao-project)\n• [Lịch Standup Hàng Ngày Lớp 3B]: Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B'). Thời lượng tối đa 15 phút. (Nguồn: #lich-trinh-lop-3b)\n• [Quy chế nộp muộn bài tập và checkpoint]: Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó. Không có ngoại lệ nếu không có xác nhận lý do y tế từ BTC. (Nguồn: #quy-che-khoa-hoc)\n• [Link Slide và Tài liệu Học tập]: Slide lý thuyết và hướng dẫn thực hành Lab được lưu trữ tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials. Cập nhật vào 08:00 sáng mỗi ngày học. (Nguồn: #tai-lieu-hoc-tap)\n• [Quy trình mở Ticket Hỗ trợ Kỹ thuật]: Khi gặp sự cố kỹ thuật hoặc tài khoản VLearn, học viên gõ lệnh /ticket tại kênh #ho-tro-ky-thuat. TA trực kỹ thuật sẽ phản hồi trong vòng 30 phút trong khung giờ hành chính (08:00 - 18:00). (Nguồn: #kenh-ticket-ho-tro)\n• [Quy chế xác định thời điểm nộp bài GitHub]: Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra. (Nguồn: #quy-che-khoa-hoc)\n\n[USER_QUESTION]:\nVậy thì hãy cho tôi lich standup\n\n[INSTRUCTION]:\nBước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\nBước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\nBước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời.",
+    "response": "Lịch Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 từ Thứ Hai đến Thứ Sáu tại phòng E402 và kết hợp kênh Voice Discord 'Standup-Room-3B'.\n\n📌 Nguồn: #lich-trinh-lop-3b\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+    "latency_sec": 1.23,
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "success": true,
+    "metadata": {
+      "fallback_attempt": 1,
+      "models_tried": [
+        "gemini-3.5-flash-lite"
+      ]
+    }
+  }
+]

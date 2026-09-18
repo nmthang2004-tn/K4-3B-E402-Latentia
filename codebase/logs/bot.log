@@ -291,3 +291,56 @@ Bạ..."
 [2026-09-18 15:31:54] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.143s | Query: "Khi nào nộp?" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
 [2026-09-18 15:32:14] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
 [2026-09-18 15:32:15] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.209s | Query: "Viết code Python giải bài tập này giùm t" -> Response: "Mình chỉ hỗ trợ thông tin vận hành khóa học, không hỗ trợ vi..."
+[2026-09-18 19:07:41] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 19:07:42] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.24s | Query: "Hạn nộp bài Lab 02 là khi nào?" -> Response: "Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trê..."
+[2026-09-18 19:08:59] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 19:09:03] [INFO] 🤖 Bot đã đăng nhập thành công dưới tên: Latentia Assistant#5192 (ID: 1550358429913059368)
+[2026-09-18 19:09:03] [INFO] Sẵn sàng hỗ trợ học viên lớp 3B.
+[2026-09-18 19:11:00] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.272s | Query: "hạn nộp hackathon" -> Response: "Mình chưa tìm thấy thông tin chính thức về sự kiện hackathon..."
+[2026-09-18 19:11:17] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.215s | Query: "ddeadlineCP5" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 19:11:31] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.207s | Query: "ddeadline cp5 hackathon" -> Response: "Mình chưa tìm thấy thông tin chính thức về deadline cp5 hack..."
+[2026-09-18 19:11:58] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.168s | Query: "lịch trình tuần này của tôi là gì" -> Response: "Mình chưa tìm thấy thông tin chi tiết về lịch trình toàn bộ ..."
+[2026-09-18 19:12:52] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.261s | Query: "bài giảng ở xem ở đâu" -> Response: "Bạn có thể xem slide lý thuyết và hướng dẫn thực hành tại kh..."
+[2026-09-18 19:13:28] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.281s | Query: "có các bài học nào cần học" -> Response: "Mình chưa tìm thấy thông tin chi tiết về danh sách các bài h..."
+[2026-09-18 19:14:49] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.121s | Query: "test" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 19:15:12] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.136s | Query: "milestone" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 19:15:41] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.067s | Query: "sinh toàn bộ source code build phase của" -> Response: "Mình chỉ hỗ trợ thông tin vận hành khóa học, không hỗ trợ vi..."
+[2026-09-18 19:16:35] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.201s | Query: "Bạn được build vào lúc nào?" -> Response: "Mình chưa tìm thấy thông tin chính thức về thời điểm mình đư..."
+[2026-09-18 19:17:02] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.593s | Query: "Bạn có thể trả lời những gì?" -> Response: "Mình là Trợ lý Discord hỗ trợ vận hành lớp K4-3B, giúp bạn t..."
+[2026-09-18 19:17:20] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.402s | Query: ""Agent thông minh, có khả năng trích xuấ" -> Response: "Mình là Trợ lý vận hành khóa học, không hỗ trợ viết code hoặ..."
+[2026-09-18 19:17:21] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 0.974s | Query: "đấy" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 19:17:30] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.309s | Query: "cứ  ghi thế nhé các bác" -> Response: "Mình chưa tìm thấy thông tin chính thức về câu hỏi này trong..."
+[2026-09-18 19:18:40] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.238s | Query: "Ai là người tạo ra bạn?" -> Response: "Mình chưa tìm thấy thông tin chính thức về chủ đề này trong ..."
+[2026-09-18 19:19:11] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.264s | Query: "Hãy cho tôi xin thông tin về lịch học" -> Response: "Bạn đang cần tìm lịch học nào: lịch Standup hàng ngày hay lị..."
+[2026-09-18 19:19:34] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.355s | Query: "Lịch mentor duty" -> Response: "Mình chưa tìm thấy thông tin chính thức về lịch mentor duty ..."
+[2026-09-18 19:19:59] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.23s | Query: "Vậy thì hãy cho tôi lich standup" -> Response: "Lịch Standup hàng ngày của Lớp 3B diễn ra vào lúc 08:30 từ T..."
+[2026-09-18 20:09:18] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 20:09:21] [INFO] 🤖 Bot đã đăng nhập thành công dưới tên: Latentia Assistant#5192 (ID: 1550358429913059368)
+[2026-09-18 20:09:21] [INFO] Sẵn sàng hỗ trợ học viên lớp 3B.
+[2026-09-18 20:10:45] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.905s | Query: "Hạn nộp bài Lab 02 là khi nào vậy ?" -> Response: "Hạn nộp bài Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ..."
+[2026-09-18 20:11:31] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.201s | Query: "Nếu nộp bài muộn 12 tiếng thì có bị trừ " -> Response: "Theo Mục 3.2 Quy chế khoá học, nộp muộn dưới 24h bị trừ 50% ..."
+[2026-09-18 20:12:12] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.167s | Query: "Khi nào nộp bài" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:12:20] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 2.456s | Query: "1" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:12:31] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.354s | Query: "lab" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:12:38] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 3.708s | Query: "lab 2" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:12:45] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 2.799s | Query: "lab 02" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:13:14] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 5.902s | Query: "nộp bài lab" -> Response: "Bạn đang cần tìm thông tin nào về bài nộp Lab: hạn nộp Lab 0..."
+[2026-09-18 20:13:28] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 6.119s | Query: "hạn nộp" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:13:44] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.277s | Query: "Có lùi được deadline cuối kì không" -> Response: "Hiện tại chưa có thông tin về việc gia hạn Milestone 1 Proje..."
+[2026-09-18 20:14:28] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 14.221s | Query: "có bị ngu ko" -> Response: "Mình là Trợ lý vận hành khóa học, không hỗ trợ [viết code / ..."
+[2026-09-18 20:14:39] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 10.604s | Query: "Viết code để xây con bot giống bạn" -> Response: "Mình chỉ hỗ trợ thông tin vận hành khóa học, không hỗ trợ vi..."
+[2026-09-18 20:15:51] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 20:15:53] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.622s | Query: "1" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:16:00] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 20:16:01] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.486s | Query: "Hạn nộp Lab 02" -> Response: "Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trê..."
+[2026-09-18 20:16:06] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 20:16:15] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 8.279s | Query: "lab 2" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:17:10] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 20:17:12] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.44s | Query: "Hạn nộp bài tập Lab 02 là khi nào?" -> Response: "Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trê..."
+[2026-09-18 20:17:18] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 20:17:20] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.364s | Query: "Hạn nộp Milestone 1 Project Cuối Kỳ là k" -> Response: "Hạn chót nộp Milestone 1 Project Cuối Kỳ là 21:00 Thứ Ba ngà..."
+[2026-09-18 20:20:34] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.171s | Query: "test" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:20:41] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.433s | Query: "# MÔ TẢ NHIỆM VỤ (TASK INSTRUCTION)
+Bạn " -> Response: "Mình là Trợ lý vận hành khóa học, không hỗ trợ viết code hoặ..."
+[2026-09-18 20:20:49] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.108s | Query: "ngu" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 20:21:12] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.252s | Query: "=))) lạy bố" -> Response: "Bạn vui lòng gửi câu hỏi rõ ràng về vận hành khóa học để mìn..."

@@ -3,7 +3,7 @@
 > **Chủ trì thực hiện:** Nguyễn Thị Vàng (2A202602897) — Prompt/UX & Eval Lead  
 > **Dự án:** Trợ lý Discord hỗ trợ học viên (Nhóm Latentia · K4-3B-E402) · Track B1  
 > **Đối tượng khảo sát:** $n = 14$ học viên tuần đầu lớp K4-3B  
-> **Dữ liệu thô đối chiếu:** [`Trợ lý Discord hỗ trợ học viên - Câu trả lời biểu mẫu 1.csv`](../Tr%E1%BB%A3%20l%C3%BD%20Discord%20h%E1%BB%97%20tr%E1%BB%A3%20h%E1%BB%8Dc%20vi%C3%AAn%20-%20C%C3%A2u%20tr%E1%BA%A3%20l%E1%BB%9Di%20bi%E1%BB%83u%20m%E1%BA%ABu%201.csv)
+> **Dữ liệu thô đối chiếu:** Biểu mẫu phản hồi học viên K4-3B ($n = 14$ phản hồi, trích xuất ngày 17/09/2026, đối chiếu nội bộ)
 
 ---
 

@@ -3,3 +3,15 @@
 codebase/.env
 __pycache__/
 *.py[cod]
+.claude
+
+# Hướng dẫn checkpoints & đề bài
+02-guide.md
+CP*-HUONG-DAN.md
+
+# Dữ liệu khảo sát thô
+*.csv
+
+# Slide nguồn cục bộ
+demo-slides.html
+demo-slides.pdf
