@@ -9,6 +9,8 @@ import json
 import sys
 from datetime import datetime
 
+import argparse
+
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 
@@ -16,8 +18,11 @@ def load_json(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def run_evaluation():
+def run_evaluation(live_ai=False):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if base_dir not in sys.path:
+        sys.path.insert(0, base_dir)
+
     golden_path = os.path.join(base_dir, 'eval', 'golden_set.json')
     mock_data_path = os.path.join(base_dir, 'codebase', 'mock-data.json')
 
@@ -39,6 +44,17 @@ def run_evaluation():
     passed_count = 0
     failed_count = 0
     results = []
+
+    ai_assistant = None
+    if live_ai:
+        try:
+            from codebase.ai_client import get_ai_assistant
+            ai_assistant = get_ai_assistant()
+            print("⚡ CHẾ ĐỘ: ĐO LƯỜNG TRÊN MÔ HÌNH AI THẬT (RUN 2 - CP3)")
+            print(f"Provider: {ai_assistant.provider} | Model: {getattr(ai_assistant, 'gemini_client', None) and 'Gemini' or 'Configured'}")
+        except Exception as e:
+            print(f"❌ Không thể khởi tạo AI Client: {e}. Quay về mock mode.")
+            live_ai = False
 
     # Mock response generator based on system prompt logic & mock-data.json
     def mock_agent_response(case):
@@ -110,13 +126,19 @@ def run_evaluation():
         return "Phản hồi mặc định"
 
     for tc in test_cases:
-        actual_output = mock_agent_response(tc)
+        if live_ai and ai_assistant:
+            import time
+            time.sleep(1.0)
+            ai_res = ai_assistant.ask(tc['user_input'])
+            actual_output = ai_res.get('text', '')
+        else:
+            actual_output = mock_agent_response(tc)
         
         # Check constraints
         pass_contains = all(w.lower() in actual_output.lower() for w in tc.get('expected_output_contains', []))
         fail_not_contains = any(w.lower() in actual_output.lower() for w in tc.get('must_not_contain', []))
         
-        # Grounding check for layer 1
+        # Grounding check for layer 1 (No-grounding không được hallucinate/bịa đặt mà phải chuyển TA)
         is_layer_1 = tc['difficulty_layer'] == "Chỗ khó ①"
         hallucinated = is_layer_1 and ("ngày" in actual_output and "@TA" not in actual_output)
 
@@ -148,18 +170,36 @@ def run_evaluation():
     # Save run results
     now_str = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     os.makedirs(os.path.join(base_dir, 'eval', 'results'), exist_ok=True)
-    report_file = os.path.join(base_dir, 'eval', 'results', 'eval_run_cp2.json')
+    
+    report_data = {
+        "timestamp": now_str,
+        "run_type": "Live AI (CP3)" if live_ai else "Baseline Mock (CP2)",
+        "total_cases": len(test_cases),
+        "passed": passed_count,
+        "failed": failed_count,
+        "pass_rate": f"{pass_rate:.1f}%",
+        "quality_bar_met": quality_bar_met,
+        "details": results
+    }
+
+    if live_ai:
+        # CP3 target file
+        cp3_report_file = os.path.join(base_dir, 'eval', 'run-2-results.json')
+        with open(cp3_report_file, 'w', encoding='utf-8') as f:
+            json.dump(report_data, f, ensure_ascii=False, indent=2)
+        print(f"📁 Đã lưu kết quả CP3 Run 2 tại: {cp3_report_file}")
+
+    # Also save to eval/results/
+    filename = 'eval_run_cp3.json' if live_ai else 'eval_run_cp2.json'
+    report_file = os.path.join(base_dir, 'eval', 'results', filename)
     with open(report_file, 'w', encoding='utf-8') as f:
-        json.dump({
-            "timestamp": now_str,
-            "total_cases": len(test_cases),
-            "passed": passed_count,
-            "failed": failed_count,
-            "pass_rate": f"{pass_rate:.1f}%",
-            "quality_bar_met": quality_bar_met,
-            "details": results
-        }, f, ensure_ascii=False, indent=2)
+        json.dump(report_data, f, ensure_ascii=False, indent=2)
     print(f"📁 Đã lưu báo cáo đánh giá tại: {report_file} (Thời điểm: {now_str})")
 
 if __name__ == '__main__':
-    run_evaluation()
+    parser = argparse.ArgumentParser(description="Golden Set Eval Runner")
+    parser.add_argument("--live-ai", action="store_true", help="Chạy kiểm thử trên mô hình AI thật (Run 2 - CP3)")
+    args = parser.parse_args()
+
+    run_evaluation(live_ai=args.live_ai)
+

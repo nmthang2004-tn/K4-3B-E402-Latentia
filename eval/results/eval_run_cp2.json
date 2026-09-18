@@ -1,5 +1,6 @@
 {
-  "timestamp": "17/09/2026 20:18:10",
+  "timestamp": "18/09/2026 10:23:21",
+  "run_type": "Baseline Mock (CP2)",
   "total_cases": 24,
   "passed": 24,
   "failed": 0,
