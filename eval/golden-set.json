@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "version": "1.0",
+    "created": "2026-09-17",
+    "total_cases": 22,
+    "layers": {
+      "happy": 8,
+      "no_grounding": 6,
+      "low_confidence": 4,
+      "out_of_scope": 2,
+      "domain_specific": 2
+    }
+  },
+  "quality_criteria": {
+    "factuality": "Mọi thông tin trong câu trả lời phải trace được về tài liệu thông báo chính thức. Không bịa đặt thông tin.",
+    "relevance": "Câu trả lời phải đúng câu hỏi, không lan man, không đưa thông tin không liên quan.",
+    "conciseness": "Câu trả lời ≤ 200 ký tự, không spam kênh.",
+    "grounding": "Khi có căn cứ trong tài liệu, phải trích dẫn nguồn. Khi không có, phải chuyển TA."
+  },
+  "cases": [
+    {
+      "id": "GS01",
+      "layer": "happy",
+      "input": "Hạn nộp Lab02 là khi nào?",
+      "context": "Hỏi về deadline Lab02",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời có deadline cụ thể + trích dẫn nguồn",
+      "pass_criteria": ["deadline", "trích dẫn"],
+      "source": "survey_response"
+    },
+    {
+      "id": "GS02",
+      "layer": "happy",
+      "input": "Link tài liệu Lab03 đâu?",
+      "context": "Hỏi link tài liệu",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời có link cụ thể + trích dẫn nguồn",
+      "pass_criteria": ["link", "trích dẫn"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS03",
+      "layer": "happy",
+      "input": "Standup tuần này khi nào?",
+      "context": "Hỏi lịch standup",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời có thời gian + trích dẫn nguồn",
+      "pass_criteria": ["thời gian", "trích dẫn"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS04",
+      "layer": "happy",
+      "input": "Quy chế commit trễ như thế nào?",
+      "context": "Hỏi về quy định commit",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời đúng quy chế + trích dẫn nguồn",
+      "pass_criteria": ["quy chế", "trích dẫn"],
+      "source": "survey_response"
+    },
+    {
+      "id": "GS05",
+      "layer": "happy",
+      "input": "Điểm danh standup có bắt buộc không?",
+      "context": "Hỏi về quy định điểm danh",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời đúng quy định + trích dẫn nguồn",
+      "pass_criteria": ["quy định", "trích dẫn"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS06",
+      "layer": "happy",
+      "input": "Deadline nộp project cuối kỳ là ngày nào?",
+      "context": "Hỏi deadline project",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời có deadline cụ thể + trích dẫn nguồn",
+      "pass_criteria": ["deadline", "trích dẫn"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS07",
+      "layer": "happy",
+      "input": "Form đăng ký team ở đâu?",
+      "context": "Hỏi link form",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời có link form + trích dẫn nguồn",
+      "pass_criteria": ["link", "form", "trích dẫn"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS08",
+      "layer": "happy",
+      "input": "Thông báo mới nhất về Lab nào?",
+      "context": "Hỏi thông báo gần đây",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời có thông tin mới nhất + trích dẫn nguồn",
+      "pass_criteria": ["thông báo", "trích dẫn"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS09",
+      "layer": "no_grounding",
+      "input": "XP của tuần này là bao nhiêu?",
+      "context": "Hỏi XP (không có trong tài liệu)",
+      "expected_path": "no_grounding",
+      "expected_behavior": "Bot thừa nhận không có thông tin, chuyển TA",
+      "pass_criteria": ["không tìm thấy", "TA"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS10",
+      "layer": "no_grounding",
+      "input": "Deadline project cuối kỳ có thay đổi không?",
+      "context": "Hỏi về thay đổi (không có trong tài liệu)",
+      "expected_path": "no_grounding",
+      "expected_behavior": "Bot thừa nhận không tìm thấy thông tin, chuyển TA",
+      "pass_criteria": ["không tìm thấy", "TA"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS11",
+      "layer": "no_grounding",
+      "input": "Ai là TA của lớp này?",
+      "context": "Hỏi thông tin cá nhân (không có trong tài liệu)",
+      "expected_path": "no_grounding",
+      "expected_behavior": "Bot thừa nhận không có thông tin, chuyển TA",
+      "pass_criteria": ["không tìm thấy", "TA"],
+      "source": "survey_response"
+    },
+    {
+      "id": "GS12",
+      "layer": "no_grounding",
+      "input": "Tôi bị trừ điểm Lab01 vì sao?",
+      "context": "Hỏi về điểm cá nhân (không có trong tài liệu)",
+      "expected_path": "no_grounding",
+      "expected_behavior": "Bot thừa nhận không có thông tin cá nhân, chuyển TA",
+      "pass_criteria": ["không có thông tin", "TA"],
+      "source": "survey_response"
+    },
+    {
+      "id": "GS13",
+      "layer": "no_grounding",
+      "input": "Lịch thi giữa kỳ ngày nào?",
+      "context": "Hỏi lịch thi (không có trong tài liệu K4)",
+      "expected_path": "no_grounding",
+      "expected_behavior": "Bot thừa nhận không tìm thấy thông tin, chuyển TA",
+      "pass_criteria": ["không tìm thấy", "TA"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS14",
+      "layer": "no_grounding",
+      "input": "Có thay đổi gì về quy chế nộp bài không?",
+      "context": "Hỏi về thay đổi quy chế (không có thông báo)",
+      "expected_path": "no_grounding",
+      "expected_behavior": "Bot thừa nhận không tìm thấy thông tin, chuyển TA",
+      "pass_criteria": ["không tìm thấy", "TA"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS15",
+      "layer": "low_confidence",
+      "input": "Khi nào nộp?",
+      "context": "Câu hỏi mơ hồ, không rõ loại bài",
+      "expected_path": "low_confidence",
+      "expected_behavior": "Bot hỏi làm rõ: Lab hay Project?",
+      "pass_criteria": ["làm rõ", "Lab", "Project"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS16",
+      "layer": "low_confidence",
+      "input": "Deadline có gì mới không?",
+      "context": "Câu hỏi mơ hồ, không cụ thể",
+      "expected_path": "low_confidence",
+      "expected_behavior": "Bot hỏi làm rõ: deadline nào?",
+      "pass_criteria": ["làm rõ", "deadline"],
+      "source": "survey_response"
+    },
+    {
+      "id": "GS17",
+      "layer": "low_confidence",
+      "input": "Tài liệu đâu?",
+      "context": "Câu hỏi quá ngắn, không rõ loại tài liệu",
+      "expected_path": "low_confidence",
+      "expected_behavior": "Bot hỏi làm rõ: tài liệu gì? Lab nào?",
+      "pass_criteria": ["làm rõ", "tài liệu"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS18",
+      "layer": "low_confidence",
+      "input": "Thông báo mới nhất là gì?",
+      "context": "Câu hỏi không xác định rõ",
+      "expected_path": "low_confidence",
+      "expected_behavior": "Bot hỏi làm rõ: thuộc phạm vi nào?",
+      "pass_criteria": ["làm rõ", "phạm vi"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS19",
+      "layer": "out_of_scope",
+      "input": "Viết code Python giùm tôi",
+      "context": "Yêu cầu ngoài phạm vi (viết code)",
+      "expected_path": "out_of_scope",
+      "expected_behavior": "Bot từ chối, giải thích phạm vi hoạt động",
+      "pass_criteria": ["chỉ hỗ trợ", "tra cứu", "hỏi TA"],
+      "source": "survey_response"
+    },
+    {
+      "id": "GS20",
+      "layer": "out_of_scope",
+      "input": "Tạo poll giúp tôi về thời gian họp team",
+      "context": "Yêu cầu ngoài phạm vi (tạo poll)",
+      "expected_path": "out_of_scope",
+      "expected_behavior": "Bot từ chối, giải thích phạm vi hoạt động",
+      "pass_criteria": ["chỉ hỗ trợ", "tra cứu", "hỏi TA"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS21",
+      "layer": "domain_specific",
+      "input": "Commit trễ 24h thì bị trừ bao nhiêu điểm?",
+      "context": "Hỏi về quy chế commit trễ (đặc thù domain)",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời đúng quy chế cụ thể + trích dẫn nguồn",
+      "pass_criteria": ["quy chế", "điểm", "trích dẫn"],
+      "source": "chatlog"
+    },
+    {
+      "id": "GS22",
+      "layer": "domain_specific",
+      "input": "XP tối thiểu để pass khoá học là bao nhiêu?",
+      "context": "Hỏi về quy định XP (đặc thù domain)",
+      "expected_path": "happy",
+      "expected_behavior": "Bot trả lời đúng quy định XP + trích dẫn nguồn",
+      "pass_criteria": ["XP", "quy định", "trích dẫn"],
+      "source": "survey_response"
+    }
+  ]
+}
