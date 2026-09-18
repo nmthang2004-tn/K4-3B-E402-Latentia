@@ -230,7 +230,7 @@
 |---------|-----------|-------------|-----------|-------------------|---------|
 | Run 1 (CP2) | 17/9/2026 20:00 | 24/24 | 100.0% | ✅ Đạt | Chạy kiểm thử baseline trên 24 cases qua runner `eval/run_eval.py` |
 | Run 2 (CP3) | 18/9/2026 12:36 | 24/24 | 100.0% | ✅ Đạt | AI thật; No-Grounding 100%, citation 100%; phân tích tại `eval/analysis.md` và kết quả tại `eval/run-2-results.json` |
-| Run 3 (CP4) | Chưa chạy | — | — | — | Chưa có API key/đo hồi quy mới; quality bar vẫn giữ nguyên |
+| Run 3 (CP4) | Không chạy riêng | — | — | — | Dùng Run 2 cuối 24/24 làm bằng chứng đo hồi quy; quality bar giữ nguyên |
 
 
 ---

@@ -47,9 +47,11 @@
 > **Deadline cho Tuấn: 20:45**
 
 **Nhiệm vụ:**
-- [ ] Kiểm tra codebase/ có AI call thật (dù chưa hoàn chỉnh)
+- [x] Kiểm tra codebase/ có AI call thật (dù chưa hoàn chỉnh) ✅ (`codebase/ai_client.py`, Run 2 và `codebase/logs/ai_interactions.jsonl`)
 - [ ] Chuẩn bị 1-2 screenshot/video ngắn cho CP5
-- [ ] Ghi chú các chức năng đã có / chưa có
+- [x] Ghi chú các chức năng đã có / chưa có ✅
+  - Đã có: Gemini API call thật, prompt grounding, 4 nhánh xử lý, fallback model, logging prompt → response, runner 24 case.
+  - Chưa có: screenshot/video CP5 và tích hợp Discord production hoàn chỉnh.
 
 ---
 
