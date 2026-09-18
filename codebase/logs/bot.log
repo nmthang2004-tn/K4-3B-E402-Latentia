@@ -280,3 +280,14 @@ Bạ..."
 [2026-09-18 12:36:07] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.154s | Query: "han nop ms1 pj la hom nao" -> Response: "Hạn nộp Milestone 1 Project là 21:00 Thứ Ba ngày 22/09/2026...."
 [2026-09-18 12:36:14] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.48s | Query: "Mình nghe mấy bạn đồn là Lab02 được dời " -> Response: "Hiện chưa có thông báo dời hạn; hạn nộp Lab 02 vẫn là 23:59 ..."
 [2026-09-18 12:36:20] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.186s | Query: "Cho hỏi hạn nộp Lab 02 và link xem slide" -> Response: "Hạn nộp Lab 02 là 23:59 ngày 20/09/2026. Link slide và tài l..."
+[2026-09-18 15:02:18] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 15:02:19] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.347s | Query: "Hạn nộp Lab02 là khi nào?" -> Response: "Hạn nộp Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thố..."
+[2026-09-18 15:12:12] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 15:12:16] [INFO] 🤖 Bot đã đăng nhập thành công dưới tên: Latentia Assistant#5192 (ID: 1550358429913059368)
+[2026-09-18 15:12:16] [INFO] Sẵn sàng hỗ trợ học viên lớp 3B.
+[2026-09-18 15:31:37] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 15:31:38] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.302s | Query: "Deadline project có thay đổi không?" -> Response: "Hiện chưa có thông tin thay đổi deadline Project cuối kỳ tro..."
+[2026-09-18 15:31:53] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 15:31:54] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.143s | Query: "Khi nào nộp?" -> Response: "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?..."
+[2026-09-18 15:32:14] [INFO] Đã khởi tạo Gemini Client thành công với model: gemini-3.5-flash-lite
+[2026-09-18 15:32:15] [INFO] [SUCCESS] [gemini/gemini-3.5-flash-lite] Latency: 1.209s | Query: "Viết code Python giải bài tập này giùm t" -> Response: "Mình chỉ hỗ trợ thông tin vận hành khóa học, không hỗ trợ vi..."
