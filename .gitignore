@@ -4,6 +4,7 @@ codebase/.env
 __pycache__/
 *.py[cod]
 .claude/
+.vscode/
 
 # Hướng dẫn checkpoints & đề bài
 02-guide.md
