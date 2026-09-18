@@ -10,10 +10,16 @@
 - **Job executor:** Học viên mới (tuần đầu), đang ở kênh chat Discord của khoá học, cần tra cứu gấp thông tin về deadline nộp bài, standup hoặc link tài liệu hướng dẫn.
 - **Core JTBD:** Khi đang ở kênh Discord và cần tra cứu thông tin khoá học, tôi muốn được trả lời ngay có trích dẫn nguồn, để không phải tự tìm kiếm giữa hàng trăm tin nhắn hoặc tag hỏi TA.
 - **Problem statement:** Học viên khi cần tra cứu deadline hoặc tài liệu bị trôi tin nhắn giữa hàng trăm thảo luận; hỏi bot hiện tại thì bot không hiểu ngữ cảnh hoặc trả lời lan man không nguồn, khiến học viên tốn nhiều thời gian và vẫn phải tag hỏi lại TA.
-- **Evidence:**
+- **Evidence A — định lượng:**
   - Mining (khoá K4): 142/306 câu hỏi gửi bot là về logistics (46.4%); 63/306 phản hồi (20.6%) là menu hỏi lại dài.
   - Khảo sát (n=14): 11/14 (78.6%) gặp khó khăn tìm deadline; 10/14 (71.4%) yêu cầu trả lời có trích dẫn nguồn. Chi tiết phân tích khảo sát do Vàng chủ trì: [`eval/survey_analysis.md`](eval/survey_analysis.md).
-  - Quote: *"toàn tag mod, mod ko trả lời"* — học viên 15/9/2026
+- **Evidence B — định tính, quote nguyên văn từ CSV khảo sát ngày 17/09/2026:**
+  - *"Câu trả lời ko có ích, toàn tag mod, mod ko trả lời."* — phản hồi 17/09/2026 18:51:59.
+  - *"Trả lời quá dài, không biết câu trả lời lấy từ đâu, trả lời nhưng tôi vẫn phải hỏi TA"* — phản hồi 17/09/2026 18:36:32.
+  - *"Nói rõ rằng bot không chắc chắn và đưa nguồn để tôi tự kiểm tra"* — phản hồi ở câu hỏi xử lý khi không chắc chắn.
+  - *"Trả lời chính xác hơn và kèm nguồn"* — phản hồi về cải thiện ưu tiên.
+  - *"Tự phát hiện câu hỏi đã được hỏi trước đó"* — phản hồi về cải thiện ưu tiên.
+  - Các quote được đối chiếu trong [`eval/survey_analysis.md`](eval/survey_analysis.md) và file CSV khảo sát trong repository.
 
 ---
 
@@ -29,6 +35,7 @@
 
 - **Ứng viên loại:** Gom nhóm đá bóng, tạo poll/event — không build trong scope này.
 - **Chọn:** Tra cứu deadline/tài liệu với trích dẫn nguồn — pain rõ ràng, bằng chứng mạnh, build nổi.
+- **Lý do loại các ứng viên còn lại:** Hỏi lại TA là hậu quả cần giảm chứ chưa phải lát cắt sản phẩm chính; bot trả lời dài là triệu chứng của việc thiếu grounding và có thể xử lý trong giải pháp đã chọn; poll/event nằm ngoài non-goals và không phục vụ JTBD tra cứu thông tin.
 
 ---
 
@@ -94,18 +101,22 @@
 | ③ Ngoài phạm vi | "Viết code giùm tôi" | Bot: "Mình chỉ hỗ trợ tra cứu thông tin khoá học. Câu hỏi về code, bạn hỏi TA nhé!" | G1 |
 | ④ Đặc thù domain | Hỏi quy chế commit trễ | Bot: "Theo quy định khoá học: [trích dẫn]. Chi tiết: [link]" | G11 |
 
-**Kịch bản cụ thể (≥8):**
+**Ma trận kịch bản nghiệm thu (10 kịch bản, mỗi kịch bản một dòng):**
 
-1. Hỏi "Hạn nộp Lab02 là khi nào?" → Happy path: trả lời có trích dẫn
-2. Hỏi "Deadline project có thay đổi không?" → ①: không tìm thấy, chuyển TA
-3. Hỏi "Khi nào nộp?" → ②: hỏi làm rõ Lab hay Project
-4. Hỏi "Viết code Python giùm" → ③: từ chối, giải thích phạm vi
-5. Hỏi "Quy chế commit trễ thế nào?" → ④: trả lời có trích dẫn quy định
-6. Hỏi "XP của tuần này là bao nhiêu?" → ①: không có dữ liệu, chuyển TA
-7. Hỏi "Link tài liệu Lab03 đâu?" → Happy path: trả lời có link
-8. Hỏi "Thông báo mới nhất là gì?" → ②: hỏi làm rõ thuộc phạm vi nào
-9. Hỏi "Tạo poll giúp tôi" → ③: từ chối, không nằm trong phạm vi
-10. Hỏi "Điểm danh standup có bắt buộc không?" → ④: trả lời có trích dẫn quy định
+| Tình huống | Lớp | Hành vi mong muốn | Nguyên tắc áp dụng |
+|---|---|---|---|
+| Hạn nộp Lab02 là khi nào? | Happy Path | Trả lời đúng deadline và kèm nguồn | G11 |
+| Deadline Project cuối kỳ có thay đổi không? | ① No-Grounding | Không đoán; nói chưa có thông tin và chuyển @TA | G10/PAIR Handoff |
+| Khi nào nộp? | ② Low-Confidence | Hỏi lại Lab 02 hay Milestone 1 Project | G10 |
+| Viết code Python giùm | ③ Out-of-Scope | Từ chối, nêu phạm vi và hướng sang #thao-luan | G1 |
+| Quy chế commit trễ thế nào? | ④ Domain Policy | Trả lời theo quy chế và kèm nguồn | G11 |
+| XP của tuần này là bao nhiêu? | ① No-Grounding | Không bịa dữ liệu điểm/XP; chuyển @TA | G10/PAIR Handoff |
+| Link tài liệu Lab03 đâu? | ①/② Thiếu căn cứ hoặc thiếu tài liệu | Không tự tạo link; hỏi lại hoặc chuyển @TA | G10 |
+| Thông báo mới nhất là gì? | ② Low-Confidence | Hỏi rõ người dùng muốn deadline, lịch hay tài liệu | G10 |
+| Tạo poll giúp tôi | ③ Out-of-Scope | Từ chối thao tác thay người dùng, hướng dẫn Poll Discord | G1 |
+| Điểm danh standup có bắt buộc không? | ④ Domain Policy | Trả lời quy định và kèm nguồn | G11 |
+
+**Kịch bản đáng sợ nhất khi demo:** TC_09 — học viên hỏi có được lùi deadline Project không. Đây là rủi ro cao nhất vì câu trả lời bịa có thể khiến học viên nộp muộn và mất điểm; bot bắt buộc phải không suy đoán và chuyển @TA.
 
 ---
 
@@ -240,11 +251,19 @@
 
 | Thành viên | Mã HV | Phân công |
 |------------|-------|-----------|
-| Nguyễn Minh Thắng | 2A202602706 | Product Lead, spec.md, evidence mining,  |
+| Nguyễn Minh Thắng | 2A202602706 | Product Lead, spec.md, evidence mining, chốt quality bar và changelog |
 | Nguyễn Thị Vàng | 2A202602897 | Prompt engineering, Golden Set (≥20 cases), eval framework, khảo sát (`eval/survey_analysis.md`) |
-| Nguyễn Minh Tuấn | 2A202602420 | Prototype Discord Bot (API/LangChain), UI demo, data mining,video demo/pitch |
+| Nguyễn Minh Tuấn | 2A202602420 | Prototype Discord Bot, Gemini API/fallback, logging, UI demo và video demo/pitch |
 
-**Willing users (≥3):** Bùi Việt Anh, Hà Anh Tuấn, Trần Mạnh Hùng
+**Willing users (≥3) và kế hoạch validation CP5:**
+
+| Người dùng | Task dùng thử | Bằng chứng cần ghi |
+|---|---|---|
+| Bùi Việt Anh | Tìm deadline Lab 02 và kiểm tra nguồn | Thời gian tìm, có hiểu nguồn không, quote nguyên văn |
+| Hà Anh Tuấn | Hỏi một câu mơ hồ và chọn đường làm rõ | Có biết phải chọn Lab/Project không, quote nguyên văn |
+| Trần Mạnh Hùng | Hỏi một case không có căn cứ và một case ngoài phạm vi | Có nhận ra fallback/@TA và giới hạn bot không, quote nguyên văn |
+
+Validation CP5 sẽ bổ sung tối thiểu 5 người dùng ngoài nhóm, giao task rồi quan sát không hướng dẫn; lưu nhật ký, quote nguyên văn, điểm kẹt và ít nhất một thay đổi vào Changelog.
 
 ---
 
@@ -257,3 +276,4 @@
 | 18/9/2026 | Quality bar: ≥85% tổng thể, 100% no-grounding không bịa, 100% trích dẫn nguồn | CP4 - Freeze quality bar |
 | 18/9/2026 | Hoàn tất runner, sửa prompt/grounding, chạy lại Run 2 đạt 24/24 (100%), No-Grounding 100%, citation 100% | CP3/CP4 - Chốt số liệu và quality bar |
 | 18/9/2026 | Bổ sung template Domain Policy, liên kết báo cáo khảo sát n=14 (`eval/survey_analysis.md`), nghiệm thu 5/5 cases prompt | CP4 - Nguyễn Thị Vàng hoàn thiện toàn diện Prompt & Eval tasks |
+| 18/9/2026 | Bổ sung Evidence A/B với 5 quote nguyên văn, ma trận 10 kịch bản nghiệm thu, kịch bản rủi ro cao nhất và kế hoạch validation willing users | CP4 - Hoàn thiện spec theo rubric |
