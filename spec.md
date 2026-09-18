@@ -277,3 +277,4 @@ Validation CP5 sẽ bổ sung tối thiểu 5 người dùng ngoài nhóm, giao 
 | 18/9/2026 | Hoàn tất runner, sửa prompt/grounding, chạy lại Run 2 đạt 24/24 (100%), No-Grounding 100%, citation 100% | CP3/CP4 - Chốt số liệu và quality bar |
 | 18/9/2026 | Bổ sung template Domain Policy, liên kết báo cáo khảo sát n=14 (`eval/survey_analysis.md`), nghiệm thu 5/5 cases prompt | CP4 - Nguyễn Thị Vàng hoàn thiện toàn diện Prompt & Eval tasks |
 | 18/9/2026 | Bổ sung Evidence A/B với 5 quote nguyên văn, ma trận 10 kịch bản nghiệm thu, kịch bản rủi ro cao nhất và kế hoạch validation willing users | CP4 - Hoàn thiện spec theo rubric |
+| 18/9/2026 | Hoàn thành Validation CP5 với 3 willing users (`validation/feedback_log.md`), chuẩn hóa trích dẫn nguồn `📌 Nguồn:` và bổ sung kênh `#ho-tro` vào fallback No-Grounding | CP5 - Nguyễn Thị Vàng nghiệm thu validation thực tế |
