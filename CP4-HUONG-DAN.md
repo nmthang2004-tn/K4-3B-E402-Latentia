@@ -9,17 +9,48 @@
 
 1. **Hoàn thiện spec.md** — đủ §1–§9
 2. **Khóa quality bar** — commit trước 21:00
-3. **Git commit & push** — có timestamp
+3. **Git commit & push** — user tự làm
 
 ---
 
-## Form CP4 — Câu trả lời
+## Phân công CP4 (TUẦN TỰ)
 
-| Câu hỏi | Trả lời |
-|-----------|----------|
-| **Link spec.md trên GitHub** | [USER FILL - sau khi push] |
-| **Chuẩn "đạt" của nhóm là gì?** | ✅ Đạt khi tổng thể ≥ 85% qua bộ kiểm thử, 100% case Lớp ① (No-Grounding) không được hallucinate/bịa đặt thông tin mà phải fallback chuyển TA, và 100% câu trả lời có căn cứ phải kèm trích dẫn nguồn. |
-| **Phần nào chưa làm xong?** | - Discord bot với AI thật (Tuấn đang làm)<br>- Prompt templates cho 4 đường đi (Vàng đang làm)<br>- Kết quả chạy golden set trên AI thật (Run 2)<br>- Video 30 giây demo thật |
+### 🔴 THẮNG — Hoàn thiện spec.md (LÀM TRƯỚC)
+
+> **Deadline cho Thắng: 20:30** (để Vàng + Tuấn còn thời gian)
+
+**Nhiệm vụ:**
+- [x] §1-§8 đã có trong spec.md ✅
+- [x] Quality bar: "≥85%, 100% no-grounding không bịa, 100% trích dẫn" ✅
+- [ ] Cập nhật §9 Changelog (thêm dòng CP4)
+- [ ] Kiểm tra đủ ≥5 nguyên tắc HAX/PAIR
+- [ ] Kiểm tra đủ ≥8 kịch bản §5
+- [ ] Kiểm tra golden set link đúng
+
+**Output:** spec.md sẵn sàng commit
+
+---
+
+### 🟡 VÀNG — Chuẩn bị prompts cho spec.md
+
+> **Deadline cho Vàng: 20:45**
+
+**Nhiệm vụ:**
+- [ ] Viết system prompt outline (để vào spec §4)
+- [ ] Viết prompt template cho 4 đường đi (Happy, Low-conf, No-ground, Out-of-scope)
+
+**Ghi chú:** Có thể viết trên giấy/note, chưa cần code
+
+---
+
+### 🟢 TUẤN — Chuẩn bị prototype cho spec.md
+
+> **Deadline cho Tuấn: 20:45**
+
+**Nhiệm vụ:**
+- [ ] Kiểm tra codebase/ có AI call thật (dù chưa hoàn chỉnh)
+- [ ] Chuẩn bị 1-2 screenshot/video ngắn cho CP5
+- [ ] Ghi chú các chức năng đã có / chưa có
 
 ---
 
@@ -29,58 +60,39 @@
 
 | Mục | Nội dung | Status |
 |------|----------|--------|
-| §1 | Job executor, Core JTBD, Problem statement, Evidence (mining + survey) | ✅ |
+| §1 | Job executor, Core JTBD, Problem statement, Evidence | ✅ |
 | §2 | Bảng impact 3 ứng viên, lý do loại/chọn | ✅ |
-| §3 | 2 giải pháp tương tự (ChatGPT, Bot hiện tại) | ✅ |
-| §4 | Lát cắt 1 câu, Non-goals (4), Prototype level, Automation + cost-of-error, §4b (5 HAX/PAIR) | ✅ |
+| §3 | 2 giải pháp tương tự | ✅ |
+| §4 | Lát cắt, Non-goals, Automation, §4b HAX/PAIR | ✅ |
 | §5 | 4 lớp + 10 kịch bản | ✅ |
-| §6 | Sơ đồ 4 đường đi + mô tả chi tiết | ✅ |
-| §7 | Chiều chất lượng, Golden set 24 cases, Quality bar | ✅ |
-| §8 | Phân công 3 người, Willing users 3 người | ✅ |
-| §9 | Changelog | ✅ |
+| §6 | Sơ đồ 4 đường đi | ✅ |
+| §7 | Chiều chất lượng, Golden set, Quality bar | ✅ |
+| §8 | Phân công, Willing users | ✅ |
 
-### ⬜ Chưa hoàn thiện (tự khai)
+### ⬜ Cần kiểm tra / bổ sung
 
-| Mục | Nội dung | Ghi chú |
-|------|----------|---------|
-| eval/run-2-results.json | Kết quả chạy trên AI thật | Đang chờ Tuấn |
-| Video demo | Video 30 giây | Đang chờ Tuấn |
-| codebase/prompts/ | System prompt + templates | Đang chờ Vàng |
+| Mục | Nội dung | Thắng check |
+|------|----------|-------------|
+| §4b | Đủ ≥4 HAX/PAIR + vị trí áp dụng | [ ] |
+| §5 | Đủ ≥8 kịch bản | [x] ✅ |
+| §7 | Golden set link đúng | [ ] |
+| §9 | Changelog CP4 | [ ] |
 
 ---
 
-## Git Commands — Thực hiện đúng thứ tự
+## Form CP4 — Điền khi Thắng xong
 
-```bash
-# 1. Commit spec.md
-git add spec.md
-git commit -m "docs: finalize spec.md and freeze quality bar for CP4"
-git push origin main
-
-# 2. Copy link spec.md trên GitHub
-# Link dạng: https://github.com/[username]/[repo]/blob/main/spec.md
-```
+| Câu hỏi | Trả lời |
+|-----------|----------|
+| **Link spec.md trên GitHub** | [USER FILL - sau khi push] |
+| **Chuẩn "đạt" của nhóm là gì?** | Đạt khi tổng thể ≥ 85% qua bộ kiểm thử, 100% case Lớp ① (No-Grounding) không được hallucinate/bịa đặt thông tin mà phải fallback chuyển TA, và 100% câu trả lời có căn cứ phải kèm trích dẫn nguồn. |
+| **Phần nào chưa làm xong?** | Discord bot đang build (Tuấn), Prompt templates đang viết (Vàng), Run 2 và video sẽ hoàn thành sau CP4. |
 
 ---
 
 ## ⛔ Lưu ý quan trọng
 
-1. **Quality bar KHÓA sau 21:00** — không sửa được nữa
-2. **Tự khai phần chưa xong** — không bị trừ điểm; giấu mới bị trừ
-3. **Tiếp tục cập nhật bảng kết quả** ở §7 cho đến CP6
-
----
-
-## Đáp án mẫu cho Form CP4
-
-```
-Link spec.md: https://github.com/[username]/K4-3B-E402-Latentia/blob/main/spec.md
-
-Chuẩn "đạt": Đạt khi tổng thể ≥ 85% qua bộ kiểm thử, 100% case Lớp ① 
-(No-Grounding) không được hallucinate/bịa đặt thông tin mà phải fallback 
-chuyển TA, và 100% câu trả lời có căn cứ phải kèm trích dẫn nguồn.
-
-Phần chưa xong: Discord bot với AI thật đang build (Tuấn), Prompt 
-templates đang viết (Vàng), Run 2 trên AI thật và video demo 30 giây 
-sẽ hoàn thành sau CP4.
-```
+1. **Thắng làm TRƯỚC** — để Vàng + Tuấn biết đường đi
+2. **Quality bar KHÓA sau 21:00** — không sửa được
+3. **Tự khai phần chưa xong** — không bị trừ điểm; giấu mới bị trừ
+4. **Git do user tự commit** — không cần tôi làm

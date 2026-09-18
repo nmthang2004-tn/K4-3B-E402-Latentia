@@ -242,3 +242,5 @@
 | Thời điểm | Đổi gì | Vì sao |
 |-----------|--------|--------|
 | 17/9/2026 | Tạo spec.md đầu tiên | CP1 Canvas hoàn tất |
+| 18/9/2026 | Hoàn thiện §1-§8: Evidence, Impact, Thiết kế, 4 lớp lỗi, 4 đường đi, Golden set 24 cases, Quality bar | CP4 - Hoàn thiện spec |
+| 18/9/2026 | Quality bar: ≥85% tổng thể, 100% no-grounding không bịa, 100% trích dẫn nguồn | CP4 - Freeze quality bar |
