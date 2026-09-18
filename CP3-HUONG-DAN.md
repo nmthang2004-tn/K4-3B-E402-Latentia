@@ -21,8 +21,8 @@
 
 - [x] **Golden set 24 cases** ✅ (đã có trong `eval/`)
 - [x] **Quality bar** ✅ (≥85%, 100% no-grounding không bịa, 100% trích dẫn)
-- [ ] Tạo script **run_eval.py** để chạy golden set tự động
-- [ ] Viết **analysis.md** — mẫu phân tích lỗi
+- [x] Tạo script **run_eval.py** để chạy golden set tự động ✅
+- [x] Viết **analysis.md** — phân tích lỗi Run 2 (`eval/analysis.md`) ✅
 
 **Output cho bước tiếp theo:** `eval/golden_set.json`, `eval/run_eval.py`
 
@@ -104,9 +104,9 @@ eval/
 |----------|----------|
 | Link video thao tác 30 giây? | [USER FILL - YouTube/Drive public] |
 | Đã thử bao nhiêu lần? | **24 lần** (golden set đầy đủ) |
-| Trong đó bao nhiêu lần đạt? | [USER FILL - ghi số thực] |
+| Trong đó bao nhiêu lần đạt? | **24/24 (100%)** |
 | Chuẩn "đạt" của nhóm là gì? | ≥85% tổng thể + 100% Lớp ① không bịa + 100% có căn cứ phải trích dẫn |
-| Những lần chưa đạt sai ở đâu? | [USER FILL - ghi chi tiết từng lỗi] |
+| Những lần chưa đạt sai ở đâu? | Lượt đầu 11/24 do thiếu dữ kiện bắt buộc, wording nhánh out-of-scope và quota 15 request/phút; sau khi sửa prompt/runner, Run 2 chính thức đạt 24/24. Chi tiết tại `eval/analysis.md`. |
 
 ---
 
@@ -115,6 +115,7 @@ eval/
 ### ✅ Thắng — Đã xong
 - [x] Golden set 24 cases
 - [x] Quality bar
+- [x] Runner và phân tích lỗi (`eval/run_eval.py`, `eval/analysis.md`)
 
 ### ✅ Vàng — Đã xong
 - [x] System prompt (`codebase/prompts/system.md`)

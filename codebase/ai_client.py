@@ -27,6 +27,7 @@ try:
         AI_PROVIDER,
         GEMINI_API_KEY,
         GEMINI_MODEL,
+        GEMINI_FALLBACK_MODELS,
         MOCK_DATA_PATH,
         OPENAI_API_KEY,
         OPENAI_MODEL,
@@ -34,6 +35,7 @@ try:
         TEMPERATURE,
         MAX_OUTPUT_TOKENS,
         THINKING_BUDGET,
+        AI_SSL_VERIFY,
     )
     from codebase.logger import get_logger, log_interaction
 except ImportError:
@@ -41,6 +43,7 @@ except ImportError:
         AI_PROVIDER,
         GEMINI_API_KEY,
         GEMINI_MODEL,
+        GEMINI_FALLBACK_MODELS,
         MOCK_DATA_PATH,
         OPENAI_API_KEY,
         OPENAI_MODEL,
@@ -48,6 +51,7 @@ except ImportError:
         TEMPERATURE,
         MAX_OUTPUT_TOKENS,
         THINKING_BUDGET,
+        AI_SSL_VERIFY,
     )
     from logger import get_logger, log_interaction  # type: ignore
 
@@ -70,7 +74,11 @@ class CourseAssistantAI:
                 try:
                     from google import genai
 
-                    self.gemini_client = genai.Client(api_key=GEMINI_API_KEY)
+                    client_args = {"verify": AI_SSL_VERIFY}
+                    self.gemini_client = genai.Client(
+                        api_key=GEMINI_API_KEY,
+                        http_options={"client_args": client_args},
+                    )
                     logger.info(f"Đã khởi tạo Gemini Client thành công với model: {GEMINI_MODEL}")
                 except Exception as e:
                     logger.error(f"Không thể khởi tạo Gemini Client: {e}")
@@ -144,6 +152,14 @@ class CourseAssistantAI:
                 with open(system_file, "r", encoding="utf-8") as f:
                     content = f.read().strip()
                     if content:
+                        # system.md là tài liệu có metadata; chỉ gửi phần code fence
+                        # cho mô hình để tránh tiêu đề/tác giả làm loãng instruction.
+                        fence_start = content.find("```markdown")
+                        if fence_start >= 0:
+                            prompt_start = fence_start + len("```markdown")
+                            fence_end = content.find("```", prompt_start)
+                            if fence_end >= 0:
+                                return content[prompt_start:fence_end].strip()
                         return content
             except Exception as e:
                 logger.warning(f"Lỗi đọc prompt từ {system_file}: {e}")
@@ -169,7 +185,9 @@ class CourseAssistantAI:
             f"[USER_QUESTION]:\n"
             f"{user_question}\n\n"
             f"[INSTRUCTION]:\n"
-            f"Dựa vào [CONTEXT_DATA], hãy phản hồi câu hỏi của học viên tuân thủ nghiêm ngặt các quy tắc trên."
+            f"Bước 1: phân loại theo thứ tự Out-of-Scope > Low-Confidence > No-Grounding > Happy/Domain.\n"
+            f"Bước 2: trả lời theo response contract, không in nhãn nhánh hay suy luận.\n"
+            f"Bước 3: tự kiểm tra mọi dữ kiện có trong context và citation đúng trước khi xuất câu trả lời."
         )
 
     def ask(self, question: str) -> Dict[str, Any]:
@@ -183,66 +201,86 @@ class CourseAssistantAI:
 
         # 1. Trường hợp dùng Google Gemini
         if self.provider == "gemini" and self.gemini_client:
-            try:
-                from google.genai import types
+            from google.genai import types
 
-                gen_kwargs: Dict[str, Any] = {
-                    "system_instruction": system_instruction,
-                    "temperature": TEMPERATURE,
-                    "max_output_tokens": MAX_OUTPUT_TOKENS,
-                }
-                if "lite" not in GEMINI_MODEL.lower() and hasattr(types, "ThinkingConfig"):
-                    gen_kwargs["thinking_config"] = types.ThinkingConfig(thinking_budget=THINKING_BUDGET)
+            # Thử model chính trước, sau đó lần lượt fallback khi model bị quota,
+            # rate-limit, không khả dụng hoặc API trả lỗi model.
+            gemini_models = list(dict.fromkeys([GEMINI_MODEL, *GEMINI_FALLBACK_MODELS]))
+            errors = []
+            for attempt, model_name in enumerate(gemini_models):
+                try:
+                    gen_kwargs: Dict[str, Any] = {
+                        "system_instruction": system_instruction,
+                        "temperature": TEMPERATURE,
+                        "max_output_tokens": MAX_OUTPUT_TOKENS,
+                    }
+                    if "lite" not in model_name.lower() and hasattr(types, "ThinkingConfig"):
+                        gen_kwargs["thinking_config"] = types.ThinkingConfig(
+                            thinking_budget=THINKING_BUDGET
+                        )
 
-                config = types.GenerateContentConfig(**gen_kwargs)
+                    generation_config = types.GenerateContentConfig(**gen_kwargs)
+                    response = self.gemini_client.models.generate_content(
+                        model=model_name,
+                        contents=full_prompt,
+                        config=generation_config,
+                    )
+                    reply_text = response.text.strip() if response.text else "Không nhận được phản hồi từ AI."
+                    latency = time.time() - start_time
+                    log_entry = log_interaction(
+                        query=question,
+                        prompt_sent=full_prompt,
+                        response=reply_text,
+                        latency_sec=latency,
+                        provider="gemini",
+                        model=model_name,
+                        success=True,
+                        metadata={
+                            "fallback_attempt": attempt + 1,
+                            "models_tried": gemini_models[: attempt + 1],
+                        },
+                    )
+                    if attempt:
+                        logger.warning(
+                            "Gemini fallback thành công: dùng %s sau %d model lỗi",
+                            model_name,
+                            attempt,
+                        )
+                    return {
+                        "text": reply_text,
+                        "latency": latency,
+                        "provider": "gemini",
+                        "model": model_name,
+                        "success": True,
+                        "log_entry": log_entry,
+                    }
+                except Exception as e:
+                    errors.append(f"{model_name}: {e}")
+                    logger.warning(
+                        "Gemini model %s lỗi; thử fallback tiếp theo nếu có: %s",
+                        model_name,
+                        e,
+                    )
 
-                response = self.gemini_client.models.generate_content(
-                    model=GEMINI_MODEL,
-                    contents=full_prompt,
-                    config=config,
-                )
-                
-                reply_text = response.text.strip() if response.text else "Không nhận được phản hồi từ AI."
-                latency = time.time() - start_time
-
-                log_entry = log_interaction(
-                    query=question,
-                    prompt_sent=full_prompt,
-                    response=reply_text,
-                    latency_sec=latency,
-                    provider="gemini",
-                    model=GEMINI_MODEL,
-                    success=True,
-                )
-
-                return {
-                    "text": reply_text,
-                    "latency": latency,
-                    "provider": "gemini",
-                    "model": GEMINI_MODEL,
-                    "success": True,
-                    "log_entry": log_entry,
-                }
-            except Exception as e:
-                latency = time.time() - start_time
-                error_msg = f"Lỗi gọi Gemini API: {e}"
-                logger.error(error_msg)
-                log_interaction(
-                    query=question,
-                    prompt_sent=full_prompt,
-                    response=error_msg,
-                    latency_sec=latency,
-                    provider="gemini",
-                    model=GEMINI_MODEL,
-                    success=False,
-                )
-                return {
-                    "text": f"⚠️ Có lỗi kết nối AI: {e}",
-                    "latency": latency,
-                    "provider": "gemini",
-                    "model": GEMINI_MODEL,
-                    "success": False,
-                }
+            latency = time.time() - start_time
+            error_msg = "Lỗi gọi Gemini API sau khi thử fallback: " + " | ".join(errors)
+            log_interaction(
+                query=question,
+                prompt_sent=full_prompt,
+                response=error_msg,
+                latency_sec=latency,
+                provider="gemini",
+                model="fallback_exhausted",
+                success=False,
+                metadata={"models_tried": gemini_models},
+            )
+            return {
+                "text": "⚠️ Các model Gemini hiện đều không khả dụng. Vui lòng thử lại sau.",
+                "latency": latency,
+                "provider": "gemini",
+                "model": "fallback_exhausted",
+                "success": False,
+            }
 
         # 2. Trường hợp dùng OpenAI (Dự phòng)
         elif self.provider == "openai" and self.openai_client:

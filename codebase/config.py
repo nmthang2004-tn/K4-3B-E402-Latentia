@@ -38,6 +38,13 @@ TA_ROLE_NAME = os.getenv("TA_ROLE_NAME", "@TA").strip()
 AI_PROVIDER = os.getenv("AI_PROVIDER", "gemini").strip().lower()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite").strip()
+_gemini_fallback_raw = os.getenv(
+    "GEMINI_FALLBACK_MODELS",
+    "gemini-3.8-flash,gemini-3.7-flash,gemini-flash-latest",
+)
+GEMINI_FALLBACK_MODELS = [
+    model.strip() for model in _gemini_fallback_raw.split(",") if model.strip()
+]
 
 # Backup Provider Settings (OpenAI)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
@@ -47,3 +54,5 @@ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini").strip()
 TEMPERATURE = float(os.getenv("AI_TEMPERATURE", "0.0"))  # 0.0 to strictly prevent hallucination
 MAX_OUTPUT_TOKENS = int(os.getenv("AI_MAX_OUTPUT_TOKENS", "1000"))
 THINKING_BUDGET = int(os.getenv("AI_THINKING_BUDGET", "0"))  # 0 = tắt thought tokens để tối ưu tốc độ và tránh cắt cụt câu trả lời
+# Một số máy hackathon có proxy CA riêng; mặc định vẫn xác thực TLS.
+AI_SSL_VERIFY = os.getenv("AI_SSL_VERIFY", "true").strip().lower() not in {"0", "false", "no"}

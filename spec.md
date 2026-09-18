@@ -74,13 +74,13 @@
 | Làm rõ hệ thống làm được gì | G1 | Tin nhắn chào khi bot được mention: "Mình là Trợ lý Discord — hỏi về deadline, lịch, link tài liệu nhé!" |
 
 - **§4c. Thiết kế System Prompt & Prompt Templates (Phụ trách: Nguyễn Thị Vàng - 2A202602897):**
-  - **System Prompt Outline:** Định nghĩa rõ vai trò Trợ lý Discord lớp K4-3B; giới hạn trả lời thông tin vận hành; cấm tuyệt đối viết code/giải bài tập (Non-goals); ràng buộc Zero Hallucination (chỉ dùng `[CONTEXT_DATA]`), độ dài $\le 200$ ký tự, và bắt buộc đính kèm `📌 Nguồn: #[kênh]`. Chi tiết: [`codebase/prompts/system.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/system.md).
+  - **System Prompt Outline:** Định nghĩa rõ vai trò Trợ lý Discord lớp K4-3B; giới hạn trả lời thông tin vận hành; cấm tuyệt đối viết code/giải bài tập (Non-goals); ràng buộc Zero Hallucination (chỉ dùng `[CONTEXT_DATA]`), độ dài $\le 200$ ký tự, và bắt buộc đính kèm `📌 Nguồn: #[kênh]`. Chi tiết: [`codebase/prompts/system.md`](codebase/prompts/system.md).
   - **Prompt Templates cho 4 đường đi:**
-    1. *Happy Path:* Trả lời trực tiếp kèm trích dẫn nguồn và nút sửa/tag TA. Chi tiết: [`codebase/prompts/templates/happy_path.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/templates/happy_path.md).
-    2. *Low-Confidence (G10):* Phát hiện câu hỏi mơ hồ, cấm đoán mò, hỏi làm rõ kèm 2-3 lựa chọn mốc cụ thể. Chi tiết: [`codebase/prompts/templates/low_confidence.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/templates/low_confidence.md).
-    3. *No-Grounding (G10/PAIR):* Thiếu căn cứ thì thừa nhận chưa có dữ liệu và kích hoạt cơ chế Handoff tag @TA. Chi tiết: [`codebase/prompts/templates/no_grounding.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/templates/no_grounding.md).
-    4. *Out-of-Scope (G1):* Lịch sự từ chối giải bài/viết code và hướng dẫn sang kênh `#thao-luan`. Chi tiết: [`codebase/prompts/templates/out_of_scope.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/templates/out_of_scope.md).
-  - **Báo cáo kiểm thử 5 cases:** Đã thẩm định đạt 5/5 cases (100.0%) tại [`codebase/prompts/prompt_test_report.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/prompt_test_report.md).
+    1. *Happy Path:* Trả lời trực tiếp kèm trích dẫn nguồn và nút sửa/tag TA. Chi tiết: [`codebase/prompts/templates/happy_path.md`](codebase/prompts/templates/happy_path.md).
+    2. *Low-Confidence (G10):* Phát hiện câu hỏi mơ hồ, cấm đoán mò, hỏi làm rõ kèm 2-3 lựa chọn mốc cụ thể. Chi tiết: [`codebase/prompts/templates/low_confidence.md`](codebase/prompts/templates/low_confidence.md).
+    3. *No-Grounding (G10/PAIR):* Thiếu căn cứ thì thừa nhận chưa có dữ liệu và kích hoạt cơ chế Handoff tag @TA. Chi tiết: [`codebase/prompts/templates/no_grounding.md`](codebase/prompts/templates/no_grounding.md).
+    4. *Out-of-Scope (G1):* Lịch sự từ chối giải bài/viết code và hướng dẫn sang kênh `#thao-luan`. Chi tiết: [`codebase/prompts/templates/out_of_scope.md`](codebase/prompts/templates/out_of_scope.md).
+  - **Báo cáo kiểm thử 5 cases:** Đã thẩm định đạt 5/5 cases (100.0%) tại [`codebase/prompts/prompt_test_report.md`](codebase/prompts/prompt_test_report.md).
 
 ---
 
@@ -216,7 +216,8 @@
   - **Conciseness & Source Citation (Ngắn gọn & Kèm nguồn):** Độ dài ≤ 200 ký tự (hoặc ≤ 3 ý), luôn có dòng trích dẫn `📌 Nguồn: [Kênh/Tài liệu]` cho câu trả lời Happy path và Domain Policy. Đo: *Pass/Fail*.
 
 - **Golden set (24 cases — đã hoàn thiện trong `eval/`):**
-  - Chi tiết file: [`eval/golden_set.json`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/eval/golden_set.json) & [`eval/golden_set.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/eval/golden_set.md).
+  - Chi tiết file: [`eval/golden_set.json`](eval/golden_set.json) & [`eval/golden_set.md`](eval/golden_set.md).
+  - Runner: [`eval/run_eval.py`](eval/run_eval.py) · phân tích lỗi: [`eval/analysis.md`](eval/analysis.md).
   - Cơ cấu: 8 case Happy path + 3 case Lớp ① (Nguồn sự thật) + 3 case Lớp ② (Mơ hồ/Hỏi lại) + 3 case Lớp ③ (Ngoài phạm vi) + 3 case Lớp ④ (Đặc thù quy chế) + 4 Edge cases (Teencode, viết tắt, bẫy tin đồn, câu hỏi ghép).
   - Trong đó có **14/24 cases (58.3%)** được trích xuất hoặc phát triển trực tiếp từ khảo sát 14 học viên lớp 3B.
 
@@ -228,8 +229,8 @@
 | Lượt đo | Thời điểm | Số case qua | Tỷ lệ (%) | Đạt Quality Bar? | Ghi chú |
 |---------|-----------|-------------|-----------|-------------------|---------|
 | Run 1 (CP2) | 17/9/2026 20:00 | 24/24 | 100.0% | ✅ Đạt | Chạy kiểm thử baseline trên 24 cases qua runner `eval/run_eval.py` |
-| Run 2 (CP3) | 18/9/2026 (dự kiến) | — | — | — | Đo lường trên prototype kết nối LLM / Mock API |
-| Run 3 (CP4) | 18/9/2026 (dự kiến) | — | — | — | Kiểm tra hồi quy trước khi chốt spec |
+| Run 2 (CP3) | 18/9/2026 12:36 | 24/24 | 100.0% | ✅ Đạt | AI thật; No-Grounding 100%, citation 100%; phân tích tại `eval/analysis.md` và kết quả tại `eval/run-2-results.json` |
+| Run 3 (CP4) | Chưa chạy | — | — | — | Chưa có API key/đo hồi quy mới; quality bar vẫn giữ nguyên |
 
 
 ---
@@ -253,3 +254,4 @@
 | 17/9/2026 | Tạo spec.md đầu tiên | CP1 Canvas hoàn tất |
 | 18/9/2026 | Hoàn thiện §1-§8: Evidence, Impact, Thiết kế, 4 lớp lỗi, 4 đường đi, Golden set 24 cases, Quality bar | CP4 - Hoàn thiện spec |
 | 18/9/2026 | Quality bar: ≥85% tổng thể, 100% no-grounding không bịa, 100% trích dẫn nguồn | CP4 - Freeze quality bar |
+| 18/9/2026 | Hoàn tất runner, sửa prompt/grounding, chạy lại Run 2 đạt 24/24 (100%), No-Grounding 100%, citation 100% | CP3/CP4 - Chốt số liệu và quality bar |

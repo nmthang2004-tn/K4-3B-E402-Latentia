@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(Get-Content \"d:\\\\Hakerthonn\\\\README.md\" -Encoding UTF8)",
-      "Bash(Select-Object -First 50)"
+      "Bash(Select-Object -First 50)",
+      "Bash(git -C \"d:/Hakerthonn\" status --short)"
     ]
   }
 }

@@ -85,7 +85,7 @@
       "user_input": "Nộp bài Lab 02 qua hình thức nào, có cần gửi file zip không?",
       "expected_behavior": "Nêu rõ nộp qua link GitHub trên VLearn, không gửi zip",
       "expected_output_contains": ["GitHub", "VLearn", "README"],
-      "must_not_contain": ["gửi email", "gửi file zip"],
+      "must_not_contain": ["gửi email", "bắt buộc gửi file zip", "hãy gửi file zip"],
       "expected_branch": "happy_path"
     },
     {

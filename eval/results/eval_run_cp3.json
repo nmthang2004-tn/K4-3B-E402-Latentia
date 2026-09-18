@@ -1,179 +1,231 @@
 {
-  "timestamp": "18/09/2026 11:07:00",
+  "timestamp": "18/09/2026 12:36:20",
   "run_type": "Live AI (CP3)",
   "total_cases": 24,
-  "passed": 11,
-  "failed": 13,
-  "pass_rate": "45.8%",
-  "quality_bar_met": false,
+  "passed": 24,
+  "failed": 0,
+  "pass_rate": "100.0%",
+  "quality_bar_met": true,
+  "strict_constraints": {
+    "layer_1_no_grounding_100_percent": true,
+    "grounded_citation_100_percent": true
+  },
   "details": [
     {
       "id": "TC_01",
       "input": "Hạn nộp Lab02 là khi nào?",
       "layer": "Normal",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Hạn nộp bài tập Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn (nộp qua GitHub link kèm file README).\n\n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Hạn nộp Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên hệ thống VLearn. \n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_02",
       "input": "Cho mình xin link slide và tài liệu học tập của khóa học với",
       "layer": "Normal",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Slide và tài liệu học tập được lưu tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials (Cập nhật 08:00 mỗi ngày).\n\n📌 Nguồn: #tai-lieu-hoc-tap\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Bạn có thể xem slide lý thuyết và hướng dẫn thực hành Lab tại kho tài nguyên VLearn: https://vlearn.edu.vn/courses/k4-batch/materials.\n📌 Nguồn: #tai-lieu-hoc-tap\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_03",
       "input": "Lịch standup sáng lớp 3B mấy giờ bắt đầu?",
       "layer": "Normal",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Lịch Standup của lớp 3B bắt đầu vào lúc 08:30 sáng từ Thứ Hai đến Thứ Sáu tại phòng E402 và kênh Voice Discord 'Standup-Room-3B'.\n\n📌 Nguồn: #lich-trinh-lop-3b\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Lịch standup sáng lớp 3B bắt đầu vào lúc 08:30 tại phòng E402 (kết hợp kênh Voice Discord 'Standup-Room-3B').\n\n📌 Nguồn: #lich-trinh-lop-3b\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_04",
       "input": "Milestone 1 Project nộp trước mấy giờ ngày nào?",
       "layer": "Normal",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Milestone 1 Project nộp trước 21:00 Thứ Ba ngày 22/09/2026 (mỗi nhóm nộp 1 bản duy nhất).  \n📌 Nguồn: #thong-bao-project  \n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Hạn chót nộp Milestone 1 Project là 21:00 Thứ Ba ngày 22/09/2026.\n\n📌 Nguồn: #thong-bao-project\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_05",
       "input": "Gặp lỗi kỹ thuật thì tạo ticket ở kênh nào?",
       "layer": "Normal",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Gõ lệnh `/ticket` tại kênh `#ho-tro-ky-thuat` để được TA phản hồi trong 30 phút (08:00 - 18:00).\n\n📌 Nguồn: #kenh-ticket-ho-tro\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Bạn gõ lệnh `/ticket` tại kênh #ho-tro-ky-thuat để được TA trực kỹ thuật phản hồi trong vòng 30 phút (giờ hành chính 08:00 - 18:00).\n\n📌 Nguồn: #kenh-ticket-ho-tro\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_06",
       "input": "Nộp bài Lab 02 qua hình thức nào, có cần gửi file zip không?",
       "layer": "Normal",
-      "status": "❌ FAIL",
-      "actual_output": "Bài Lab 02 nộp qua GitHub link kèm file README báo cáo trên VLearn, không gửi file zip.\n\n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "expected_branch": "happy_path",
+      "status": "✅ PASS",
+      "actual_output": "Bài Lab 02 nộp qua GitHub link kèm file README báo cáo trên hệ thống VLearn, tuyệt đối không gửi file zip.\n\n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_07",
       "input": "Milestone 1 cả nhóm cùng nộp hay chỉ nhóm trưởng nộp?",
       "layer": "Normal",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Milestone 1 chỉ nhóm trưởng đại diện nộp 1 bản duy nhất cho cả nhóm.\n\n📌 Nguồn: #thong-bao-project\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Milestone 1 Project (Nộp Spec & Kiến trúc sơ bộ) quy định mỗi nhóm nộp 1 bản duy nhất do nhóm trưởng đại diện.\n\n📌 Nguồn: #thong-bao-project\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_08",
       "input": "Standup lớp 3B kéo dài trong bao lâu?",
       "layer": "Normal",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Standup lớp 3B có thời lượng tối đa 15 phút.\n\n📌 Nguồn: #lich-trinh-lop-3b\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Standup lớp 3B diễn ra trong thời lượng tối đa 15 phút.\n\n📌 Nguồn: #lich-trinh-lop-3b\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_09",
       "input": "Deadline Project cuối kỳ có được lùi lại sang tuần sau không bot?",
       "layer": "Chỗ khó ①",
-      "status": "❌ FAIL",
-      "actual_output": "Mình không có thẩm quyền gia hạn deadline hay thay đổi quy chế khoá học. Bạn vui lòng trao đổi trực tiếp với TA hoặc Ban tổ chức tại kênh #ho-tro nhé!\n\n📌 Nguồn: #quy-che-khoa-hoc (Không có ngoại lệ về thời gian nộp bài)"
+      "expected_branch": "no_grounding",
+      "status": "✅ PASS",
+      "actual_output": "Hiện tại chưa có thông tin dời hạn deadline Project cuối kỳ. Bạn vui lòng tag @TA để được hỗ trợ giải đáp nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_10",
       "input": "Điểm bài Lab 01 của mình được mấy điểm thế bot?",
       "layer": "Chỗ khó ①",
-      "status": "❌ FAIL",
-      "actual_output": "Mình là Trợ lý vận hành khóa học, không hỗ trợ kiểm tra điểm số riêng tư. Bạn hãy tự xem kết quả trên VLearn nhé!\n\n📌 Nguồn: #kenh-ticket-ho-tro (Dữ liệu quy chế VLearn)"
+      "expected_branch": "no_grounding",
+      "status": "✅ PASS",
+      "actual_output": "Mình không thể tra cứu điểm cá nhân. Bạn xem trên VLearn hoặc liên hệ @TA nhé!",
+      "failure_reasons": {}
     },
     {
       "id": "TC_11",
       "input": "Lịch thi giữa kỳ môn này diễn ra vào ngày nào?",
       "layer": "Chỗ khó ①",
+      "expected_branch": "no_grounding",
       "status": "✅ PASS",
-      "actual_output": "Mình chưa tìm thấy thông tin chính thức về lịch thi giữa kỳ trong tài liệu thông báo của khoá học. \n\nBạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]"
+      "actual_output": "Mình chưa tìm thấy thông tin chính thức về lịch thi giữa kỳ trong tài liệu thông báo của khoá học. Bạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_12",
       "input": "Khi nào nộp bài?",
       "layer": "Chỗ khó ②",
-      "status": "❌ FAIL",
-      "actual_output": "Câu hỏi của bạn chưa rõ ràng. Bạn đang muốn hỏi hạn nộp của bài nào? (Ví dụ: Lab 02 hay Milestone 1 Project).\n\n📌 Nguồn: #thong-bao-khoa-hoc / #thong-bao-project\n\n[❌ Bỏ qua / Gõ lại]"
+      "expected_branch": "low_confidence",
+      "status": "✅ PASS",
+      "actual_output": "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?\n\n[❌ Bỏ qua / Gõ lại]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_13",
       "input": "Mấy giờ hết hạn?",
       "layer": "Chỗ khó ②",
-      "status": "❌ FAIL",
-      "actual_output": "Bạn đang hỏi về hạn nộp của bài tập nào (Lab 02 hay Milestone 1 Project)? \n\n📌 Bạn có thể làm rõ câu hỏi để mình cung cấp thời gian chính xác nhé!\n\n[❌ Bỏ qua / Gõ lại] [✏️ Sửa câu hỏi]"
+      "expected_branch": "low_confidence",
+      "status": "✅ PASS",
+      "actual_output": "Bạn đang hỏi về bài nộp nào: Lab 02 hay Milestone 1 Project?\n\n[❌ Bỏ qua / Gõ lại]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_14",
       "input": "Link bài học ở đâu?",
       "layer": "Chỗ khó ②",
-      "status": "❌ FAIL",
-      "actual_output": "Slide lý thuyết và tài liệu thực hành được lưu trữ tại: https://vlearn.edu.vn/courses/k4-batch/materials (cập nhật lúc 08:00 sáng mỗi ngày).\n\n📌 Nguồn: #tai-lieu-hoc-tap\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "expected_branch": "low_confidence",
+      "status": "✅ PASS",
+      "actual_output": "Bạn cần link nào: slide bài giảng hay link nộp bài?\n\n[❌ Bỏ qua / Gõ lại]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_15",
       "input": "Viết giúp mình hàm Python tính Cosine Similarity giữa 2 vector với",
       "layer": "Chỗ khó ③",
-      "status": "❌ FAIL",
-      "actual_output": "Mình là Trợ lý vận hành khóa học, không hỗ trợ viết code hoặc giải bài tập. \n\nBạn hãy trao đổi tại kênh #thao-luan hoặc hỏi TA/Mentor trong buổi Lab nhé!"
+      "expected_branch": "out_of_scope",
+      "status": "✅ PASS",
+      "actual_output": "Mình chỉ hỗ trợ thông tin vận hành khóa học, không hỗ trợ viết code hoặc giải bài tập. Bạn hãy trao đổi tại #thao-luan nhé!",
+      "failure_reasons": {}
     },
     {
       "id": "TC_16",
       "input": "Tạo một vote bình chọn giờ họp nhóm cho team mình với",
       "layer": "Chỗ khó ③",
-      "status": "❌ FAIL",
-      "actual_output": "Mình không hỗ trợ tạo vote/poll hoặc điểm danh thay cho người dùng. Bạn hãy tự tạo poll trên Discord hoặc trao đổi tại kênh #thao-luan nhé!\n\n📌 Nguồn: #quy-che-khoa-hoc (Không áp dụng, đây là câu hỏi Out-of-Scope)\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "expected_branch": "out_of_scope",
+      "status": "✅ PASS",
+      "actual_output": "Mình là Trợ lý vận hành khóa học, không thể tạo poll thay cho bạn. Bạn vui lòng sử dụng tính năng Poll của Discord nhé! \n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_17",
       "input": "Điểm danh hộ mình buổi sáng nay với, mình vào trễ 10 phút",
       "layer": "Chỗ khó ③",
-      "status": "❌ FAIL",
-      "actual_output": "Mình là Trợ lý vận hành khóa học, không hỗ trợ điểm danh thay cho người dùng. Bạn hãy liên hệ trực tiếp TA trong buổi Standup nhé!\n\n📌 Nguồn: #[lich-trinh-lop-3b] (Quy chế điểm danh Lớp 3B)\n\n[❌ Bỏ qua / Gõ lại] [🏷️ Tag @TA hỗ trợ ngay]"
+      "expected_branch": "out_of_scope",
+      "status": "✅ PASS",
+      "actual_output": "Mình không có thẩm quyền điểm danh thay cho học viên. Bạn hãy báo TA hoặc Mentor trong buổi học nhé!",
+      "failure_reasons": {}
     },
     {
       "id": "TC_18",
       "input": "Nếu nộp muộn bài lab thì bị trừ điểm như thế nào?",
       "layer": "Chỗ khó ④",
-      "status": "❌ FAIL",
-      "actual_output": "Nộp muộn dưới 24h bị trừ 50% điểm, từ 24h - 48h bị trừ 75% điểm, quá 48h nhận 0 điểm (không có ngoại lệ nếu không có lý do y tế từ BTC).\n\n📌 Nguồn: #quy-che-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "expected_branch": "happy_path",
+      "status": "✅ PASS",
+      "actual_output": "Theo Mục 3.2 Quy chế khoá học: Nộp muộn dưới 24h bị trừ 50% số điểm bài nộp; nộp muộn từ 24h - 48h bị trừ 75% số điểm; nộp muộn quá 48h nhận 0 điểm bài đó.\n\n📌 Nguồn: #quy-che-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_19",
       "input": "Bị ốm không tham gia standup được thì có bị phạt trừ điểm chuyên cần không?",
       "layer": "Chỗ khó ④",
-      "status": "❌ FAIL",
-      "actual_output": "Mình chưa tìm thấy thông tin chính thức về việc trừ điểm chuyên cần khi vắng mặt ốm trong tài liệu thông báo của khoá học. \n\nBạn vui lòng tag @TA hoặc gửi câu hỏi tại kênh #ho-tro để được hỗ trợ nhé!\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]"
+      "expected_branch": "happy_path",
+      "status": "✅ PASS",
+      "actual_output": "Nếu vắng standup do lý do y tế và có xác nhận từ BTC, bạn sẽ không bị phạt trừ điểm chuyên cần theo quy chế.\n\n📌 Nguồn: #quy-che-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_20",
       "input": "Commit code sau giờ deadline nhưng push trước giờ thì tính thế nào?",
       "layer": "Chỗ khó ④",
-      "status": "❌ FAIL",
-      "actual_output": "[ĐƯỜNG ĐI 2 - LOW-CONFIDENCE]\n\nMình chưa có thông tin cụ thể về việc tính thời gian dựa trên \"thời điểm commit hay thời điểm push code\". \n\nBạn có đang hỏi về quy chế nộp bài muộn tính theo thời gian nộp lên hệ thống VLearn không?\n\n📌 Nguồn: #[quy-che-khoa-hoc]\n\n[❌ Bỏ qua / Gõ lại]  [🏷️ Tag @TA hỗ trợ ngay]"
+      "expected_branch": "happy_path",
+      "status": "✅ PASS",
+      "actual_output": "Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra.\n\n📌 Nguồn: #quy-che-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_21",
       "input": "dl lab2 la khi nao the bot oi",
       "layer": "Edge case",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Hạn nộp Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên VLearn.\n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Hạn nộp Lab 02 là 23:59 Chủ Nhật ngày 20/09/2026 trên VLearn.\n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_22",
       "input": "han nop ms1 pj la hom nao",
       "layer": "Edge case",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "Hạn nộp Milestone 1 Project là 21:00 Thứ Ba ngày 22/09/2026 trên hệ thống (mỗi nhóm nộp 1 bản duy nhất).\n\n📌 Nguồn: #thong-bao-project\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Hạn nộp Milestone 1 Project là 21:00 Thứ Ba ngày 22/09/2026.\n\n📌 Nguồn: #thong-bao-project\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_23",
       "input": "Mình nghe mấy bạn đồn là Lab02 được dời hạn đến thứ Tư tuần sau đúng không bot?",
       "layer": "Edge case",
-      "status": "❌ FAIL",
-      "actual_output": "Mình chưa tìm thấy thông tin chính thức về việc dời hạn Lab 02 trong dữ liệu khóa học. Hạn nộp Lab 02 vẫn là 23:59 Chủ Nhật ngày 20/09/2026 trên VLearn.\n📌 Nguồn: #thong-bao-khoa-hoc (20/09/2026)\n\n[🏷️ Tag @TA hỗ trợ ngay] [🔄 Thử lại câu hỏi khác]"
+      "expected_branch": "happy_path",
+      "status": "✅ PASS",
+      "actual_output": "Hiện chưa có thông báo dời hạn; hạn nộp Lab 02 vẫn là 23:59 ngày 20/09/2026.\n\n📌 Nguồn: #thong-bao-khoa-hoc\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     },
     {
       "id": "TC_24",
       "input": "Cho hỏi hạn nộp Lab 02 và link xem slide buổi đó ở đâu luôn?",
       "layer": "Edge case",
+      "expected_branch": "happy_path",
       "status": "✅ PASS",
-      "actual_output": "- Hạn nộp Lab 02: 23:59 Chủ Nhật 20/09/2026 trên VLearn.\n- Link slide & tài liệu: https://vlearn.edu.vn/courses/k4-batch/materials\n\n📌 Nguồn: #thong-bao-khoa-hoc & #tai-lieu-hoc-tap\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]"
+      "actual_output": "Hạn nộp Lab 02 là 23:59 ngày 20/09/2026. Link slide và tài liệu học tập được lưu tại: https://vlearn.edu.vn/courses/k4-batch/materials.\n\n📌 Nguồn: #thong-bao-khoa-hoc và #tai-lieu-hoc-tap\n\n[✏️ Sửa câu hỏi] [🏷️ Tag TA]",
+      "failure_reasons": {}
     }
   ]
 }

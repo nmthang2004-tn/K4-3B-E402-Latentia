@@ -22,10 +22,10 @@
 **Nhiệm vụ:**
 - [x] §1-§8 đã có trong spec.md ✅
 - [x] Quality bar: "≥85%, 100% no-grounding không bịa, 100% trích dẫn" ✅
-- [ ] Cập nhật §9 Changelog (thêm dòng CP4)
-- [ ] Kiểm tra đủ ≥5 nguyên tắc HAX/PAIR
-- [ ] Kiểm tra đủ ≥8 kịch bản §5
-- [ ] Kiểm tra golden set link đúng
+- [x] Cập nhật §9 Changelog (thêm dòng CP4) ✅
+- [x] Kiểm tra đủ ≥5 nguyên tắc HAX/PAIR ✅ (5 nguyên tắc)
+- [x] Kiểm tra đủ ≥8 kịch bản §5 ✅ (10 kịch bản)
+- [x] Kiểm tra golden set link đúng ✅ (liên kết tương đối)
 
 **Output:** spec.md sẵn sàng commit
 
@@ -72,10 +72,10 @@
 
 | Mục | Nội dung | Thắng check |
 |------|----------|-------------|
-| §4b | Đủ ≥4 HAX/PAIR + vị trí áp dụng | [ ] |
+| §4b | Đủ ≥4 HAX/PAIR + vị trí áp dụng | [x] ✅ |
 | §5 | Đủ ≥8 kịch bản | [x] ✅ |
-| §7 | Golden set link đúng | [ ] |
-| §9 | Changelog CP4 | [ ] |
+| §7 | Golden set link đúng | [x] ✅ |
+| §9 | Changelog CP4 | [x] ✅ |
 
 ---
 
@@ -85,7 +85,7 @@
 |-----------|----------|
 | **Link spec.md trên GitHub** | [USER FILL - sau khi push] |
 | **Chuẩn "đạt" của nhóm là gì?** | Đạt khi tổng thể ≥ 85% qua bộ kiểm thử, 100% case Lớp ① (No-Grounding) không được hallucinate/bịa đặt thông tin mà phải fallback chuyển TA, và 100% câu trả lời có căn cứ phải kèm trích dẫn nguồn. |
-| **Phần nào chưa làm xong?** | Discord bot đang build (Tuấn), Run 2 và video sẽ hoàn thành sau CP4 (System prompts và Prompt templates của Vàng đã hoàn thành 100%). |
+| **Phần nào chưa làm xong?** | Run 2 đã đạt 24/24 (100%), No-Grounding 100% và citation 100%. Video demo 30 giây/link public chưa có; Discord bot và phần tích hợp hoàn chỉnh vẫn do Tuấn phụ trách. |
 
 ---
 

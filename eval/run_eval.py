@@ -50,6 +50,13 @@ def run_evaluation(live_ai=False):
         try:
             from codebase.ai_client import get_ai_assistant
             ai_assistant = get_ai_assistant()
+            client_ready = (
+                (ai_assistant.provider == "gemini" and ai_assistant.gemini_client is not None)
+                or (ai_assistant.provider == "openai" and ai_assistant.openai_client is not None)
+            )
+            if not client_ready:
+                print("❌ Không có AI client hoạt động. Hãy cấu hình API key và cài dependency trước khi chạy --live-ai.")
+                return False
             print("⚡ CHẾ ĐỘ: ĐO LƯỜNG TRÊN MÔ HÌNH AI THẬT (RUN 2 - CP3)")
             print(f"Provider: {ai_assistant.provider} | Model: {getattr(ai_assistant, 'gemini_client', None) and 'Gemini' or 'Configured'}")
         except Exception as e:
@@ -128,21 +135,37 @@ def run_evaluation(live_ai=False):
     for tc in test_cases:
         if live_ai and ai_assistant:
             import time
-            time.sleep(1.0)
+            # Gemini free tier giới hạn 15 request/phút; 5 giây/request giữ
+            # Run 2 trong giới hạn và tránh biến các case cuối thành lỗi 429.
+            time.sleep(5.0)
             ai_res = ai_assistant.ask(tc['user_input'])
             actual_output = ai_res.get('text', '')
         else:
             actual_output = mock_agent_response(tc)
         
-        # Check constraints
-        pass_contains = all(w.lower() in actual_output.lower() for w in tc.get('expected_output_contains', []))
-        fail_not_contains = any(w.lower() in actual_output.lower() for w in tc.get('must_not_contain', []))
+        # Check constraints and retain reasons so prompt regressions are actionable.
+        normalized_output = actual_output.lower()
+        missing_terms = [
+            w for w in tc.get('expected_output_contains', [])
+            if w.lower() not in normalized_output
+        ]
+        forbidden_terms = [
+            w for w in tc.get('must_not_contain', [])
+            if w.lower() in normalized_output
+        ]
+        pass_contains = not missing_terms
+        fail_not_contains = bool(forbidden_terms)
         
         # Grounding check for layer 1 (No-grounding không được hallucinate/bịa đặt mà phải chuyển TA)
         is_layer_1 = tc['difficulty_layer'] == "Chỗ khó ①"
         hallucinated = is_layer_1 and ("ngày" in actual_output and "@TA" not in actual_output)
 
-        is_passed = pass_contains and (not fail_not_contains) and (not hallucinated)
+        # Every grounded answer must visibly cite its source.
+        requires_citation = tc.get('expected_branch') == "happy_path"
+        citation_present = "📌 nguồn:" in normalized_output or "nguồn:" in normalized_output
+        citation_failed = requires_citation and not citation_present
+
+        is_passed = pass_contains and (not fail_not_contains) and (not hallucinated) and (not citation_failed)
         
         status = "✅ PASS" if is_passed else "❌ FAIL"
         if is_passed:
@@ -154,8 +177,16 @@ def run_evaluation(live_ai=False):
             "id": tc['id'],
             "input": tc['user_input'],
             "layer": tc['difficulty_layer'],
+            "expected_branch": tc.get('expected_branch'),
             "status": status,
-            "actual_output": actual_output
+            "actual_output": actual_output,
+            "failure_reasons": {
+                "missing_terms": missing_terms,
+                "forbidden_terms": forbidden_terms,
+                "hallucination_guard_failed": hallucinated,
+                "citation_required": requires_citation,
+                "citation_present": citation_present,
+            } if not is_passed else {}
         })
         print(f"[{status}] {tc['id']} | Lớp: {tc['difficulty_layer'][:10]} | Input: \"{tc['user_input'][:35]}...\"")
 
@@ -163,8 +194,16 @@ def run_evaluation(live_ai=False):
     print("-" * 65)
     print(f"📊 KẾT QUẢ TỔNG HỢP: {passed_count}/{len(test_cases)} Passed ({pass_rate:.1f}%)")
     
-    quality_bar_met = pass_rate >= 85.0
-    print(f"🎯 Đạt Quality Bar (>=85%): {'✅ ĐẠT YÊU CẦU' if quality_bar_met else '❌ CHƯA ĐẠT'}")
+    layer_1_results = [r for r in results if r['layer'] == "Chỗ khó ①"]
+    grounded_results = [r for r in results if r['expected_branch'] == "happy_path"]
+    layer_1_passed = all(r['status'] == "✅ PASS" for r in layer_1_results)
+    grounded_citations_passed = all(
+        r['failure_reasons'].get('citation_present', True) for r in grounded_results
+    )
+    quality_bar_met = pass_rate >= 85.0 and layer_1_passed and grounded_citations_passed
+    print(f"🛡️ Lớp ① No-Grounding: {'✅ 100%' if layer_1_passed else '❌ Chưa đạt 100%'}")
+    print(f"📌 Grounded citations: {'✅ 100%' if grounded_citations_passed else '❌ Chưa đạt 100%'}")
+    print(f"🎯 Đạt toàn bộ Quality Bar: {'✅ ĐẠT YÊU CẦU' if quality_bar_met else '❌ CHƯA ĐẠT'}")
     print("=" * 65)
 
     # Save run results
@@ -179,6 +218,10 @@ def run_evaluation(live_ai=False):
         "failed": failed_count,
         "pass_rate": f"{pass_rate:.1f}%",
         "quality_bar_met": quality_bar_met,
+        "strict_constraints": {
+            "layer_1_no_grounding_100_percent": layer_1_passed,
+            "grounded_citation_100_percent": grounded_citations_passed
+        },
         "details": results
     }
 
@@ -195,11 +238,12 @@ def run_evaluation(live_ai=False):
     with open(report_file, 'w', encoding='utf-8') as f:
         json.dump(report_data, f, ensure_ascii=False, indent=2)
     print(f"📁 Đã lưu báo cáo đánh giá tại: {report_file} (Thời điểm: {now_str})")
+    return quality_bar_met
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Golden Set Eval Runner")
     parser.add_argument("--live-ai", action="store_true", help="Chạy kiểm thử trên mô hình AI thật (Run 2 - CP3)")
     args = parser.parse_args()
 
-    run_evaluation(live_ai=args.live_ai)
-
+    succeeded = run_evaluation(live_ai=args.live_ai)
+    raise SystemExit(0 if succeeded else 1)

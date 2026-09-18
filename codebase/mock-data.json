@@ -56,6 +56,15 @@
       "source": "#kenh-ticket-ho-tro",
       "date": "13/09/2026",
       "url": "https://discord.com/channels/k4-3b/ho-tro"
+    },
+    {
+      "id": "DOC_007",
+      "category": "policy",
+      "title": "Quy chế xác định thời điểm nộp bài GitHub",
+      "content": "Theo Quy chế kỹ thuật, thời điểm nộp bài được đối chiếu bằng commit timestamp và push time trên GitHub. Commit tạo sau deadline vẫn được xem là trễ, kể cả khi thao tác push xảy ra trước mốc kiểm tra.",
+      "source": "#quy-che-khoa-hoc",
+      "date": "10/09/2026",
+      "url": "https://vlearn.edu.vn/docs/quy-che-hoc-tap"
     }
   ],
   "mock_scenarios": [
