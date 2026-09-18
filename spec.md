@@ -239,9 +239,9 @@
 
 | Thành viên | Mã HV | Phân công |
 |------------|-------|-----------|
-| Nguyễn Minh Thắng | 2A202602706 | Product Lead, spec.md, evidence mining, video demo/pitch |
+| Nguyễn Minh Thắng | 2A202602706 | Product Lead, spec.md, evidence mining,  |
 | Nguyễn Thị Vàng | 2A202602897 | Prompt engineering, Golden Set (≥20 cases), eval framework, khảo sát |
-| Nguyễn Minh Tuấn | 2A202602420 | Prototype Discord Bot (API/LangChain), UI demo, data mining |
+| Nguyễn Minh Tuấn | 2A202602420 | Prototype Discord Bot (API/LangChain), UI demo, data mining,video demo/pitch |
 
 **Willing users (≥3):** Bùi Việt Anh, Hà Anh Tuấn, Trần Mạnh Hùng
 
