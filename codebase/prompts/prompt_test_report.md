@@ -1,7 +1,7 @@
 # Báo cáo Thử nghiệm Prompt với 5 Cases Golden Set
 
 > **Người thực hiện:** Nguyễn Thị Vàng (2A202602897) — Prompt & Eval Lead  
-> **Thời điểm thực hiện:** 18/09/2026 10:58:36  
+> **Thời điểm thực hiện:** 18/09/2026 13:21:05  
 > **Mục tiêu:** Thẩm định khả năng phân nhánh và độ an toàn của System Prompt trước khi bàn giao cho Nguyễn Minh Tuấn tích hợp Bot.
 
 ## 1. Danh sách 5 Cases Tiêu Biểu Được Chọn
