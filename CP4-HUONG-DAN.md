@@ -37,8 +37,9 @@
 
 **Nhiệm vụ:**
 - [x] Viết system prompt outline (đã hoàn thiện tại spec §4c & codebase/prompts/system.md) ✅
-- [x] Viết prompt template cho 4 đường đi (Happy, Low-conf, No-ground, Out-of-scope tại codebase/prompts/templates/) ✅
+- [x] Viết prompt template cho 4 đường đi cốt lõi + 1 template Domain Policy (Happy, Low-conf, No-ground, Out-of-scope, Domain-policy tại codebase/prompts/templates/) ✅
 - [x] Test thực nghiệm 5 cases Golden Set đạt 100% tại codebase/prompts/prompt_test_report.md ✅
+- [x] Hoàn thiện báo cáo phân tích khảo sát n=14 học viên tại eval/survey_analysis.md ✅
 
 ---
 
@@ -85,7 +86,7 @@
 
 | Câu hỏi | Trả lời |
 |-----------|----------|
-| **Link spec.md trên GitHub** | [USER FILL - sau khi push] |
+| **Link spec.md trên GitHub** | https://github.com/nmthang2004-tn/K4-3B-E402-Latentia/blob/main/spec.md |
 | **Chuẩn "đạt" của nhóm là gì?** | Đạt khi tổng thể ≥ 85% qua bộ kiểm thử, 100% case Lớp ① (No-Grounding) không được hallucinate/bịa đặt thông tin mà phải fallback chuyển TA, và 100% câu trả lời có căn cứ phải kèm trích dẫn nguồn. |
 | **Phần nào chưa làm xong?** | Run 2 đã đạt 24/24 (100%), No-Grounding 100% và citation 100%. Video demo 30 giây/link public chưa có; Discord bot và phần tích hợp hoàn chỉnh vẫn do Tuấn phụ trách. |
 

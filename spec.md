@@ -12,7 +12,7 @@
 - **Problem statement:** Học viên khi cần tra cứu deadline hoặc tài liệu bị trôi tin nhắn giữa hàng trăm thảo luận; hỏi bot hiện tại thì bot không hiểu ngữ cảnh hoặc trả lời lan man không nguồn, khiến học viên tốn nhiều thời gian và vẫn phải tag hỏi lại TA.
 - **Evidence:**
   - Mining (khoá K4): 142/306 câu hỏi gửi bot là về logistics (46.4%); 63/306 phản hồi (20.6%) là menu hỏi lại dài.
-  - Khảo sát (n=14): 11/14 (78.6%) gặp khó khăn tìm deadline; 10/14 (71.4%) yêu cầu trả lời có trích dẫn nguồn.
+  - Khảo sát (n=14): 11/14 (78.6%) gặp khó khăn tìm deadline; 10/14 (71.4%) yêu cầu trả lời có trích dẫn nguồn. Chi tiết phân tích khảo sát do Vàng chủ trì: [`eval/survey_analysis.md`](eval/survey_analysis.md).
   - Quote: *"toàn tag mod, mod ko trả lời"* — học viên 15/9/2026
 
 ---
@@ -80,6 +80,7 @@
     2. *Low-Confidence (G10):* Phát hiện câu hỏi mơ hồ, cấm đoán mò, hỏi làm rõ kèm 2-3 lựa chọn mốc cụ thể. Chi tiết: [`codebase/prompts/templates/low_confidence.md`](codebase/prompts/templates/low_confidence.md).
     3. *No-Grounding (G10/PAIR):* Thiếu căn cứ thì thừa nhận chưa có dữ liệu và kích hoạt cơ chế Handoff tag @TA. Chi tiết: [`codebase/prompts/templates/no_grounding.md`](codebase/prompts/templates/no_grounding.md).
     4. *Out-of-Scope (G1):* Lịch sự từ chối giải bài/viết code và hướng dẫn sang kênh `#thao-luan`. Chi tiết: [`codebase/prompts/templates/out_of_scope.md`](codebase/prompts/templates/out_of_scope.md).
+    5. *Domain Policy (G11/G2):* Quy chế đặc thù (nộp muộn, vắng standup, commit timestamp) trích dẫn điều khoản chính xác. Chi tiết: [`codebase/prompts/templates/domain_policy.md`](codebase/prompts/templates/domain_policy.md).
   - **Báo cáo kiểm thử 5 cases:** Đã thẩm định đạt 5/5 cases (100.0%) tại [`codebase/prompts/prompt_test_report.md`](codebase/prompts/prompt_test_report.md).
 
 ---
@@ -240,7 +241,7 @@
 | Thành viên | Mã HV | Phân công |
 |------------|-------|-----------|
 | Nguyễn Minh Thắng | 2A202602706 | Product Lead, spec.md, evidence mining,  |
-| Nguyễn Thị Vàng | 2A202602897 | Prompt engineering, Golden Set (≥20 cases), eval framework, khảo sát |
+| Nguyễn Thị Vàng | 2A202602897 | Prompt engineering, Golden Set (≥20 cases), eval framework, khảo sát (`eval/survey_analysis.md`) |
 | Nguyễn Minh Tuấn | 2A202602420 | Prototype Discord Bot (API/LangChain), UI demo, data mining,video demo/pitch |
 
 **Willing users (≥3):** Bùi Việt Anh, Hà Anh Tuấn, Trần Mạnh Hùng
@@ -255,3 +256,4 @@
 | 18/9/2026 | Hoàn thiện §1-§8: Evidence, Impact, Thiết kế, 4 lớp lỗi, 4 đường đi, Golden set 24 cases, Quality bar | CP4 - Hoàn thiện spec |
 | 18/9/2026 | Quality bar: ≥85% tổng thể, 100% no-grounding không bịa, 100% trích dẫn nguồn | CP4 - Freeze quality bar |
 | 18/9/2026 | Hoàn tất runner, sửa prompt/grounding, chạy lại Run 2 đạt 24/24 (100%), No-Grounding 100%, citation 100% | CP3/CP4 - Chốt số liệu và quality bar |
+| 18/9/2026 | Bổ sung template Domain Policy, liên kết báo cáo khảo sát n=14 (`eval/survey_analysis.md`), nghiệm thu 5/5 cases prompt | CP4 - Nguyễn Thị Vàng hoàn thiện toàn diện Prompt & Eval tasks |
