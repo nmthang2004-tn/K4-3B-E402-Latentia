@@ -73,6 +73,15 @@
 | Gạt bỏ dễ dàng | G8 | User có thể bỏ qua câu trả lời, gõ câu hỏi khác ngay |
 | Làm rõ hệ thống làm được gì | G1 | Tin nhắn chào khi bot được mention: "Mình là Trợ lý Discord — hỏi về deadline, lịch, link tài liệu nhé!" |
 
+- **§4c. Thiết kế System Prompt & Prompt Templates (Phụ trách: Nguyễn Thị Vàng - 2A202602897):**
+  - **System Prompt Outline:** Định nghĩa rõ vai trò Trợ lý Discord lớp K4-3B; giới hạn trả lời thông tin vận hành; cấm tuyệt đối viết code/giải bài tập (Non-goals); ràng buộc Zero Hallucination (chỉ dùng `[CONTEXT_DATA]`), độ dài $\le 200$ ký tự, và bắt buộc đính kèm `📌 Nguồn: #[kênh]`. Chi tiết: [`codebase/prompts/system.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/system.md).
+  - **Prompt Templates cho 4 đường đi:**
+    1. *Happy Path:* Trả lời trực tiếp kèm trích dẫn nguồn và nút sửa/tag TA. Chi tiết: [`codebase/prompts/templates/happy_path.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/templates/happy_path.md).
+    2. *Low-Confidence (G10):* Phát hiện câu hỏi mơ hồ, cấm đoán mò, hỏi làm rõ kèm 2-3 lựa chọn mốc cụ thể. Chi tiết: [`codebase/prompts/templates/low_confidence.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/templates/low_confidence.md).
+    3. *No-Grounding (G10/PAIR):* Thiếu căn cứ thì thừa nhận chưa có dữ liệu và kích hoạt cơ chế Handoff tag @TA. Chi tiết: [`codebase/prompts/templates/no_grounding.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/templates/no_grounding.md).
+    4. *Out-of-Scope (G1):* Lịch sự từ chối giải bài/viết code và hướng dẫn sang kênh `#thao-luan`. Chi tiết: [`codebase/prompts/templates/out_of_scope.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/templates/out_of_scope.md).
+  - **Báo cáo kiểm thử 5 cases:** Đã thẩm định đạt 5/5 cases (100.0%) tại [`codebase/prompts/prompt_test_report.md`](file:///d:/Download/VINUNI%20AI/DAY5/K4-3B-E402-Latentia/codebase/prompts/prompt_test_report.md).
+
 ---
 
 ## §5. Kiểu lỗi — 4 lớp chỗ khó + kịch bản

@@ -32,16 +32,17 @@
 
 > Prompt phải xong trước để Tuấn tích hợp vào bot
 
-- [ ] Viết **system prompt** cho bot (role, phạm vi, cách trả lời)
-- [ ] Viết **prompt templates** cho từng đường đi:
+- [x] Viết **system prompt** cho bot (role, phạm vi, cách trả lời) ✅ (`codebase/prompts/system.md`)
+- [x] Viết **prompt templates** cho từng đường đi: ✅ (`codebase/prompts/templates/`)
   - Happy path: có căn cứ → trả lời + trích dẫn
   - Low-confidence: mơ hồ → hỏi làm rõ
   - No-grounding: không tìm thấy → chuyển TA
   - Out-of-scope: ngoài phạm vi → từ chối
-- [ ] Test prompt với 5 cases trong golden set
-- [ ] Tinh chỉnh prompt dựa trên kết quả
+  - Domain policy: quy chế đặc thù
+- [x] Test prompt với 5 cases trong golden set ✅ (`codebase/prompts/test_prompts_5cases.py`)
+- [x] Tinh chỉnh prompt dựa trên kết quả ✅ (`codebase/prompts/prompt_test_report.md`)
 
-**Output cho bước tiếp theo:** `codebase/prompts/system.md`, `codebase/prompts/templates/`
+**Output cho bước tiếp theo:** `codebase/prompts/system.md`, `codebase/prompts/templates/` ✅ (Đã bàn giao cho Tuấn)
 
 ---
 
@@ -115,9 +116,10 @@ eval/
 - [x] Golden set 24 cases
 - [x] Quality bar
 
-### ⬜ Vàng — Làm tiếp
-- [ ] System prompt
-- [ ] Prompt templates
+### ✅ Vàng — Đã xong
+- [x] System prompt (`codebase/prompts/system.md`)
+- [x] Prompt templates (`codebase/prompts/templates/`)
+- [x] Thử nghiệm 5 cases & báo cáo tinh chỉnh (`codebase/prompts/prompt_test_report.md`)
 
 ### ⬜ Tuấn — Làm cuối
 - [ ] Discord bot với AI

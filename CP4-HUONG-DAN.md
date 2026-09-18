@@ -36,10 +36,9 @@
 > **Deadline cho Vàng: 20:45**
 
 **Nhiệm vụ:**
-- [ ] Viết system prompt outline (để vào spec §4)
-- [ ] Viết prompt template cho 4 đường đi (Happy, Low-conf, No-ground, Out-of-scope)
-
-**Ghi chú:** Có thể viết trên giấy/note, chưa cần code
+- [x] Viết system prompt outline (đã hoàn thiện tại spec §4c & codebase/prompts/system.md) ✅
+- [x] Viết prompt template cho 4 đường đi (Happy, Low-conf, No-ground, Out-of-scope tại codebase/prompts/templates/) ✅
+- [x] Test thực nghiệm 5 cases Golden Set đạt 100% tại codebase/prompts/prompt_test_report.md ✅
 
 ---
 
@@ -86,7 +85,7 @@
 |-----------|----------|
 | **Link spec.md trên GitHub** | [USER FILL - sau khi push] |
 | **Chuẩn "đạt" của nhóm là gì?** | Đạt khi tổng thể ≥ 85% qua bộ kiểm thử, 100% case Lớp ① (No-Grounding) không được hallucinate/bịa đặt thông tin mà phải fallback chuyển TA, và 100% câu trả lời có căn cứ phải kèm trích dẫn nguồn. |
-| **Phần nào chưa làm xong?** | Discord bot đang build (Tuấn), Prompt templates đang viết (Vàng), Run 2 và video sẽ hoàn thành sau CP4. |
+| **Phần nào chưa làm xong?** | Discord bot đang build (Tuấn), Run 2 và video sẽ hoàn thành sau CP4 (System prompts và Prompt templates của Vàng đã hoàn thành 100%). |
 
 ---
 
